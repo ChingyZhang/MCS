@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5fe99f4d86064dc29b25802616dfecb6" Name="关系图1">
+        <EntityTypeShape EntityType="Chingy_SYSModel.Addr_OfficialCity" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Chingy_SYSModel.Addr_OrganizeCity" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Chingy_SYSModel.DB_RunLog" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Chingy_SYSModel.Dictionary_Column" Width="1.5" PointX="13" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="Chingy_SYSModel.Dictionary_Table" Width="1.5" PointX="10.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Chingy_SYSModel.Right_Action" Width="1.5" PointX="15.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Chingy_SYSModel.Right_Assign" Width="1.5" PointX="13" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Chingy_SYSModel.Right_Controller" Width="1.5" PointX="13" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Chingy_SYSModel.Right_Module" Width="1.5" PointX="10.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Chingy_SYSModel.UD_DetailView" Width="1.5" PointX="3.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Chingy_SYSModel.UD_ModelFields" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Chingy_SYSModel.UD_Panel" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Chingy_SYSModel.UD_Panel_ModelFields" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Chingy_SYSModel.UD_Panel_Table" Width="1.5" PointX="8" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Chingy_SYSModel.UD_Panel_TableRelation" Width="1.5" PointX="8.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Chingy_SYSModel.UD_TableList" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="Chingy_SYSModel.FK_DICTIONA_FK_DICTIO_DICTIONA" ManuallyRouted="false" />
+        <AssociationConnector Association="Chingy_SYSModel.FK_RIGHT_AC_FK_RIGHTC_RIGHT_CO" ManuallyRouted="false" />
+        <AssociationConnector Association="Chingy_SYSModel.FK_RIGHT_AS_FK_RIGHTA_RIGHT_MO" ManuallyRouted="false" />
+        <AssociationConnector Association="Chingy_SYSModel.FK_RIGHT_CO_FK_RIGHTM_RIGHT_MO" ManuallyRouted="false" />
+        <AssociationConnector Association="Chingy_SYSModel.FK_UD_PANEL_FK_DETAIL_UD_DETAI" ManuallyRouted="false" />
+        <AssociationConnector Association="Chingy_SYSModel.FK_UD_MODEL_FK_TABLEL_UD_TABLE" ManuallyRouted="false" />
+        <AssociationConnector Association="Chingy_SYSModel.FK_UD_PANEL_FK_PANEL__UD_MODEL" ManuallyRouted="false" />
+        <AssociationConnector Association="Chingy_SYSModel.FK_UD_PANEL_FK_PANELT_UD_MODEL" ManuallyRouted="false" />
+        <AssociationConnector Association="Chingy_SYSModel.FK_UD_PANEL_FK_TABLER_UD_MODEL" ManuallyRouted="false" />
+        <AssociationConnector Association="Chingy_SYSModel.FK_UD_PANEL_FK_PANEL__UD_PANEL" ManuallyRouted="false" />
+        <AssociationConnector Association="Chingy_SYSModel.FK_UD_PANEL_FK_PANELF_UD_PANEL" ManuallyRouted="false" />
+        <AssociationConnector Association="Chingy_SYSModel.FK_UD_PANEL_FK_UD_PAN_UD_PANEL" ManuallyRouted="false" />
+        <AssociationConnector Association="Chingy_SYSModel.FK_UD_PANEL_FK_PANEL__UD_TABLE" ManuallyRouted="false" />
+        <AssociationConnector Association="Chingy_SYSModel.FK_UD_PANEL_FK_PANELT_UD_TABLE" ManuallyRouted="false" />
+        <AssociationConnector Association="Chingy_SYSModel.FK_UD_PANEL_FK_TABLER_UD_TABLE" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,1397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Chingy_SYSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Chingy_SYSModelStoreContainer">
+          <EntitySet Name="Addr_OfficialCity" EntityType="Chingy_SYSModel.Store.Addr_OfficialCity" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Addr_OrganizeCity" EntityType="Chingy_SYSModel.Store.Addr_OrganizeCity" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DB_RunLog" EntityType="Chingy_SYSModel.Store.DB_RunLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Dictionary_Column" EntityType="Chingy_SYSModel.Store.Dictionary_Column" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Dictionary_Table" EntityType="Chingy_SYSModel.Store.Dictionary_Table" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Right_Action" EntityType="Chingy_SYSModel.Store.Right_Action" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Right_Assign" EntityType="Chingy_SYSModel.Store.Right_Assign" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Right_Controller" EntityType="Chingy_SYSModel.Store.Right_Controller" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Right_Module" EntityType="Chingy_SYSModel.Store.Right_Module" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UD_DetailView" EntityType="Chingy_SYSModel.Store.UD_DetailView" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UD_ModelFields" EntityType="Chingy_SYSModel.Store.UD_ModelFields" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UD_Panel" EntityType="Chingy_SYSModel.Store.UD_Panel" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UD_Panel_ModelFields" EntityType="Chingy_SYSModel.Store.UD_Panel_ModelFields" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UD_Panel_Table" EntityType="Chingy_SYSModel.Store.UD_Panel_Table" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UD_Panel_TableRelation" EntityType="Chingy_SYSModel.Store.UD_Panel_TableRelation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UD_TableList" EntityType="Chingy_SYSModel.Store.UD_TableList" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_DICTIONA_FK-DICTIO_DICTIONA" Association="Chingy_SYSModel.Store.FK_DICTIONA_FK-DICTIO_DICTIONA">
+            <End Role="Dictionary_Table" EntitySet="Dictionary_Table" />
+            <End Role="Dictionary_Column" EntitySet="Dictionary_Column" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIGHT_AC_FK-RIGHTC_RIGHT_CO" Association="Chingy_SYSModel.Store.FK_RIGHT_AC_FK-RIGHTC_RIGHT_CO">
+            <End Role="Right_Controller" EntitySet="Right_Controller" />
+            <End Role="Right_Action" EntitySet="Right_Action" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIGHT_AS_FK-RIGHTA_RIGHT_MO" Association="Chingy_SYSModel.Store.FK_RIGHT_AS_FK-RIGHTA_RIGHT_MO">
+            <End Role="Right_Module" EntitySet="Right_Module" />
+            <End Role="Right_Assign" EntitySet="Right_Assign" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIGHT_CO_FK-RIGHTM_RIGHT_MO" Association="Chingy_SYSModel.Store.FK_RIGHT_CO_FK-RIGHTM_RIGHT_MO">
+            <End Role="Right_Module" EntitySet="Right_Module" />
+            <End Role="Right_Controller" EntitySet="Right_Controller" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_MODEL_FK-TABLEL_UD_TABLE" Association="Chingy_SYSModel.Store.FK_UD_MODEL_FK-TABLEL_UD_TABLE">
+            <End Role="UD_TableList" EntitySet="UD_TableList" />
+            <End Role="UD_ModelFields" EntitySet="UD_ModelFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK-DETAIL_UD_DETAI" Association="Chingy_SYSModel.Store.FK_UD_PANEL_FK-DETAIL_UD_DETAI">
+            <End Role="UD_DetailView" EntitySet="UD_DetailView" />
+            <End Role="UD_Panel" EntitySet="UD_Panel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK-PANEL-_UD_MODEL" Association="Chingy_SYSModel.Store.FK_UD_PANEL_FK-PANEL-_UD_MODEL">
+            <End Role="UD_ModelFields" EntitySet="UD_ModelFields" />
+            <End Role="UD_Panel_ModelFields" EntitySet="UD_Panel_ModelFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK-PANEL-_UD_PANEL" Association="Chingy_SYSModel.Store.FK_UD_PANEL_FK-PANEL-_UD_PANEL">
+            <End Role="UD_Panel" EntitySet="UD_Panel" />
+            <End Role="UD_Panel_Table" EntitySet="UD_Panel_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK-PANEL-_UD_TABLE" Association="Chingy_SYSModel.Store.FK_UD_PANEL_FK-PANEL-_UD_TABLE">
+            <End Role="UD_TableList" EntitySet="UD_TableList" />
+            <End Role="UD_Panel_Table" EntitySet="UD_Panel_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK-PANELF_UD_PANEL" Association="Chingy_SYSModel.Store.FK_UD_PANEL_FK-PANELF_UD_PANEL">
+            <End Role="UD_Panel" EntitySet="UD_Panel" />
+            <End Role="UD_Panel_ModelFields" EntitySet="UD_Panel_ModelFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK-PANELT_UD_MODEL" Association="Chingy_SYSModel.Store.FK_UD_PANEL_FK-PANELT_UD_MODEL">
+            <End Role="UD_ModelFields" EntitySet="UD_ModelFields" />
+            <End Role="UD_Panel_TableRelation" EntitySet="UD_Panel_TableRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK-PANELT_UD_TABLE" Association="Chingy_SYSModel.Store.FK_UD_PANEL_FK-PANELT_UD_TABLE">
+            <End Role="UD_TableList" EntitySet="UD_TableList" />
+            <End Role="UD_Panel_TableRelation" EntitySet="UD_Panel_TableRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK-TABLER_UD_MODEL" Association="Chingy_SYSModel.Store.FK_UD_PANEL_FK-TABLER_UD_MODEL">
+            <End Role="UD_ModelFields" EntitySet="UD_ModelFields" />
+            <End Role="UD_Panel_TableRelation" EntitySet="UD_Panel_TableRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK-TABLER_UD_TABLE" Association="Chingy_SYSModel.Store.FK_UD_PANEL_FK-TABLER_UD_TABLE">
+            <End Role="UD_TableList" EntitySet="UD_TableList" />
+            <End Role="UD_Panel_TableRelation" EntitySet="UD_Panel_TableRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK-UD_PAN_UD_PANEL" Association="Chingy_SYSModel.Store.FK_UD_PANEL_FK-UD_PAN_UD_PANEL">
+            <End Role="UD_Panel" EntitySet="UD_Panel" />
+            <End Role="UD_Panel_TableRelation" EntitySet="UD_Panel_TableRelation" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Addr_OfficialCity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="SuperID" Type="int" Nullable="false" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="Code" Type="varbinary" Nullable="false" MaxLength="500" />
+          <Property Name="Flag" Type="int" Nullable="false" />
+          <Property Name="InsertTime" Type="datetime" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="ExtPropertys" Type="varchar" />
+        </EntityType>
+        <EntityType Name="Addr_OrganizeCity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="SuperID" Type="int" Nullable="false" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="Code" Type="varbinary" Nullable="false" MaxLength="500" />
+          <Property Name="Flag" Type="int" Nullable="false" />
+          <Property Name="InsertTime" Type="datetime" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="ExtPropertys" Type="varchar" />
+        </EntityType>
+        <EntityType Name="DB_RunLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RunType" Type="int" Nullable="false" />
+          <Property Name="RunContent" Type="varchar" Nullable="false" />
+          <Property Name="RunResult" Type="varbinary" Nullable="false" />
+          <Property Name="InsertTime" Type="datetime" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="ExtPropertys" Type="varchar" />
+        </EntityType>
+        <EntityType Name="Dictionary_Column">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Table" Type="int" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Code" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Flag" Type="int" Nullable="false" />
+          <Property Name="InsertTime" Type="datetime" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="ExtPropertys" Type="varchar" />
+        </EntityType>
+        <EntityType Name="Dictionary_Table">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varbinary" Nullable="false" MaxLength="100" />
+          <Property Name="Code" Type="varbinary" Nullable="false" MaxLength="100" />
+          <Property Name="Flag" Type="int" Nullable="false" />
+          <Property Name="InsertTime" Type="datetime" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="ExtPropertys" Type="varchar" />
+        </EntityType>
+        <EntityType Name="Right_Action">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ControllerID" Type="int" Nullable="false" />
+          <Property Name="ActionName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="InsertTime" Type="datetime" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="ExtPropertys" Type="varchar" />
+        </EntityType>
+        <EntityType Name="Right_Assign">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="ModuleID" Type="int" Nullable="false" />
+          <Property Name="Flag" Type="int" />
+          <Property Name="InsertTime" Type="datetime" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="ExtPropertys" Type="varchar" />
+        </EntityType>
+        <EntityType Name="Right_Controller">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ControllerName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ModuleID" Type="int" />
+          <Property Name="InsertTime" Type="datetime" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="ExtPropertys" Type="varchar" />
+        </EntityType>
+        <EntityType Name="Right_Module">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Code" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Content" Type="varchar" MaxLength="5000" />
+          <Property Name="Flag" Type="int" Nullable="false" />
+          <Property Name="InsertTime" Type="datetime" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="ExtPropertys" Type="varchar" />
+        </EntityType>
+        <EntityType Name="UD_DetailView">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Code" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="InsertTime" Type="datetime" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateUser" Type="int" />
+        </EntityType>
+        <EntityType Name="UD_ModelFields">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TableID" Type="uniqueidentifier" />
+          <Property Name="FieldName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="FieldDisplayName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ColumnSortID" Type="int" />
+          <Property Name="FlagEntity" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="DataType" Type="int" />
+          <Property Name="DataLength" Type="int" />
+          <Property Name="Precision" Type="int" />
+          <Property Name="DefaultValue" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="RelationType" Type="int" />
+          <Property Name="RelationTableName" Type="varchar" MaxLength="100" />
+          <Property Name="RelationFieldValue" Type="varchar" MaxLength="100" />
+          <Property Name="RelationFieldText" Type="varchar" MaxLength="100" />
+          <Property Name="Position" Type="int" />
+          <Property Name="InsertTime" Type="datetime" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="ExtPropertys" Type="varchar" />
+        </EntityType>
+        <EntityType Name="UD_Panel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Code" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="SortID" Type="int" />
+          <Property Name="Enabled" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="DisplayType" Type="int" Nullable="false" />
+          <Property Name="FieldCount" Type="int" />
+          <Property Name="AdvanceFind" Type="char" MaxLength="1" />
+          <Property Name="DefaultSortFields" Type="varchar" MaxLength="100" />
+          <Property Name="DetailView" Type="uniqueidentifier" />
+          <Property Name="InsertTime" Type="datetime" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateUser" Type="int" />
+        </EntityType>
+        <EntityType Name="UD_Panel_ModelFields">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PanelID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FieldID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LabelText" Type="varchar" MaxLength="100" />
+          <Property Name="ReadOnly" Type="char" MaxLength="1" />
+          <Property Name="ControlTupe" Type="int" />
+          <Property Name="ControlHeight" Type="int" />
+          <Property Name="ControlWidth" Type="int" />
+          <Property Name="ControlStyle" Type="varchar" MaxLength="500" />
+          <Property Name="ColSpan" Type="int" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="Enable" Type="char" MaxLength="1" />
+          <Property Name="Visible" Type="char" MaxLength="1" />
+          <Property Name="IsRequiredFidle" Type="char" MaxLength="1" />
+          <Property Name="SortID" Type="int" />
+          <Property Name="DisplayMode" Type="int" />
+          <Property Name="RegularExpression" Type="varchar" MaxLength="500" />
+          <Property Name="FormatString" Type="varchar" MaxLength="500" />
+          <Property Name="TreeLevel" Type="int" />
+          <Property Name="InsertTime" Type="datetime" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateUser" Type="int" />
+        </EntityType>
+        <EntityType Name="UD_Panel_Table">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PanelID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TableID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="InsertTime" Type="datetime" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="ExtPropertys" Type="varchar" />
+        </EntityType>
+        <EntityType Name="UD_Panel_TableRelation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PanelID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ParentTableID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ParentFieldID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ChildTableID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UD__ID" Type="uniqueidentifier" />
+          <Property Name="ChildFieldID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="JoinMode" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="RelationCondition" Type="varchar" MaxLength="500" />
+          <Property Name="SortID" Type="int" />
+          <Property Name="InsertTime" Type="datetime" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="ExtPropertys" Type="varchar" />
+        </EntityType>
+        <EntityType Name="UD_TableList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="DisplayName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ExtFlag" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="ModelName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="TreeFlag" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="InsertTime" Type="datetime" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="ExtPropertys" Type="varchar" />
+        </EntityType>
+        <Association Name="FK_DICTIONA_FK-DICTIO_DICTIONA">
+          <End Role="Dictionary_Table" Type="Chingy_SYSModel.Store.Dictionary_Table" Multiplicity="0..1" />
+          <End Role="Dictionary_Column" Type="Chingy_SYSModel.Store.Dictionary_Column" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dictionary_Table">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Dictionary_Column">
+              <PropertyRef Name="Table" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIGHT_AC_FK-RIGHTC_RIGHT_CO">
+          <End Role="Right_Controller" Type="Chingy_SYSModel.Store.Right_Controller" Multiplicity="1" />
+          <End Role="Right_Action" Type="Chingy_SYSModel.Store.Right_Action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Right_Controller">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Right_Action">
+              <PropertyRef Name="ControllerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIGHT_AS_FK-RIGHTA_RIGHT_MO">
+          <End Role="Right_Module" Type="Chingy_SYSModel.Store.Right_Module" Multiplicity="1" />
+          <End Role="Right_Assign" Type="Chingy_SYSModel.Store.Right_Assign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Right_Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Right_Assign">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIGHT_CO_FK-RIGHTM_RIGHT_MO">
+          <End Role="Right_Module" Type="Chingy_SYSModel.Store.Right_Module" Multiplicity="0..1" />
+          <End Role="Right_Controller" Type="Chingy_SYSModel.Store.Right_Controller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Right_Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Right_Controller">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_MODEL_FK-TABLEL_UD_TABLE">
+          <End Role="UD_TableList" Type="Chingy_SYSModel.Store.UD_TableList" Multiplicity="0..1" />
+          <End Role="UD_ModelFields" Type="Chingy_SYSModel.Store.UD_ModelFields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_TableList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_ModelFields">
+              <PropertyRef Name="TableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK-DETAIL_UD_DETAI">
+          <End Role="UD_DetailView" Type="Chingy_SYSModel.Store.UD_DetailView" Multiplicity="0..1" />
+          <End Role="UD_Panel" Type="Chingy_SYSModel.Store.UD_Panel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_DetailView">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel">
+              <PropertyRef Name="DetailView" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK-PANEL-_UD_MODEL">
+          <End Role="UD_ModelFields" Type="Chingy_SYSModel.Store.UD_ModelFields" Multiplicity="1" />
+          <End Role="UD_Panel_ModelFields" Type="Chingy_SYSModel.Store.UD_Panel_ModelFields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_ModelFields">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_ModelFields">
+              <PropertyRef Name="FieldID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK-PANEL-_UD_PANEL">
+          <End Role="UD_Panel" Type="Chingy_SYSModel.Store.UD_Panel" Multiplicity="1" />
+          <End Role="UD_Panel_Table" Type="Chingy_SYSModel.Store.UD_Panel_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_Panel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_Table">
+              <PropertyRef Name="PanelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK-PANEL-_UD_TABLE">
+          <End Role="UD_TableList" Type="Chingy_SYSModel.Store.UD_TableList" Multiplicity="1" />
+          <End Role="UD_Panel_Table" Type="Chingy_SYSModel.Store.UD_Panel_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_TableList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_Table">
+              <PropertyRef Name="TableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK-PANELF_UD_PANEL">
+          <End Role="UD_Panel" Type="Chingy_SYSModel.Store.UD_Panel" Multiplicity="1" />
+          <End Role="UD_Panel_ModelFields" Type="Chingy_SYSModel.Store.UD_Panel_ModelFields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_Panel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_ModelFields">
+              <PropertyRef Name="PanelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK-PANELT_UD_MODEL">
+          <End Role="UD_ModelFields" Type="Chingy_SYSModel.Store.UD_ModelFields" Multiplicity="1" />
+          <End Role="UD_Panel_TableRelation" Type="Chingy_SYSModel.Store.UD_Panel_TableRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_ModelFields">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_TableRelation">
+              <PropertyRef Name="ParentFieldID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK-PANELT_UD_TABLE">
+          <End Role="UD_TableList" Type="Chingy_SYSModel.Store.UD_TableList" Multiplicity="1" />
+          <End Role="UD_Panel_TableRelation" Type="Chingy_SYSModel.Store.UD_Panel_TableRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_TableList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_TableRelation">
+              <PropertyRef Name="ParentTableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK-TABLER_UD_MODEL">
+          <End Role="UD_ModelFields" Type="Chingy_SYSModel.Store.UD_ModelFields" Multiplicity="0..1" />
+          <End Role="UD_Panel_TableRelation" Type="Chingy_SYSModel.Store.UD_Panel_TableRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_ModelFields">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_TableRelation">
+              <PropertyRef Name="UD__ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK-TABLER_UD_TABLE">
+          <End Role="UD_TableList" Type="Chingy_SYSModel.Store.UD_TableList" Multiplicity="1" />
+          <End Role="UD_Panel_TableRelation" Type="Chingy_SYSModel.Store.UD_Panel_TableRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_TableList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_TableRelation">
+              <PropertyRef Name="ChildTableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK-UD_PAN_UD_PANEL">
+          <End Role="UD_Panel" Type="Chingy_SYSModel.Store.UD_Panel" Multiplicity="1" />
+          <End Role="UD_Panel_TableRelation" Type="Chingy_SYSModel.Store.UD_Panel_TableRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_Panel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_TableRelation">
+              <PropertyRef Name="PanelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Chingy_SYSModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Chingy_SYSEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Addr_OfficialCity" EntityType="Chingy_SYSModel.Addr_OfficialCity" />
+          <EntitySet Name="Addr_OrganizeCity" EntityType="Chingy_SYSModel.Addr_OrganizeCity" />
+          <EntitySet Name="DB_RunLog" EntityType="Chingy_SYSModel.DB_RunLog" />
+          <EntitySet Name="Dictionary_Column" EntityType="Chingy_SYSModel.Dictionary_Column" />
+          <EntitySet Name="Dictionary_Table" EntityType="Chingy_SYSModel.Dictionary_Table" />
+          <EntitySet Name="Right_Action" EntityType="Chingy_SYSModel.Right_Action" />
+          <EntitySet Name="Right_Assign" EntityType="Chingy_SYSModel.Right_Assign" />
+          <EntitySet Name="Right_Controller" EntityType="Chingy_SYSModel.Right_Controller" />
+          <EntitySet Name="Right_Module" EntityType="Chingy_SYSModel.Right_Module" />
+          <EntitySet Name="UD_DetailView" EntityType="Chingy_SYSModel.UD_DetailView" />
+          <EntitySet Name="UD_ModelFields" EntityType="Chingy_SYSModel.UD_ModelFields" />
+          <EntitySet Name="UD_Panel" EntityType="Chingy_SYSModel.UD_Panel" />
+          <EntitySet Name="UD_Panel_ModelFields" EntityType="Chingy_SYSModel.UD_Panel_ModelFields" />
+          <EntitySet Name="UD_Panel_Table" EntityType="Chingy_SYSModel.UD_Panel_Table" />
+          <EntitySet Name="UD_Panel_TableRelation" EntityType="Chingy_SYSModel.UD_Panel_TableRelation" />
+          <EntitySet Name="UD_TableList" EntityType="Chingy_SYSModel.UD_TableList" />
+          <AssociationSet Name="FK_DICTIONA_FK_DICTIO_DICTIONA" Association="Chingy_SYSModel.FK_DICTIONA_FK_DICTIO_DICTIONA">
+            <End Role="Dictionary_Table" EntitySet="Dictionary_Table" />
+            <End Role="Dictionary_Column" EntitySet="Dictionary_Column" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIGHT_AC_FK_RIGHTC_RIGHT_CO" Association="Chingy_SYSModel.FK_RIGHT_AC_FK_RIGHTC_RIGHT_CO">
+            <End Role="Right_Controller" EntitySet="Right_Controller" />
+            <End Role="Right_Action" EntitySet="Right_Action" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIGHT_AS_FK_RIGHTA_RIGHT_MO" Association="Chingy_SYSModel.FK_RIGHT_AS_FK_RIGHTA_RIGHT_MO">
+            <End Role="Right_Module" EntitySet="Right_Module" />
+            <End Role="Right_Assign" EntitySet="Right_Assign" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIGHT_CO_FK_RIGHTM_RIGHT_MO" Association="Chingy_SYSModel.FK_RIGHT_CO_FK_RIGHTM_RIGHT_MO">
+            <End Role="Right_Module" EntitySet="Right_Module" />
+            <End Role="Right_Controller" EntitySet="Right_Controller" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK_DETAIL_UD_DETAI" Association="Chingy_SYSModel.FK_UD_PANEL_FK_DETAIL_UD_DETAI">
+            <End Role="UD_DetailView" EntitySet="UD_DetailView" />
+            <End Role="UD_Panel" EntitySet="UD_Panel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_MODEL_FK_TABLEL_UD_TABLE" Association="Chingy_SYSModel.FK_UD_MODEL_FK_TABLEL_UD_TABLE">
+            <End Role="UD_TableList" EntitySet="UD_TableList" />
+            <End Role="UD_ModelFields" EntitySet="UD_ModelFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK_PANEL__UD_MODEL" Association="Chingy_SYSModel.FK_UD_PANEL_FK_PANEL__UD_MODEL">
+            <End Role="UD_ModelFields" EntitySet="UD_ModelFields" />
+            <End Role="UD_Panel_ModelFields" EntitySet="UD_Panel_ModelFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK_PANELT_UD_MODEL" Association="Chingy_SYSModel.FK_UD_PANEL_FK_PANELT_UD_MODEL">
+            <End Role="UD_ModelFields" EntitySet="UD_ModelFields" />
+            <End Role="UD_Panel_TableRelation" EntitySet="UD_Panel_TableRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK_TABLER_UD_MODEL" Association="Chingy_SYSModel.FK_UD_PANEL_FK_TABLER_UD_MODEL">
+            <End Role="UD_ModelFields" EntitySet="UD_ModelFields" />
+            <End Role="UD_Panel_TableRelation" EntitySet="UD_Panel_TableRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK_PANEL__UD_PANEL" Association="Chingy_SYSModel.FK_UD_PANEL_FK_PANEL__UD_PANEL">
+            <End Role="UD_Panel" EntitySet="UD_Panel" />
+            <End Role="UD_Panel_Table" EntitySet="UD_Panel_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK_PANELF_UD_PANEL" Association="Chingy_SYSModel.FK_UD_PANEL_FK_PANELF_UD_PANEL">
+            <End Role="UD_Panel" EntitySet="UD_Panel" />
+            <End Role="UD_Panel_ModelFields" EntitySet="UD_Panel_ModelFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK_UD_PAN_UD_PANEL" Association="Chingy_SYSModel.FK_UD_PANEL_FK_UD_PAN_UD_PANEL">
+            <End Role="UD_Panel" EntitySet="UD_Panel" />
+            <End Role="UD_Panel_TableRelation" EntitySet="UD_Panel_TableRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK_PANEL__UD_TABLE" Association="Chingy_SYSModel.FK_UD_PANEL_FK_PANEL__UD_TABLE">
+            <End Role="UD_TableList" EntitySet="UD_TableList" />
+            <End Role="UD_Panel_Table" EntitySet="UD_Panel_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK_PANELT_UD_TABLE" Association="Chingy_SYSModel.FK_UD_PANEL_FK_PANELT_UD_TABLE">
+            <End Role="UD_TableList" EntitySet="UD_TableList" />
+            <End Role="UD_Panel_TableRelation" EntitySet="UD_Panel_TableRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UD_PANEL_FK_TABLER_UD_TABLE" Association="Chingy_SYSModel.FK_UD_PANEL_FK_TABLER_UD_TABLE">
+            <End Role="UD_TableList" EntitySet="UD_TableList" />
+            <End Role="UD_Panel_TableRelation" EntitySet="UD_Panel_TableRelation" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Addr_OfficialCity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="SuperID" Type="Int32" Nullable="false" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Binary" Nullable="false" MaxLength="500" FixedLength="false" />
+          <Property Name="Flag" Type="Int32" Nullable="false" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="ExtPropertys" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Addr_OrganizeCity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="SuperID" Type="Int32" Nullable="false" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Binary" Nullable="false" MaxLength="500" FixedLength="false" />
+          <Property Name="Flag" Type="Int32" Nullable="false" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="ExtPropertys" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DB_RunLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RunType" Type="Int32" Nullable="false" />
+          <Property Name="RunContent" Type="String" Nullable="false" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="RunResult" Type="Binary" Nullable="false" MaxLength="8000" FixedLength="false" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="ExtPropertys" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Dictionary_Column">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Table" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Flag" Type="Int32" Nullable="false" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="ExtPropertys" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Dictionary_Table" Relationship="Chingy_SYSModel.FK_DICTIONA_FK_DICTIO_DICTIONA" FromRole="Dictionary_Column" ToRole="Dictionary_Table" />
+        </EntityType>
+        <EntityType Name="Dictionary_Table">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="Binary" Nullable="false" MaxLength="100" FixedLength="false" />
+          <Property Name="Code" Type="Binary" Nullable="false" MaxLength="100" FixedLength="false" />
+          <Property Name="Flag" Type="Int32" Nullable="false" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="ExtPropertys" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Dictionary_Column" Relationship="Chingy_SYSModel.FK_DICTIONA_FK_DICTIO_DICTIONA" FromRole="Dictionary_Table" ToRole="Dictionary_Column" />
+        </EntityType>
+        <EntityType Name="Right_Action">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ControllerID" Type="Int32" Nullable="false" />
+          <Property Name="ActionName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="ExtPropertys" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Right_Controller" Relationship="Chingy_SYSModel.FK_RIGHT_AC_FK_RIGHTC_RIGHT_CO" FromRole="Right_Action" ToRole="Right_Controller" />
+        </EntityType>
+        <EntityType Name="Right_Assign">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="ModuleID" Type="Int32" Nullable="false" />
+          <Property Name="Flag" Type="Int32" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="ExtPropertys" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Right_Module" Relationship="Chingy_SYSModel.FK_RIGHT_AS_FK_RIGHTA_RIGHT_MO" FromRole="Right_Assign" ToRole="Right_Module" />
+        </EntityType>
+        <EntityType Name="Right_Controller">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ControllerName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ModuleID" Type="Int32" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="ExtPropertys" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Right_Action" Relationship="Chingy_SYSModel.FK_RIGHT_AC_FK_RIGHTC_RIGHT_CO" FromRole="Right_Controller" ToRole="Right_Action" />
+          <NavigationProperty Name="Right_Module" Relationship="Chingy_SYSModel.FK_RIGHT_CO_FK_RIGHTM_RIGHT_MO" FromRole="Right_Controller" ToRole="Right_Module" />
+        </EntityType>
+        <EntityType Name="Right_Module">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Content" Type="String" MaxLength="5000" Unicode="false" FixedLength="false" />
+          <Property Name="Flag" Type="Int32" Nullable="false" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="ExtPropertys" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Right_Assign" Relationship="Chingy_SYSModel.FK_RIGHT_AS_FK_RIGHTA_RIGHT_MO" FromRole="Right_Module" ToRole="Right_Assign" />
+          <NavigationProperty Name="Right_Controller" Relationship="Chingy_SYSModel.FK_RIGHT_CO_FK_RIGHTM_RIGHT_MO" FromRole="Right_Module" ToRole="Right_Controller" />
+        </EntityType>
+        <EntityType Name="UD_DetailView">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <NavigationProperty Name="UD_Panel" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_DETAIL_UD_DETAI" FromRole="UD_DetailView" ToRole="UD_Panel" />
+        </EntityType>
+        <EntityType Name="UD_ModelFields">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="TableID" Type="Guid" />
+          <Property Name="FieldName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="FieldDisplayName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ColumnSortID" Type="Int32" />
+          <Property Name="FlagEntity" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="DataType" Type="Int32" />
+          <Property Name="DataLength" Type="Int32" />
+          <Property Name="Precision" Type="Int32" />
+          <Property Name="DefaultValue" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="RelationType" Type="Int32" />
+          <Property Name="RelationTableName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="RelationFieldValue" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="RelationFieldText" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Position" Type="Int32" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="ExtPropertys" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="UD_TableList" Relationship="Chingy_SYSModel.FK_UD_MODEL_FK_TABLEL_UD_TABLE" FromRole="UD_ModelFields" ToRole="UD_TableList" />
+          <NavigationProperty Name="UD_Panel_ModelFields" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_PANEL__UD_MODEL" FromRole="UD_ModelFields" ToRole="UD_Panel_ModelFields" />
+          <NavigationProperty Name="UD_Panel_TableRelation" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_PANELT_UD_MODEL" FromRole="UD_ModelFields" ToRole="UD_Panel_TableRelation" />
+          <NavigationProperty Name="UD_Panel_TableRelation1" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_TABLER_UD_MODEL" FromRole="UD_ModelFields" ToRole="UD_Panel_TableRelation" />
+        </EntityType>
+        <EntityType Name="UD_Panel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="Enabled" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="DisplayType" Type="Int32" Nullable="false" />
+          <Property Name="FieldCount" Type="Int32" />
+          <Property Name="AdvanceFind" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="DefaultSortFields" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="DetailView" Type="Guid" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <NavigationProperty Name="UD_DetailView" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_DETAIL_UD_DETAI" FromRole="UD_Panel" ToRole="UD_DetailView" />
+          <NavigationProperty Name="UD_Panel_Table" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_PANEL__UD_PANEL" FromRole="UD_Panel" ToRole="UD_Panel_Table" />
+          <NavigationProperty Name="UD_Panel_ModelFields" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_PANELF_UD_PANEL" FromRole="UD_Panel" ToRole="UD_Panel_ModelFields" />
+          <NavigationProperty Name="UD_Panel_TableRelation" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_UD_PAN_UD_PANEL" FromRole="UD_Panel" ToRole="UD_Panel_TableRelation" />
+        </EntityType>
+        <EntityType Name="UD_Panel_ModelFields">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="PanelID" Type="Guid" Nullable="false" />
+          <Property Name="FieldID" Type="Guid" Nullable="false" />
+          <Property Name="LabelText" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ReadOnly" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="ControlTupe" Type="Int32" />
+          <Property Name="ControlHeight" Type="Int32" />
+          <Property Name="ControlWidth" Type="Int32" />
+          <Property Name="ControlStyle" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="ColSpan" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="Enable" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="Visible" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="IsRequiredFidle" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="DisplayMode" Type="Int32" />
+          <Property Name="RegularExpression" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="FormatString" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="TreeLevel" Type="Int32" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <NavigationProperty Name="UD_ModelFields" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_PANEL__UD_MODEL" FromRole="UD_Panel_ModelFields" ToRole="UD_ModelFields" />
+          <NavigationProperty Name="UD_Panel" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_PANELF_UD_PANEL" FromRole="UD_Panel_ModelFields" ToRole="UD_Panel" />
+        </EntityType>
+        <EntityType Name="UD_Panel_Table">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="PanelID" Type="Guid" Nullable="false" />
+          <Property Name="TableID" Type="Guid" Nullable="false" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="ExtPropertys" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="UD_Panel" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_PANEL__UD_PANEL" FromRole="UD_Panel_Table" ToRole="UD_Panel" />
+          <NavigationProperty Name="UD_TableList" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_PANEL__UD_TABLE" FromRole="UD_Panel_Table" ToRole="UD_TableList" />
+        </EntityType>
+        <EntityType Name="UD_Panel_TableRelation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="PanelID" Type="Guid" Nullable="false" />
+          <Property Name="ParentTableID" Type="Guid" Nullable="false" />
+          <Property Name="ParentFieldID" Type="Guid" Nullable="false" />
+          <Property Name="ChildTableID" Type="Guid" Nullable="false" />
+          <Property Name="UD__ID" Type="Guid" />
+          <Property Name="ChildFieldID" Type="Guid" Nullable="false" />
+          <Property Name="JoinMode" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="RelationCondition" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="SortID" Type="Int32" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="ExtPropertys" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="UD_ModelFields" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_PANELT_UD_MODEL" FromRole="UD_Panel_TableRelation" ToRole="UD_ModelFields" />
+          <NavigationProperty Name="UD_ModelFields1" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_TABLER_UD_MODEL" FromRole="UD_Panel_TableRelation" ToRole="UD_ModelFields" />
+          <NavigationProperty Name="UD_Panel" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_UD_PAN_UD_PANEL" FromRole="UD_Panel_TableRelation" ToRole="UD_Panel" />
+          <NavigationProperty Name="UD_TableList" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_PANELT_UD_TABLE" FromRole="UD_Panel_TableRelation" ToRole="UD_TableList" />
+          <NavigationProperty Name="UD_TableList1" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_TABLER_UD_TABLE" FromRole="UD_Panel_TableRelation" ToRole="UD_TableList" />
+        </EntityType>
+        <EntityType Name="UD_TableList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ExtFlag" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="ModelName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="TreeFlag" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="ExtPropertys" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="UD_ModelFields" Relationship="Chingy_SYSModel.FK_UD_MODEL_FK_TABLEL_UD_TABLE" FromRole="UD_TableList" ToRole="UD_ModelFields" />
+          <NavigationProperty Name="UD_Panel_Table" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_PANEL__UD_TABLE" FromRole="UD_TableList" ToRole="UD_Panel_Table" />
+          <NavigationProperty Name="UD_Panel_TableRelation" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_PANELT_UD_TABLE" FromRole="UD_TableList" ToRole="UD_Panel_TableRelation" />
+          <NavigationProperty Name="UD_Panel_TableRelation1" Relationship="Chingy_SYSModel.FK_UD_PANEL_FK_TABLER_UD_TABLE" FromRole="UD_TableList" ToRole="UD_Panel_TableRelation" />
+        </EntityType>
+        <Association Name="FK_DICTIONA_FK_DICTIO_DICTIONA">
+          <End Role="Dictionary_Table" Type="Chingy_SYSModel.Dictionary_Table" Multiplicity="0..1" />
+          <End Role="Dictionary_Column" Type="Chingy_SYSModel.Dictionary_Column" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dictionary_Table">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Dictionary_Column">
+              <PropertyRef Name="Table" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIGHT_AC_FK_RIGHTC_RIGHT_CO">
+          <End Role="Right_Controller" Type="Chingy_SYSModel.Right_Controller" Multiplicity="1" />
+          <End Role="Right_Action" Type="Chingy_SYSModel.Right_Action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Right_Controller">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Right_Action">
+              <PropertyRef Name="ControllerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIGHT_AS_FK_RIGHTA_RIGHT_MO">
+          <End Role="Right_Module" Type="Chingy_SYSModel.Right_Module" Multiplicity="1" />
+          <End Role="Right_Assign" Type="Chingy_SYSModel.Right_Assign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Right_Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Right_Assign">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIGHT_CO_FK_RIGHTM_RIGHT_MO">
+          <End Role="Right_Module" Type="Chingy_SYSModel.Right_Module" Multiplicity="0..1" />
+          <End Role="Right_Controller" Type="Chingy_SYSModel.Right_Controller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Right_Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Right_Controller">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK_DETAIL_UD_DETAI">
+          <End Role="UD_DetailView" Type="Chingy_SYSModel.UD_DetailView" Multiplicity="0..1" />
+          <End Role="UD_Panel" Type="Chingy_SYSModel.UD_Panel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_DetailView">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel">
+              <PropertyRef Name="DetailView" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_MODEL_FK_TABLEL_UD_TABLE">
+          <End Role="UD_TableList" Type="Chingy_SYSModel.UD_TableList" Multiplicity="0..1" />
+          <End Role="UD_ModelFields" Type="Chingy_SYSModel.UD_ModelFields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_TableList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_ModelFields">
+              <PropertyRef Name="TableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK_PANEL__UD_MODEL">
+          <End Role="UD_ModelFields" Type="Chingy_SYSModel.UD_ModelFields" Multiplicity="1" />
+          <End Role="UD_Panel_ModelFields" Type="Chingy_SYSModel.UD_Panel_ModelFields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_ModelFields">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_ModelFields">
+              <PropertyRef Name="FieldID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK_PANELT_UD_MODEL">
+          <End Role="UD_ModelFields" Type="Chingy_SYSModel.UD_ModelFields" Multiplicity="1" />
+          <End Role="UD_Panel_TableRelation" Type="Chingy_SYSModel.UD_Panel_TableRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_ModelFields">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_TableRelation">
+              <PropertyRef Name="ParentFieldID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK_TABLER_UD_MODEL">
+          <End Role="UD_ModelFields" Type="Chingy_SYSModel.UD_ModelFields" Multiplicity="0..1" />
+          <End Role="UD_Panel_TableRelation" Type="Chingy_SYSModel.UD_Panel_TableRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_ModelFields">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_TableRelation">
+              <PropertyRef Name="UD__ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK_PANEL__UD_PANEL">
+          <End Role="UD_Panel" Type="Chingy_SYSModel.UD_Panel" Multiplicity="1" />
+          <End Role="UD_Panel_Table" Type="Chingy_SYSModel.UD_Panel_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_Panel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_Table">
+              <PropertyRef Name="PanelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK_PANELF_UD_PANEL">
+          <End Role="UD_Panel" Type="Chingy_SYSModel.UD_Panel" Multiplicity="1" />
+          <End Role="UD_Panel_ModelFields" Type="Chingy_SYSModel.UD_Panel_ModelFields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_Panel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_ModelFields">
+              <PropertyRef Name="PanelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK_UD_PAN_UD_PANEL">
+          <End Role="UD_Panel" Type="Chingy_SYSModel.UD_Panel" Multiplicity="1" />
+          <End Role="UD_Panel_TableRelation" Type="Chingy_SYSModel.UD_Panel_TableRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_Panel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_TableRelation">
+              <PropertyRef Name="PanelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK_PANEL__UD_TABLE">
+          <End Role="UD_TableList" Type="Chingy_SYSModel.UD_TableList" Multiplicity="1" />
+          <End Role="UD_Panel_Table" Type="Chingy_SYSModel.UD_Panel_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_TableList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_Table">
+              <PropertyRef Name="TableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK_PANELT_UD_TABLE">
+          <End Role="UD_TableList" Type="Chingy_SYSModel.UD_TableList" Multiplicity="1" />
+          <End Role="UD_Panel_TableRelation" Type="Chingy_SYSModel.UD_Panel_TableRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_TableList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_TableRelation">
+              <PropertyRef Name="ParentTableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UD_PANEL_FK_TABLER_UD_TABLE">
+          <End Role="UD_TableList" Type="Chingy_SYSModel.UD_TableList" Multiplicity="1" />
+          <End Role="UD_Panel_TableRelation" Type="Chingy_SYSModel.UD_Panel_TableRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UD_TableList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UD_Panel_TableRelation">
+              <PropertyRef Name="ChildTableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Chingy_SYSModelStoreContainer" CdmEntityContainer="Chingy_SYSEntities">
+          <EntitySetMapping Name="Addr_OfficialCity">
+            <EntityTypeMapping TypeName="Chingy_SYSModel.Addr_OfficialCity">
+              <MappingFragment StoreEntitySet="Addr_OfficialCity">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SuperID" ColumnName="SuperID" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Addr_OrganizeCity">
+            <EntityTypeMapping TypeName="Chingy_SYSModel.Addr_OrganizeCity">
+              <MappingFragment StoreEntitySet="Addr_OrganizeCity">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SuperID" ColumnName="SuperID" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DB_RunLog">
+            <EntityTypeMapping TypeName="Chingy_SYSModel.DB_RunLog">
+              <MappingFragment StoreEntitySet="DB_RunLog">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RunType" ColumnName="RunType" />
+                <ScalarProperty Name="RunContent" ColumnName="RunContent" />
+                <ScalarProperty Name="RunResult" ColumnName="RunResult" />
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dictionary_Column">
+            <EntityTypeMapping TypeName="Chingy_SYSModel.Dictionary_Column">
+              <MappingFragment StoreEntitySet="Dictionary_Column">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Table" ColumnName="Table" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dictionary_Table">
+            <EntityTypeMapping TypeName="Chingy_SYSModel.Dictionary_Table">
+              <MappingFragment StoreEntitySet="Dictionary_Table">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Right_Action">
+            <EntityTypeMapping TypeName="Chingy_SYSModel.Right_Action">
+              <MappingFragment StoreEntitySet="Right_Action">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ControllerID" ColumnName="ControllerID" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Right_Assign">
+            <EntityTypeMapping TypeName="Chingy_SYSModel.Right_Assign">
+              <MappingFragment StoreEntitySet="Right_Assign">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Right_Controller">
+            <EntityTypeMapping TypeName="Chingy_SYSModel.Right_Controller">
+              <MappingFragment StoreEntitySet="Right_Controller">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Right_Module">
+            <EntityTypeMapping TypeName="Chingy_SYSModel.Right_Module">
+              <MappingFragment StoreEntitySet="Right_Module">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UD_DetailView">
+            <EntityTypeMapping TypeName="Chingy_SYSModel.UD_DetailView">
+              <MappingFragment StoreEntitySet="UD_DetailView">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UD_ModelFields">
+            <EntityTypeMapping TypeName="Chingy_SYSModel.UD_ModelFields">
+              <MappingFragment StoreEntitySet="UD_ModelFields">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="FieldDisplayName" ColumnName="FieldDisplayName" />
+                <ScalarProperty Name="ColumnSortID" ColumnName="ColumnSortID" />
+                <ScalarProperty Name="FlagEntity" ColumnName="FlagEntity" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="DataLength" ColumnName="DataLength" />
+                <ScalarProperty Name="Precision" ColumnName="Precision" />
+                <ScalarProperty Name="DefaultValue" ColumnName="DefaultValue" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RelationType" ColumnName="RelationType" />
+                <ScalarProperty Name="RelationTableName" ColumnName="RelationTableName" />
+                <ScalarProperty Name="RelationFieldValue" ColumnName="RelationFieldValue" />
+                <ScalarProperty Name="RelationFieldText" ColumnName="RelationFieldText" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UD_Panel">
+            <EntityTypeMapping TypeName="Chingy_SYSModel.UD_Panel">
+              <MappingFragment StoreEntitySet="UD_Panel">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DisplayType" ColumnName="DisplayType" />
+                <ScalarProperty Name="FieldCount" ColumnName="FieldCount" />
+                <ScalarProperty Name="AdvanceFind" ColumnName="AdvanceFind" />
+                <ScalarProperty Name="DefaultSortFields" ColumnName="DefaultSortFields" />
+                <ScalarProperty Name="DetailView" ColumnName="DetailView" />
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UD_Panel_ModelFields">
+            <EntityTypeMapping TypeName="Chingy_SYSModel.UD_Panel_ModelFields">
+              <MappingFragment StoreEntitySet="UD_Panel_ModelFields">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PanelID" ColumnName="PanelID" />
+                <ScalarProperty Name="FieldID" ColumnName="FieldID" />
+                <ScalarProperty Name="LabelText" ColumnName="LabelText" />
+                <ScalarProperty Name="ReadOnly" ColumnName="ReadOnly" />
+                <ScalarProperty Name="ControlTupe" ColumnName="ControlTupe" />
+                <ScalarProperty Name="ControlHeight" ColumnName="ControlHeight" />
+                <ScalarProperty Name="ControlWidth" ColumnName="ControlWidth" />
+                <ScalarProperty Name="ControlStyle" ColumnName="ControlStyle" />
+                <ScalarProperty Name="ColSpan" ColumnName="ColSpan" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="Visible" ColumnName="Visible" />
+                <ScalarProperty Name="IsRequiredFidle" ColumnName="IsRequiredFidle" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="DisplayMode" ColumnName="DisplayMode" />
+                <ScalarProperty Name="RegularExpression" ColumnName="RegularExpression" />
+                <ScalarProperty Name="FormatString" ColumnName="FormatString" />
+                <ScalarProperty Name="TreeLevel" ColumnName="TreeLevel" />
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UD_Panel_Table">
+            <EntityTypeMapping TypeName="Chingy_SYSModel.UD_Panel_Table">
+              <MappingFragment StoreEntitySet="UD_Panel_Table">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PanelID" ColumnName="PanelID" />
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UD_Panel_TableRelation">
+            <EntityTypeMapping TypeName="Chingy_SYSModel.UD_Panel_TableRelation">
+              <MappingFragment StoreEntitySet="UD_Panel_TableRelation">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PanelID" ColumnName="PanelID" />
+                <ScalarProperty Name="ParentTableID" ColumnName="ParentTableID" />
+                <ScalarProperty Name="ParentFieldID" ColumnName="ParentFieldID" />
+                <ScalarProperty Name="ChildTableID" ColumnName="ChildTableID" />
+                <ScalarProperty Name="UD__ID" ColumnName="UD__ID" />
+                <ScalarProperty Name="ChildFieldID" ColumnName="ChildFieldID" />
+                <ScalarProperty Name="JoinMode" ColumnName="JoinMode" />
+                <ScalarProperty Name="RelationCondition" ColumnName="RelationCondition" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UD_TableList">
+            <EntityTypeMapping TypeName="Chingy_SYSModel.UD_TableList">
+              <MappingFragment StoreEntitySet="UD_TableList">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="ExtFlag" ColumnName="ExtFlag" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+                <ScalarProperty Name="TreeFlag" ColumnName="TreeFlag" />
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

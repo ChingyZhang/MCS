@@ -1,0 +1,5 @@
+E:\Chingy_SYS\BLL\Chingy_SYS.BLL\bin\Debug\Chingy_SYS.BLL.dll
+E:\Chingy_SYS\BLL\Chingy_SYS.BLL\bin\Debug\Chingy_SYS.BLL.pdb
+E:\Chingy_SYS\BLL\Chingy_SYS.BLL\obj\Debug\Chingy_SYS.BLL.csprojResolveAssemblyReference.cache
+E:\Chingy_SYS\BLL\Chingy_SYS.BLL\obj\Debug\Chingy_SYS.BLL.dll
+E:\Chingy_SYS\BLL\Chingy_SYS.BLL\obj\Debug\Chingy_SYS.BLL.pdb
