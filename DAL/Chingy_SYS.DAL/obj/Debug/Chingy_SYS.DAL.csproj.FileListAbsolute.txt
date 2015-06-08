@@ -7,3 +7,11 @@ E:\Chingy_SYS\DAL\Chingy_SYS.DAL\bin\Debug\zh-Hans\EntityFramework.resources.dll
 E:\Chingy_SYS\DAL\Chingy_SYS.DAL\obj\Debug\Chingy_SYS.DAL.csprojResolveAssemblyReference.cache
 E:\Chingy_SYS\DAL\Chingy_SYS.DAL\obj\Debug\Chingy_SYS.DAL.dll
 E:\Chingy_SYS\DAL\Chingy_SYS.DAL\obj\Debug\Chingy_SYS.DAL.pdb
+E:\Git\Chingy_SYS\DAL\Chingy_SYS.DAL\bin\Debug\Chingy_SYS.DAL.dll.config
+E:\Git\Chingy_SYS\DAL\Chingy_SYS.DAL\bin\Debug\Chingy_SYS.DAL.dll
+E:\Git\Chingy_SYS\DAL\Chingy_SYS.DAL\bin\Debug\Chingy_SYS.DAL.pdb
+E:\Git\Chingy_SYS\DAL\Chingy_SYS.DAL\bin\Debug\EntityFramework.dll
+E:\Git\Chingy_SYS\DAL\Chingy_SYS.DAL\bin\Debug\EntityFramework.xml
+E:\Git\Chingy_SYS\DAL\Chingy_SYS.DAL\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\Git\Chingy_SYS\DAL\Chingy_SYS.DAL\obj\Debug\Chingy_SYS.DAL.dll
+E:\Git\Chingy_SYS\DAL\Chingy_SYS.DAL\obj\Debug\Chingy_SYS.DAL.pdb

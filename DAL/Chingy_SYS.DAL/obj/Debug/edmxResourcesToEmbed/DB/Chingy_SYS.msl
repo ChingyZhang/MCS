@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Chingy_SYSModelStoreContainer" CdmEntityContainer="Chingy_SYSEntities">
+    <EntitySetMapping Name="Addr_OfficialCity">
+      <EntityTypeMapping TypeName="Chingy_SYSModel.Addr_OfficialCity">
+        <MappingFragment StoreEntitySet="Addr_OfficialCity">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SuperID" ColumnName="SuperID" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Addr_OrganizeCity">
+      <EntityTypeMapping TypeName="Chingy_SYSModel.Addr_OrganizeCity">
+        <MappingFragment StoreEntitySet="Addr_OrganizeCity">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SuperID" ColumnName="SuperID" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DB_RunLog">
+      <EntityTypeMapping TypeName="Chingy_SYSModel.DB_RunLog">
+        <MappingFragment StoreEntitySet="DB_RunLog">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RunType" ColumnName="RunType" />
+          <ScalarProperty Name="RunContent" ColumnName="RunContent" />
+          <ScalarProperty Name="RunResult" ColumnName="RunResult" />
+          <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dictionary_Column">
+      <EntityTypeMapping TypeName="Chingy_SYSModel.Dictionary_Column">
+        <MappingFragment StoreEntitySet="Dictionary_Column">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Table" ColumnName="Table" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dictionary_Table">
+      <EntityTypeMapping TypeName="Chingy_SYSModel.Dictionary_Table">
+        <MappingFragment StoreEntitySet="Dictionary_Table">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Right_Action">
+      <EntityTypeMapping TypeName="Chingy_SYSModel.Right_Action">
+        <MappingFragment StoreEntitySet="Right_Action">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ControllerID" ColumnName="ControllerID" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+          <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Right_Assign">
+      <EntityTypeMapping TypeName="Chingy_SYSModel.Right_Assign">
+        <MappingFragment StoreEntitySet="Right_Assign">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Right_Controller">
+      <EntityTypeMapping TypeName="Chingy_SYSModel.Right_Controller">
+        <MappingFragment StoreEntitySet="Right_Controller">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+          <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Right_Module">
+      <EntityTypeMapping TypeName="Chingy_SYSModel.Right_Module">
+        <MappingFragment StoreEntitySet="Right_Module">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UD_DetailView">
+      <EntityTypeMapping TypeName="Chingy_SYSModel.UD_DetailView">
+        <MappingFragment StoreEntitySet="UD_DetailView">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UD_ModelFields">
+      <EntityTypeMapping TypeName="Chingy_SYSModel.UD_ModelFields">
+        <MappingFragment StoreEntitySet="UD_ModelFields">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TableID" ColumnName="TableID" />
+          <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+          <ScalarProperty Name="FieldDisplayName" ColumnName="FieldDisplayName" />
+          <ScalarProperty Name="ColumnSortID" ColumnName="ColumnSortID" />
+          <ScalarProperty Name="FlagEntity" ColumnName="FlagEntity" />
+          <ScalarProperty Name="DataType" ColumnName="DataType" />
+          <ScalarProperty Name="DataLength" ColumnName="DataLength" />
+          <ScalarProperty Name="Precision" ColumnName="Precision" />
+          <ScalarProperty Name="DefaultValue" ColumnName="DefaultValue" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="RelationType" ColumnName="RelationType" />
+          <ScalarProperty Name="RelationTableName" ColumnName="RelationTableName" />
+          <ScalarProperty Name="RelationFieldValue" ColumnName="RelationFieldValue" />
+          <ScalarProperty Name="RelationFieldText" ColumnName="RelationFieldText" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UD_Panel">
+      <EntityTypeMapping TypeName="Chingy_SYSModel.UD_Panel">
+        <MappingFragment StoreEntitySet="UD_Panel">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SortID" ColumnName="SortID" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DisplayType" ColumnName="DisplayType" />
+          <ScalarProperty Name="FieldCount" ColumnName="FieldCount" />
+          <ScalarProperty Name="AdvanceFind" ColumnName="AdvanceFind" />
+          <ScalarProperty Name="DefaultSortFields" ColumnName="DefaultSortFields" />
+          <ScalarProperty Name="DetailView" ColumnName="DetailView" />
+          <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UD_Panel_ModelFields">
+      <EntityTypeMapping TypeName="Chingy_SYSModel.UD_Panel_ModelFields">
+        <MappingFragment StoreEntitySet="UD_Panel_ModelFields">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PanelID" ColumnName="PanelID" />
+          <ScalarProperty Name="FieldID" ColumnName="FieldID" />
+          <ScalarProperty Name="LabelText" ColumnName="LabelText" />
+          <ScalarProperty Name="ReadOnly" ColumnName="ReadOnly" />
+          <ScalarProperty Name="ControlTupe" ColumnName="ControlTupe" />
+          <ScalarProperty Name="ControlHeight" ColumnName="ControlHeight" />
+          <ScalarProperty Name="ControlWidth" ColumnName="ControlWidth" />
+          <ScalarProperty Name="ControlStyle" ColumnName="ControlStyle" />
+          <ScalarProperty Name="ColSpan" ColumnName="ColSpan" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="Visible" ColumnName="Visible" />
+          <ScalarProperty Name="IsRequiredFidle" ColumnName="IsRequiredFidle" />
+          <ScalarProperty Name="SortID" ColumnName="SortID" />
+          <ScalarProperty Name="DisplayMode" ColumnName="DisplayMode" />
+          <ScalarProperty Name="RegularExpression" ColumnName="RegularExpression" />
+          <ScalarProperty Name="FormatString" ColumnName="FormatString" />
+          <ScalarProperty Name="TreeLevel" ColumnName="TreeLevel" />
+          <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UD_Panel_Table">
+      <EntityTypeMapping TypeName="Chingy_SYSModel.UD_Panel_Table">
+        <MappingFragment StoreEntitySet="UD_Panel_Table">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PanelID" ColumnName="PanelID" />
+          <ScalarProperty Name="TableID" ColumnName="TableID" />
+          <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UD_Panel_TableRelation">
+      <EntityTypeMapping TypeName="Chingy_SYSModel.UD_Panel_TableRelation">
+        <MappingFragment StoreEntitySet="UD_Panel_TableRelation">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PanelID" ColumnName="PanelID" />
+          <ScalarProperty Name="ParentTableID" ColumnName="ParentTableID" />
+          <ScalarProperty Name="ParentFieldID" ColumnName="ParentFieldID" />
+          <ScalarProperty Name="ChildTableID" ColumnName="ChildTableID" />
+          <ScalarProperty Name="UD__ID" ColumnName="UD__ID" />
+          <ScalarProperty Name="ChildFieldID" ColumnName="ChildFieldID" />
+          <ScalarProperty Name="JoinMode" ColumnName="JoinMode" />
+          <ScalarProperty Name="RelationCondition" ColumnName="RelationCondition" />
+          <ScalarProperty Name="SortID" ColumnName="SortID" />
+          <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UD_TableList">
+      <EntityTypeMapping TypeName="Chingy_SYSModel.UD_TableList">
+        <MappingFragment StoreEntitySet="UD_TableList">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="ExtFlag" ColumnName="ExtFlag" />
+          <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+          <ScalarProperty Name="TreeFlag" ColumnName="TreeFlag" />
+          <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="ExtPropertys" ColumnName="ExtPropertys" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

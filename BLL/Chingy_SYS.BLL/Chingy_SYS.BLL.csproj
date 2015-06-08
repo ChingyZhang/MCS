@@ -40,7 +40,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Infrastructure\ITableService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\TableService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DAL\Chingy_SYS.DAL\Chingy_SYS.DAL.csproj">
+      <Project>{f2373d45-0afd-48ec-abd6-3da6b91fc5c0}</Project>
+      <Name>Chingy_SYS.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Model\Chingy_SYS.Model\Chingy_SYS.Model.csproj">
+      <Project>{67931f24-bd5c-41d9-a12f-51211992ade9}</Project>
+      <Name>Chingy_SYS.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

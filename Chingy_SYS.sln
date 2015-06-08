@@ -2,12 +2,25 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chingy_SYS", "Chingy_SYS\Chingy_SYS.csproj", "{C96593F7-C1C3-429F-BA26-64E142F874DB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F2373D45-0AFD-48EC-ABD6-3DA6B91FC5C0} = {F2373D45-0AFD-48EC-ABD6-3DA6B91FC5C0}
+		{F69B8BD0-2B35-46D2-9243-5D7455125B94} = {F69B8BD0-2B35-46D2-9243-5D7455125B94}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chingy_SYS.Tests", "Chingy_SYS.Tests\Chingy_SYS.Tests.csproj", "{83326C25-5F16-4C87-9F48-5B7584C1A05C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chingy_SYS.BLL", "BLL\Chingy_SYS.BLL\Chingy_SYS.BLL.csproj", "{F69B8BD0-2B35-46D2-9243-5D7455125B94}"
+	ProjectSection(ProjectDependencies) = postProject
+		{67931F24-BD5C-41D9-A12F-51211992ADE9} = {67931F24-BD5C-41D9-A12F-51211992ADE9}
+		{F2373D45-0AFD-48EC-ABD6-3DA6B91FC5C0} = {F2373D45-0AFD-48EC-ABD6-3DA6B91FC5C0}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chingy_SYS.DAL", "DAL\Chingy_SYS.DAL\Chingy_SYS.DAL.csproj", "{F2373D45-0AFD-48EC-ABD6-3DA6B91FC5C0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{67931F24-BD5C-41D9-A12F-51211992ADE9} = {67931F24-BD5C-41D9-A12F-51211992ADE9}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chingy_SYS.Model", "Model\Chingy_SYS.Model\Chingy_SYS.Model.csproj", "{67931F24-BD5C-41D9-A12F-51211992ADE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +44,10 @@ Global
 		{F2373D45-0AFD-48EC-ABD6-3DA6B91FC5C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2373D45-0AFD-48EC-ABD6-3DA6B91FC5C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2373D45-0AFD-48EC-ABD6-3DA6B91FC5C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67931F24-BD5C-41D9-A12F-51211992ADE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67931F24-BD5C-41D9-A12F-51211992ADE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67931F24-BD5C-41D9-A12F-51211992ADE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67931F24-BD5C-41D9-A12F-51211992ADE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
