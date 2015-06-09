@@ -4,15 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
 
+    <link href="~/jquery-easyui-1.4.2/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/jquery-easyui-1.4.2/themes/icon.css" rel="stylesheet" />
+    <link href="~/jquery-easyui-1.4.2/demo/demo.css" rel="stylesheet" />
+    <script src="~/jquery-easyui-1.4.2/jquery.min.js"></script>
+    <script src="~/jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
 
-    @*引入easyui链接*@
-@*    <link rel="stylesheet" type="text/css" href="~/jquery-easyui-1.4.2/themes/default/easyui.css">
-	<link rel="stylesheet" type="text/css" href="~/jquery-easyui-1.4.2/themes/icon.css">
-	<link rel="stylesheet" type="text/css" href="~/jquery-easyui-1.4.2/demo/demo.css">
-	<script type="text/javascript" src="~/jquery-easyui-1.4.2/jquery.min.js"></script>
-	<script type="text/javascript" src="~/jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
-    <script src="~/jquery-easyui-1.4.2/plugins/jquery.dialog.js"></script>*@
-     @*引入easyui链接*@
 
 
     <title>@ViewBag.Title</title>
@@ -20,9 +17,17 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @RenderBody()
 
+    <span>这是在RenderBody之前</span>
+    <div style="height:50px;"></div>
+    @RenderBody()
+    <div style="height:50px;"></div>
+    <span>这是在RenderBody之后</span>
+    @*
+    引入此语句会导致easyui插件不能正常使用
     @Scripts.Render("~/bundles/jquery")
+    
+    *@
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,4 +1,0 @@
-E:\Git\Chingy_SYS\Model\Chingy_SYS.Model\bin\Debug\Chingy_SYS.Model.dll
-E:\Git\Chingy_SYS\Model\Chingy_SYS.Model\bin\Debug\Chingy_SYS.Model.pdb
-E:\Git\Chingy_SYS\Model\Chingy_SYS.Model\obj\Debug\Chingy_SYS.Model.dll
-E:\Git\Chingy_SYS\Model\Chingy_SYS.Model\obj\Debug\Chingy_SYS.Model.pdb

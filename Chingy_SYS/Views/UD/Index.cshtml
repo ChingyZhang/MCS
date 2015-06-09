@@ -1,29 +1,10 @@
 ﻿@{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    //  Layout = "~/Views/_ViewStart.cshtml";
 }
 
 
-
-<link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.4.2/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.4.2/themes/icon.css">
-<link rel="stylesheet" type="text/css" href="../jquery-easyui-1.4.2/demo/demo.css">
-<script type="text/javascript" src="../../jquery-easyui-1.4.2/jquery.min.js"></script>
-<script type="text/javascript" src="../../jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
-
-<h2>Basic Dialog</h2>
-<p>Click below button to open or close dialog.</p>
-<div style="margin: 20px 0;">
-    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#dlg').dialog('open')">Open</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#dlg').dialog('close')">Close</a>
-</div>
-<div id="dlg" class="easyui-dialog" title="Basic Dialog" data-options="iconCls:'icon-save'" style="width: 400px; height: 200px; padding: 10px">
-    The dialog content.
-</div>
-
-
-
-@*<table id="dg" title="My Users" class="easyui-datagrid" style="width: 100%; height: 250px"
+<table id="dg" title="My Users" class="easyui-datagrid" style="width: 100%; height: 250px"
     url="get_users.php"
     toolbar="#toolbar" pagination="true"
     rownumbers="true" fitcolumns="true" singleselect="true">
@@ -46,9 +27,36 @@
 </div>
 
 
-<div id="dlg" class="easyui-dialog" title="自定义弹出窗体" style="width: 400px; height: 280px; padding: 10px 20px"
+<style type="text/css">
+    #fm {
+        margin: 0;
+        padding: 10px 30px;
+    }
+
+    .ftitle {
+        font-size: 14px;
+        font-weight: bold;
+        padding: 5px 0;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .fitem {
+        margin-bottom: 5px;
+    }
+
+        .fitem label {
+            display: inline-block;
+            width: 120px;
+        }
+
+        .fitem input {
+            width: 150px;
+        }
+</style>
+
+<div id="dlg" class="easyui-dialog" title="添加新表" style="width: 400px; height: 280px; padding: 10px 20px"
     closed="true" buttons="#dlg-buttons">
-    <div class="ftitle">Title</div>
     <form id="fm" method="post" novalidate>
         <div class="fitem">
             <label>表名:</label>
@@ -59,30 +67,33 @@
             <input name="lastname" class="easyui-textbox" required="true">
         </div>
         <div class="fitem">
-            <label>可扩展字段:</label>
-            <input name="phone" class="easyui-textbox">
+            <label>是否含扩展字段:</label>
+            <label for="exty" style="width: 10px; display: inline;">是<input type="radio" name="ext" id="exty" style="width: 10px;" value="0" /></label>
+            <label for="extn" style="width: 10px; display: inline;">否<input type="radio" name="ext" style="width: 10px;" id="extn" value="1" /></label>
         </div>
         <div class="fitem">
-            <label>Model实体名称:</label>
-            <input name="email" class="easyui-textbox" validtype="email">
+            <label>Model名称:</label>
+            <input name="email" class="easyui-textbox" required="true">
         </div>
         <div class="fitem">
-            <label>树形结构标志:</label>
-            <input name="email" class="easyui-textbox" validtype="email">
+            <label>是否为树形结构:</label>
+            <label for="treey" style="width: 10px; display: inline;">是<input type="radio" name="tree" id="treey" style="width: 10px;" value="0" /></label>
+            <label for="treen" style="width: 10px; display: inline;">否<input type="radio" name="tree" id="treen" style="width: 10px;" value="1" /></label>
         </div>
     </form>
 </div>
 <div id="dlg-buttons">
-    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconcls="icon-ok" onclick="saveUser()" style="width: 90px">Save</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconcls="icon-ok" onclick="saveUser()" style="width: 90px; flex-align: center;">Save</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width: 90px">Cancel</a>
 </div>
 
 <script type="text/javascript">
+
     var url;
     function newTable() {
-        $('#dlg').dialog('open');//.dialog('setTitle', '添加新表');
-        //$('#fm').form('clear');
-        //url = 'save_user.php';
+        $('#dlg').dialog('open').dialog('setTitle', '添加新表');
+        $('#fm').form('clear');
+        url = 'save_user.php';
     }
     function editUser() {
         var row = $('#dg').datagrid('getSelected');
@@ -132,30 +143,3 @@
         }
     }
 </script>
-<style type="text/css">
-    #fm {
-        margin: 0;
-        padding: 10px 30px;
-    }
-
-    .ftitle {
-        font-size: 14px;
-        font-weight: bold;
-        padding: 5px 0;
-        margin-bottom: 10px;
-        border-bottom: 1px solid #ccc;
-    }
-
-    .fitem {
-        margin-bottom: 5px;
-    }
-
-        .fitem label {
-            display: inline-block;
-            width: 80px;
-        }
-
-        .fitem input {
-            width: 160px;
-        }
-</style>*@
