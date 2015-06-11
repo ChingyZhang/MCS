@@ -9,7 +9,7 @@
     <link href="~/jquery-easyui-1.4.2/demo/demo.css" rel="stylesheet" />
     <script src="~/jquery-easyui-1.4.2/jquery.min.js"></script>
     <script src="~/jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
-
+    @*<script src="~/jquery-easyui-1.4.2/locale/easyui-lang-zh_CN.js"></script>*@
 
 
     <title>@ViewBag.Title</title>
@@ -19,9 +19,9 @@
 <body>
 
     <span>这是在RenderBody之前</span>
-    <div style="height:50px;"></div>
+    <div style="height: 50px;"></div>
     @RenderBody()
-    <div style="height:50px;"></div>
+    <div style="height: 50px;"></div>
     <span>这是在RenderBody之后</span>
     @*
     引入此语句会导致easyui插件不能正常使用

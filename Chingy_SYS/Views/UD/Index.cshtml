@@ -4,26 +4,23 @@
 }
 
 
-<table id="dg" title="My Users" class="easyui-datagrid" style="width: 100%; height: 250px"
-    url="get_users.php"
-    toolbar="#toolbar" pagination="true"
-    rownumbers="true" fitcolumns="true" singleselect="true">
+<table id="dg" title="系统表" class="easyui-datagrid" style="width: 100%; height: 250px" url="UD/GetTableList" toolbar="#toolbar" pagination="true" rownumbers="true" fitcolumns="true" singleselect="true">
     <thead>
         <tr>
-            <th field="firstname" width="50">表名</th>
-            <th field="lastname" width="50">显示名称</th>
-            <th field="phone" width="50">可扩展字段</th>
-            <th field="email" width="50">Model实体名称</th>
-            <th field="email" width="50">树形结构标志</th>
-            <th field="email" width="50"></th>
-            <th field="email" width="50"></th>
+            <th field="ID" hidden="true">ID</th>
+            <th field="Name" width="50">表名</th>
+            <th field="DisplayName" width="50">显示名称</th>
+            <th field="ExtFlag" width="50">可扩展字段</th>
+            <th field="ModelName" width="50">Model实体名称</th>
+            <th field="TreeFlag" width="50">树形结构标志</th>
+            <th field="InsertTime" width="50">新增时间</th>
         </tr>
     </thead>
 </table>
 <div id="toolbar">
     <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="newTable()">添加新表</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-edit" plain="true" onclick="editUser()">编辑表</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="destroyUser()">移除表</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="destroyTable()">移除表</a>
 </div>
 
 
@@ -58,17 +55,22 @@
 <div id="dlg" class="easyui-dialog" title="添加新表" style="width: 400px; height: 280px; padding: 10px 20px"
     closed="true" buttons="#dlg-buttons">
     <form id="fm" method="post" novalidate>
+        <input type="hidden" name="ID" />
         <div class="fitem">
             <label>表名:</label>
-            <input name="firstname" class="easyui-textbox" required="true">
+            <input name="Name" class="easyui-textbox" required="true">
         </div>
         <div class="fitem">
             <label>显示名称:</label>
-            <input name="lastname" class="easyui-textbox" required="true">
+            <input name="DisplayName" class="easyui-textbox" required="true">
         </div>
         <div class="fitem">
             <label>是否含扩展字段:</label>
-            <select id="selExt" style="width: 150px"></select>
+            <select class="easyui-combobox" id="selExt" name="ExtFlag" data-options="valueField:'id',textField:'text',editable:false,required:true" panelheight="48px" style="width: 150px">
+                <option value="0">否</option>
+                <option value="1" selected>是</option>
+            </select>
+            @*<select id="selExt" style="width: 150px"></select>
             <div id="spExt">
                 <div style="color: #99BBE8; background: #fafafa; padding: 5px;">请选择</div>
                 <div style="padding: 10px">
@@ -90,88 +92,70 @@
                         $('#selExt').combo('setValue', v).combo('setText', s).combo('hidePanel');
                     });
                 });
-            </script>
+            </script>*@
         </div>
         <div class="fitem">
             <label>Model名称:</label>
-            <input name="email" class="easyui-textbox" required="true">
+            <input name="ModelName" class="easyui-textbox" required="true">
         </div>
         <div class="fitem">
             <label>是否为树形结构:</label>
-            <select id="selTree" style="width: 150px"></select>
-            <div id="spTree">
-                <div style="color: #99BBE8; background: #fafafa; padding: 5px;">请选择</div>
-                <div style="padding: 10px">
-                    <input type="radio" name="rTree" value="0"><span>否</span><br />
-                    <input type="radio" name="rTree" value="1"><span>是</span><br />
-                </div>
-            </div>
-            <script type="text/javascript">
-                $(function () {
-                    $('#selTree').combo({
-                        required: true,
-                        editable: false,
-                        panelHeight:100
-                    });
-                    $('#spTree').appendTo($('#selTree').combo('panel'));
-                    $('#spTree input').click(function () {
-                        var v = $(this).val();
-                        var s = $(this).next('span').text();
-                        $('#selTree').combo('setValue', v).combo('setText', s).combo('hidePanel');
-                    });
-                });
-            </script>
+            <select class="easyui-combobox" id="selTree" name="TreeFlag" data-options="valueField:'id',textField:'text',editable:false" panelheight="48" required="true" style="width: 150px;">
+                <option value="0" selected>否</option>
+                <option value="1">是</option>
+            </select>
         </div>
+
     </form>
 </div>
 <div id="dlg-buttons">
-    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconcls="icon-ok" onclick="saveUser()" style="width: 90px; flex-align: center;">Save</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width: 90px">Cancel</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconcls="icon-ok" onclick="saveTable()" style="width: 90px; flex-align: center;">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width: 90px">取消</a>
 </div>
 
 <script type="text/javascript">
 
     var url;
     function newTable() {
+
         $('#dlg').dialog('open').dialog('setTitle', '添加新表');
         $('#fm').form('clear');
-        url = 'save_user.php';
     }
     function editUser() {
         var row = $('#dg').datagrid('getSelected');
         if (row) {
-            $('#dlg').dialog('open').dialog('setTitle', 'Edit User');
+            $('#dlg').dialog('open').dialog('setTitle', '修改表');
             $('#fm').form('load', row);
-            url = 'update_user.php?id=' + row.id;
         }
     }
-    function saveUser() {
-        alert("saveuser func");
+    function saveTable() {
+        url = 'UD/SaveTable';
         $('#fm').form('submit', {
             url: url,
             onSubmit: function () {
                 return $(this).form('validate');
             },
             success: function (result) {
-                var result = eval('(' + result + ')');
-                if (result.errorMsg) {
-                    $.messager.show({
-                        title: 'Error',
-                        msg: result.errorMsg
-                    });
-                } else {
-                    $('#dlg').dialog('close');        // close the dialog
-                    $('#dg').datagrid('reload');    // reload the user data
-                }
+                var result = eval('(' + result + ')');// change the JSON string to javascript object
+                alert(result);
+                //if (result.errorMsg) {
+                //    $.messager.show({
+                //        title: 'Error',
+                //        msg: result.errorMsg
+                //    });
+                //} else {
+                //    $('#dlg').dialog('close');        // close the dialog
+                //    $('#dg').datagrid('reload');    // reload the user data
+                //}
             }
         });
     }
-    function destroyUser() {
+    function destroyTable() {
         var row = $('#dg').datagrid('getSelected');
         if (row) {
-            $.messager.confirm('Confirm', 'Are you sure you want to destroy this user?', function (r) {
+            $.messager.confirm('删除表', '确定要删除此表么?', function (r) {
                 if (r) {
-                    $.post('destroy_user.php', { id: row.id }, function (result) {
+                    $.post('UD/DestroyTable', { Guid: row.ID }, function (result) {//此处要注意与后台方法的参数名要一致
                         if (result.success) {
                             $('#dg').datagrid('reload');    // reload the user data
                         } else {

@@ -35,7 +35,7 @@ namespace Chingy_SYS.Model
         /// <summary>
         /// 是否为树形菜单
         /// </summary>
-        public string TreeFlag { get; set; }
+        public char TreeFlag { get; set; }
         
         /// <summary>
         /// 新增时间

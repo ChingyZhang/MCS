@@ -1,4 +1,4 @@
-﻿using Chingy_SYS.Model;
+﻿using Chingy_SYS.DAL.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +28,27 @@ namespace Chingy_SYS.Controllers
         [HttpPost]
         public JsonResult GetTableList()
         {
-            IList<UD_TableModel> listTableModel = TableService.GetTableList();
+            IList<UD_TableList> listTableModel = TableService.GetTableList();
             return Json(listTableModel);
         }
 
+        public Boolean SaveTable(UD_TableList UD_TableList)
+        {
+            if (UD_TableList.ID == Guid.Empty)
+            {
+                return TableService.AddTable(UD_TableList);
+            }
+            else
+            {
+                return TableService.ModifyTable(UD_TableList);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult DestroyTable(Guid Guid)
+        {
+            bool flag = TableService.DestroyTable(Guid);
+            return Json(flag);
+        }
     }
 }

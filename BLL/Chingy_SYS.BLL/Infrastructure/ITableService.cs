@@ -1,5 +1,4 @@
-﻿using Chingy_SYS.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +8,12 @@ namespace Chingy_SYS.BLL.Infrastructure
 {
     public interface ITableService
     {
-        IList<UD_TableModel> GetTableList();
+        IList<Chingy_SYS.DAL.DB.UD_TableList> GetTableList();
+        bool AddTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableModel);
+
+        bool DestroyTable(Guid Guid);
+        bool DestroyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList);
+
+        bool ModifyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList);
     }
 }
