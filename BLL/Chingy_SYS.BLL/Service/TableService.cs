@@ -1,4 +1,5 @@
 ﻿using Chingy_SYS.BLL.Infrastructure;
+using Common.Result;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,23 +18,23 @@ namespace Chingy_SYS.BLL.Service
         }
 
 
-        public bool AddTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableModel)
+        public Result<bool, string> AddTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableModel)
         {
             return TableDAO.AddTable(UD_TableModel);
         }
 
-        public bool DestroyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList)
+        public Result<bool, string> DestroyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList)
         {
             return TableDAO.DestroyTable(UD_TableList);
         }
 
 
-        public bool DestroyTable(Guid Guid)
+        public Result<bool, string> DestroyTable(Guid Guid)
         {
             return TableDAO.DestroyTable(Guid);
         }
 
-        public bool ModifyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList)
+        public Result<bool, string> ModifyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList)
         {
             return TableDAO.ModifyTable(UD_TableList);
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Result;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,11 +10,11 @@ namespace Chingy_SYS.BLL.Infrastructure
     public interface ITableService
     {
         IList<Chingy_SYS.DAL.DB.UD_TableList> GetTableList();
-        bool AddTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableModel);
+        Result<bool, string> AddTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableModel);
 
-        bool DestroyTable(Guid Guid);
-        bool DestroyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList);
+        Result<bool, string> DestroyTable(Guid Guid);
+        Result<bool, string> DestroyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList);
 
-        bool ModifyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList);
+        Result<bool, string> ModifyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList);
     }
 }

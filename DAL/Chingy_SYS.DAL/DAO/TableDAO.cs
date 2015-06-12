@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Result;
 
 namespace Chingy_SYS.DAL.DAO
 {
@@ -14,8 +15,9 @@ namespace Chingy_SYS.DAL.DAO
             return new Chingy_SYSEntities().UD_TableList.ToList();
         }
 
-        public bool AddTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableModel)
+        public Result<bool, string> AddTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableModel)
         {
+            Result<bool, string> _r;
             using (Chingy_SYSEntities db = new Chingy_SYSEntities())
             {
                 if (UD_TableModel.ID == Guid.Empty) UD_TableModel.ID = Guid.NewGuid();
@@ -24,56 +26,68 @@ namespace Chingy_SYS.DAL.DAO
                 try
                 {
                     db.SaveChanges();
-                    return true;
+                    _r = new Result<bool, string>(true);
                 }
-                catch { return false; }
+                catch (Exception ex) { _r = new Result<bool, string>(false, ex.Message); }
+                return _r;
             }
         }
 
-        public bool DestroyTable(Guid Guid)
+        public Result<bool, string> DestroyTable(Guid Guid)
         {
+            Result<bool, string> _r;
             using (Chingy_SYSEntities db = new Chingy_SYSEntities())
             {
                 DB.UD_TableList _table = db.UD_TableList.FirstOrDefault(m => m.ID == Guid);
-                if (_table == null) return true;
+                if (_table == null) return new Result<bool, string>(false, "null");
                 else db.UD_TableList.DeleteObject(_table);
                 try
                 {
                     db.SaveChanges();
-                    return true;
+                    _r = new Result<bool, string>(true);
                 }
-                catch { return false; }
+                catch (Exception ex) { _r = new Result<bool, string>(false, ex.Message); }
+                return _r;
             }
         }
 
-        public bool DestroyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList)
+        public Result<bool, string> DestroyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList)
         {
+            Result<bool, string> _r;
             using (Chingy_SYSEntities db = new Chingy_SYSEntities())
             {
                 db.UD_TableList.DeleteObject(UD_TableList);
                 try
                 {
                     db.SaveChanges();
-                    return true;
+                    _r = new Result<bool, string>(true);
                 }
-                catch { return false; }
+                catch (Exception ex) { _r = new Result<bool, string>(false, ex.Message); }
+                return _r;
             }
         }
 
-        public bool ModifyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList)
+        public Result<bool, string> ModifyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList)
         {
+            Result<bool, string> _r;
             using (Chingy_SYSEntities db = new Chingy_SYSEntities())
             {
                 DB.UD_TableList _table = db.UD_TableList.FirstOrDefault(m => m.ID == UD_TableList.ID);
-                if (_table == null) return false;
-                _table = UD_TableList;
+                if (_table == null) return new Result<bool, string>(false, "null");
+                _table.Name = UD_TableList.Name;
+                _table.DisplayName = UD_TableList.DisplayName;
+                _table.ExtFlag = UD_TableList.ExtFlag;
+                _table.ModelName = UD_TableList.ModelName;
+                _table.TreeFlag = UD_TableList.TreeFlag;
                 _table.UpdateTime = DateTime.Now;
+                _table.UpdateUser = UD_TableList.UpdateUser;
                 try
                 {
                     db.SaveChanges();
-                    return true;
+                    _r = new Result<bool, string>(true);
                 }
-                catch { return false; }
+                catch (Exception ex) { _r = new Result<bool, string>(false, ex.Message); }
+                return _r;
             }
         }
     }

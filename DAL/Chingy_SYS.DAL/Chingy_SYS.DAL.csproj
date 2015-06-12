@@ -66,6 +66,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Help\Common\Common.csproj">
+      <Project>{65667f08-77c6-4f90-8e1b-45c539b4ba5a}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Model\Chingy_SYS.Model\Chingy_SYS.Model.csproj">
       <Project>{67931f24-bd5c-41d9-a12f-51211992ade9}</Project>
       <Name>Chingy_SYS.Model</Name>

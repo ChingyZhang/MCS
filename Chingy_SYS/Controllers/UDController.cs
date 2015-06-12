@@ -1,4 +1,5 @@
 ﻿using Chingy_SYS.DAL.DB;
+using Common.Result;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,23 +33,24 @@ namespace Chingy_SYS.Controllers
             return Json(listTableModel);
         }
 
-        public Boolean SaveTable(UD_TableList UD_TableList)
+        [HttpPost]
+        public JsonResult SaveTable(UD_TableList UD_TableList)
         {
-            if (UD_TableList.ID == Guid.Empty)
-            {
-                return TableService.AddTable(UD_TableList);
-            }
-            else
-            {
-                return TableService.ModifyTable(UD_TableList);
-            }
+            Result<bool, string> _r;
+            if (UD_TableList.ID == Guid.Empty) _r = TableService.AddTable(UD_TableList);
+            else _r = TableService.ModifyTable(UD_TableList);
+            return Json(_r);
         }
 
         [HttpPost]
-        public JsonResult DestroyTable(Guid Guid)
+        public string DestroyTable(Guid Guid)
         {
-            bool flag = TableService.DestroyTable(Guid);
-            return Json(flag);
+            Result<bool, string> _r = new Result<bool, string>(false, "这是错误信息");//TableService.DestroyTable(Guid);
+
+            string j = "[{'success':'true','erormsg':'error'}]";
+            return j;
         }
     }
+
+
 }

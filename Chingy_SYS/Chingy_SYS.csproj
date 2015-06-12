@@ -907,6 +907,10 @@
       <Project>{f2373d45-0afd-48ec-abd6-3da6b91fc5c0}</Project>
       <Name>Chingy_SYS.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Help\Common\Common.csproj">
+      <Project>{65667f08-77c6-4f90-8e1b-45c539b4ba5a}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
