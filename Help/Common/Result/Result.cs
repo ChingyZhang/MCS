@@ -16,7 +16,7 @@ namespace Common.Result
         private T _success;
         private M _erroemsg;
 
-        public T Succsss
+        public T Success
         {
             get { return _success; }
             set { _success = value; }
@@ -50,6 +50,13 @@ namespace Common.Result
         {
             _success = _t;
             _erroemsg = _m;
+        }
+
+        public override string ToString()
+        {
+            string _strS = "Succsss:Type is '" + typeof(T).ToString() + "';         Vaue is '" + _success.ToString() + "'\r\n";
+            string _strE = "ErrorMsg:Type is '" + typeof(M).ToString() + "';         Vaue is '" + _erroemsg.ToString() + "'";
+            return _strS + _strE;
         }
 
     }

@@ -155,40 +155,37 @@
         if (row) {
             $.messager.confirm('删除表', '确定要删除此表么?', function (r) {
                 if (r) {
-                    /*$.ajax({
+                    /*
+                    $.ajax({
                         type: "Post",
-                        data: { "Guid": row.ID },
-                        url: "/UD/DestroyTable",
-                        success: function (data) {
-                            //var result = JSON.parse(data);
-                            alert(data.success);
-                        }
+                        url: "UD/DestroyTable",
+                        data: "Guid=" + row.ID,
+                        //datatype: JSON,
+                        success: function (result) {
+
+                            console.log(result);
+
+                            console.log(result.success);
+                            var result = eval("(" + result + ")");
+                            //var result = eval('(' + result + ')');
+                            console.log(result.success);
+                        },
+                        error: function () { alert("error"); },
                     });*/
-                    $.post('UD/DestroyTable', { Guid: row.ID }, function (result) {//此处要注意与后台方法的参数名要一致
-                        alert(result);
-                        if (result == null) {
-                            alert("null");
-                        } else if (typeof (result) == "undefined") {
-                            alert("typeof:undefined");
-                        } else { alert("result:" + result.success); }
 
-                        /*
-                        if (result) {
-                            alert("undefined");
-                            alert("result:" + result.success);
+                    $.post('UD/DestroyTable', { Guid: row.ID }, function (data) {//此处要注意与后台方法的参数名要一致
+                        //var result = eval("(" + data + ")");
+                        console.log(data.Success);
+                        if (data.ErrorMsg) {
+                            $.messager.show({ title: 'Error', msg: data.errorMsg });// show error message
                         } else {
-                            var result = eval('(' + result + ')');
-                            alert("result" + result + "|||||||||result.success：" + result.success + "|||||||||result.success：" + result.errorMsg);
-
-                            if (result.errorMsg) {
-                                alert("1:result.errorMsg" + result.errorMsg + "||result.success" + result.success);
-                                //$('#dg').datagrid('reload');    // reload the user data
-                            } else {
-                                alert("2:result.errorMsg" + result.errorMsg + "||result.success" + result.success);
-                                //$.messager.show({  title: 'Error', msg: result.errorMsg });// show error message
-                            }
-                        }*/
+                            $('#dlg').dialog('close');
+                            $('#dg').datagrid('reload');    // reload the user data 
+                        }
                     }, 'json');
+
+
+
                 }
             });
         }

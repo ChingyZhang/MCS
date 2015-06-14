@@ -43,12 +43,10 @@ namespace Chingy_SYS.Controllers
         }
 
         [HttpPost]
-        public string DestroyTable(Guid Guid)
+        public JsonResult DestroyTable(Guid Guid)
         {
-            Result<bool, string> _r = new Result<bool, string>(false, "这是错误信息");//TableService.DestroyTable(Guid);
-
-            string j = "[{'success':'true','erormsg':'error'}]";
-            return j;
+            Result<bool, string> _r =TableService.DestroyTable(Guid);
+            return Json(_r);
         }
     }
 
