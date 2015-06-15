@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\DictionaryDAO.cs" />
     <Compile Include="DB\Chingy_SYS.Designer.cs">
       <DependentUpon>Chingy_SYS.edmx</DependentUpon>
       <AutoGen>True</AutoGen>

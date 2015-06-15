@@ -1684,7 +1684,7 @@ namespace Chingy_SYS.DAL.DB
         /// <param name="name">Name 属性的初始值。</param>
         /// <param name="code">Code 属性的初始值。</param>
         /// <param name="flag">Flag 属性的初始值。</param>
-        public static Dictionary_Table CreateDictionary_Table(global::System.Int32 id, global::System.Byte[] name, global::System.Byte[] code, global::System.Int32 flag)
+        public static Dictionary_Table CreateDictionary_Table(global::System.Int32 id, global::System.String name, global::System.String code, global::System.Int32 flag)
         {
             Dictionary_Table dictionary_Table = new Dictionary_Table();
             dictionary_Table.ID = id;
@@ -1730,11 +1730,11 @@ namespace Chingy_SYS.DAL.DB
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Byte[] Name
+        public global::System.String Name
         {
-            get
+             get
             {
-                return StructuralObject.GetValidValue(_Name);
+                return _Name;
             }
             set
             {
@@ -1745,8 +1745,8 @@ namespace Chingy_SYS.DAL.DB
                 OnNameChanged();
             }
         }
-        private global::System.Byte[] _Name;
-        partial void OnNameChanging(global::System.Byte[] value);
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
     
         /// <summary>
@@ -1754,11 +1754,11 @@ namespace Chingy_SYS.DAL.DB
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Byte[] Code
+        public global::System.String Code
         {
             get
             {
-                return StructuralObject.GetValidValue(_Code);
+                return _Code;
             }
             set
             {
@@ -1769,8 +1769,8 @@ namespace Chingy_SYS.DAL.DB
                 OnCodeChanged();
             }
         }
-        private global::System.Byte[] _Code;
-        partial void OnCodeChanging(global::System.Byte[] value);
+        private global::System.String _Code;
+        partial void OnCodeChanging(global::System.String value);
         partial void OnCodeChanged();
     
         /// <summary>
