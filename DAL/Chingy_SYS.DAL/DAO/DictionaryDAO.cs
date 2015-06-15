@@ -33,6 +33,17 @@ namespace Chingy_SYS.DAL.DAO
             }
         }
 
+        public Result<bool, IList<Dictionary_Column>> GetDicColByTableCode(string TableCode)
+        {
+            using (Chingy_SYSEntities db = new Chingy_SYSEntities())
+            {
+                Dictionary_Table _dicT = db.Dictionary_Table.FirstOrDefault(m => m.Code == TableCode);
+                if (_dicT == null) return new Result<bool, IList<Dictionary_Column>>(false, null);
+                IList<Dictionary_Column> _listCol = _dicT.Dictionary_Column.Where(m => m.Flag == 1).ToList();//db.Dictionary_Column.Where(m => m.Table == _dicT.ID).ToList();
+                return new Result<bool, IList<Dictionary_Column>>(true, _listCol);
+            }
+        }
+
         public Result<bool, string> DestroyDictionary_Table(int ID)
         {
             Result<bool, string> _r;
@@ -76,15 +87,6 @@ namespace Chingy_SYS.DAL.DAO
             }
         }
 
-        public new Result<bool, Dictionay> GetDicListByCode(string TableCode)
-        {
-            using (Chingy_SYSEntities db = new Chingy_SYSEntities())
-            {
-                Dictionary_Table dicT = db.Dictionary_Table.FirstOrDefault(m => m.Flag == 1 && m.Code == TableCode);
-                if (dicT == null) return new Result<bool, Dictionay>(false, null);
 
-            }
-
-        }
     }
 }
