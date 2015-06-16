@@ -27,6 +27,13 @@ namespace Chingy_SYS.Controllers
         }
 
         [HttpPost]
+        public JsonResult GetDicList()
+        {
+            IList<Dictionary_Table> listDic = IDicService.GetDicList();
+            return Json(listDic);
+        }
+
+        [HttpPost]
         public JsonResult GetDicColByTableCode(string TableCode)
         {
             Result<bool, IList<Dictionary_Column>> r = IDicService.GetDicColByTableCode(TableCode);

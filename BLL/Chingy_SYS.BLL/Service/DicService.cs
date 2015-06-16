@@ -13,5 +13,25 @@ namespace Chingy_SYS.BLL.Service
         {
             throw new NotImplementedException();
         }
+
+        public IList<DAL.DB.Dictionary_Table> GetDicList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Common.Result.Result<bool, string> AddDictionary_Table(DAL.DB.Dictionary_Table Dictionary_Table)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Common.Result.Result<bool, string> DestroyDictionary_Table(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Common.Result.Result<bool, string> ModifyDictionary_Table(DAL.DB.Dictionary_Table Dictionary_Table)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

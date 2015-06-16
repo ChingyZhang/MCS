@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>系统字典</h2>
+
+@*<select class="easyui-combobox" id="selExt" name="ExtFlag" data-options="valueField:'id',textField:'text',editable:false,required:true" panelheight="48px" style="width: 150px">
+    <option value="0">否</option>
+    <option value="1" selected>是</option>
+</select>*@
+
+<input id="cc" class="easyui-combobox" name="dept" data-options="valueField:'ID',textField:'Name',url:'Dic/GetDicList'">
+@*<input class="easyui-combobox"
+    name="Dic"
+    data-options="
+					url:'Dic/GetDicList',
+					method:'Post',
+					valueField:'ID',
+					textField:'Name',
+					panelHeight:'auto'
+			">*@
