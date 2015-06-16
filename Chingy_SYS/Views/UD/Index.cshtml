@@ -1,9 +1,10 @@
 ﻿@{
     ViewBag.Title = "Index";
-    //  Layout = "~/Views/_ViewStart.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
+<input id="cc" class="easyui-combobox" name="dept" data-options="valueField:'ID',textField:'Name',url:'Dic/GetDicList',method:'Post',panelHeight:'auto',editable:false">
 
 <table id="dg" title="系统表" class="easyui-datagrid" style="width: 100%; height: 250px" url="UD/GetTableList" toolbar="#toolbar" pagination="true" rownumbers="true" fitcolumns="true" singleselect="true">
     <thead>

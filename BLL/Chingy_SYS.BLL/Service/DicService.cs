@@ -9,6 +9,8 @@ namespace Chingy_SYS.BLL.Service
 {
     public class DicService : IDicService
     {
+        Chingy_SYS.DAL.DAO.DictionaryDAO DictionaryDAO = new DAL.DAO.DictionaryDAO();
+
         public Common.Result.Result<bool, IList<DAL.DB.Dictionary_Column>> GetDicColByTableCode(string TableCode)
         {
             throw new NotImplementedException();
@@ -16,7 +18,7 @@ namespace Chingy_SYS.BLL.Service
 
         public IList<DAL.DB.Dictionary_Table> GetDicList()
         {
-            throw new NotImplementedException();
+            return DictionaryDAO.GetDicList();
         }
 
         public Common.Result.Result<bool, string> AddDictionary_Table(DAL.DB.Dictionary_Table Dictionary_Table)

@@ -26,7 +26,7 @@ namespace Chingy_SYS.Controllers
             return View();
         }
 
-        [HttpPost]
+        //[HttpPost]
         public JsonResult GetDicList()
         {
             IList<Dictionary_Table> listDic = IDicService.GetDicList();

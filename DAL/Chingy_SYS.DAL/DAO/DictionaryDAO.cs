@@ -13,7 +13,8 @@ namespace Chingy_SYS.DAL.DAO
     {
         public IList<Dictionary_Table> GetDicList()
         {
-            return new Chingy_SYSEntities().Dictionary_Table.ToList();
+            IList<Dictionary_Table> listDicT=new Chingy_SYSEntities().Dictionary_Table.ToList();
+            return listDicT;
         }
 
         public Result<bool, string> AddDictionary_Table(Chingy_SYS.DAL.DB.Dictionary_Table Dictionary_Table)
