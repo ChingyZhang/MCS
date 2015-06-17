@@ -8,13 +8,11 @@ using System.Threading.Tasks;
 
 namespace Chingy_SYS.BLL.Infrastructure
 {
-    public interface IDicService
+    public interface IDictionary_Table
     {
         IList<Dictionary_Table> GetDicList();
         Result<bool, string> AddDictionary_Table(Chingy_SYS.DAL.DB.Dictionary_Table Dictionary_Table);
         Result<bool, string> DestroyDictionary_Table(int ID);
         Result<bool, string> ModifyDictionary_Table(Chingy_SYS.DAL.DB.Dictionary_Table Dictionary_Table);
-
-        Result<bool, IList<Dictionary_Column>> GetDicColByTableCode(string TableCode);
     }
 }

@@ -22,7 +22,7 @@ namespace Chingy_SYS.DAL.DAO
             {
                 if (UD_TableModel.ID == Guid.Empty) UD_TableModel.ID = Guid.NewGuid();
                 UD_TableModel.InsertTime = DateTime.Now;
-                db.UD_TableList.AddObject(UD_TableModel);
+                db.UD_TableList.Add(UD_TableModel);
                 try
                 {
                     db.SaveChanges();
@@ -40,7 +40,7 @@ namespace Chingy_SYS.DAL.DAO
             {
                 DB.UD_TableList _table = db.UD_TableList.FirstOrDefault(m => m.ID == Guid);
                 if (_table == null) return new Result<bool, string>(false, "null");
-                else db.UD_TableList.DeleteObject(_table);
+                else db.UD_TableList.Remove(_table);
                 try
                 {
                     db.SaveChanges();
@@ -56,7 +56,7 @@ namespace Chingy_SYS.DAL.DAO
             Result<bool, string> _r;
             using (Chingy_SYSEntities db = new Chingy_SYSEntities())
             {
-                db.UD_TableList.DeleteObject(UD_TableList);
+                db.UD_TableList.Remove(UD_TableList);
                 try
                 {
                     db.SaveChanges();

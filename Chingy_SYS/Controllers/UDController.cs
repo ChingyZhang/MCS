@@ -13,12 +13,12 @@ namespace Chingy_SYS.Controllers
         //
         // GET: /UD/
 
-        public Chingy_SYS.BLL.Infrastructure.ITableService TableService;
+        public Chingy_SYS.BLL.Infrastructure.IUD_Table TableService;
 
         protected override void Initialize(System.Web.Routing.RequestContext requestContext)
         {
             base.Initialize(requestContext);
-            TableService = new Chingy_SYS.BLL.Service.TableService();
+            TableService = new Chingy_SYS.BLL.Service.UD_TableListService();
         }
 
         public ActionResult Index()

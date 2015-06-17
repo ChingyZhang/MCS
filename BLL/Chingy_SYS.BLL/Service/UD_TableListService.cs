@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Chingy_SYS.BLL.Service
 {
-    public class TableService : ITableService
+    public class UD_TableListService : IUD_Table
     {
         Chingy_SYS.DAL.DAO.TableDAO TableDAO = new DAL.DAO.TableDAO();
 

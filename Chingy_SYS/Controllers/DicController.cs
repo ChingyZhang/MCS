@@ -13,12 +13,14 @@ namespace Chingy_SYS.Controllers
         //
         // GET: /Dic/
 
-        public Chingy_SYS.BLL.Infrastructure.IDicService IDicService;
+        public Chingy_SYS.BLL.Infrastructure.IDictionary_Table Dictionary_TableService;
+        public Chingy_SYS.BLL.Infrastructure.IDictionary_Column Dictionary_ColumnService;
 
         protected override void Initialize(System.Web.Routing.RequestContext requestContext)
         {
             base.Initialize(requestContext);
-            IDicService = new Chingy_SYS.BLL.Service.DicService();
+            Dictionary_TableService = new Chingy_SYS.BLL.Service.Dictionary_TableService();
+            Dictionary_ColumnService = new Chingy_SYS.BLL.Service.Dictionary_ColumnService();
         }
 
         public ActionResult Index()
@@ -26,17 +28,17 @@ namespace Chingy_SYS.Controllers
             return View();
         }
 
-        //[HttpPost]
+        [HttpPost]
         public JsonResult GetDicList()
         {
-            IList<Dictionary_Table> listDic = IDicService.GetDicList();
+            IList<Dictionary_Table> listDic = Dictionary_TableService.GetDicList();
             return Json(listDic);
         }
 
         [HttpPost]
         public JsonResult GetDicColByTableCode(string TableCode)
         {
-            Result<bool, IList<Dictionary_Column>> r = IDicService.GetDicColByTableCode(TableCode);
+            Result<bool, IList<Dictionary_Column>> r = Dictionary_ColumnService.GetDicColByTableCode(TableCode);
             if (!r.Success) return null;
             IList<Dictionary_Column> _listDic = r.ErrorMsg;
             return Json(_listDic);

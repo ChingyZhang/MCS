@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Chingy_SYS.BLL.Infrastructure
 {
-    public interface ITableService
+    public interface IUD_Table
     {
         IList<Chingy_SYS.DAL.DB.UD_TableList> GetTableList();
         Result<bool, string> AddTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableModel);

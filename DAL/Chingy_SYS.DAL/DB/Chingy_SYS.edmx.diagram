@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5fe99f4d86064dc29b25802616dfecb6" Name="关系图1">
+      <Diagram DiagramId="e7ad386b5ab8443f88ba01b56496589a" Name="关系图1">
         <EntityTypeShape EntityType="Chingy_SYSModel.Addr_OfficialCity" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Chingy_SYSModel.Addr_OrganizeCity" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Chingy_SYSModel.DB_RunLog" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />

@@ -7,33 +7,28 @@ using System.Threading.Tasks;
 
 namespace Chingy_SYS.BLL.Service
 {
-    public class DicService : IDicService
+    public class Dictionary_TableService : IDictionary_Table
     {
-        Chingy_SYS.DAL.DAO.DictionaryDAO DictionaryDAO = new DAL.DAO.DictionaryDAO();
-
-        public Common.Result.Result<bool, IList<DAL.DB.Dictionary_Column>> GetDicColByTableCode(string TableCode)
-        {
-            throw new NotImplementedException();
-        }
+        Chingy_SYS.DAL.DAO.Dictionary_TableDAO Dictionary_TableDAO = new DAL.DAO.Dictionary_TableDAO();
 
         public IList<DAL.DB.Dictionary_Table> GetDicList()
         {
-            return DictionaryDAO.GetDicList();
+            return Dictionary_TableDAO.GetDicList();
         }
 
         public Common.Result.Result<bool, string> AddDictionary_Table(DAL.DB.Dictionary_Table Dictionary_Table)
         {
-            throw new NotImplementedException();
+            return Dictionary_TableDAO.AddDictionary_Table(Dictionary_Table);
         }
 
         public Common.Result.Result<bool, string> DestroyDictionary_Table(int ID)
         {
-            throw new NotImplementedException();
+            return Dictionary_TableDAO.DestroyDictionary_Table(ID);
         }
 
         public Common.Result.Result<bool, string> ModifyDictionary_Table(DAL.DB.Dictionary_Table Dictionary_Table)
         {
-            throw new NotImplementedException();
+            return Dictionary_TableDAO.ModifyDictionary_Table(Dictionary_Table);
         }
     }
 }

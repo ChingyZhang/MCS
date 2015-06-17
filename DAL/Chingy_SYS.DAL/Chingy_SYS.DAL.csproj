@@ -46,23 +46,95 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAO\DictionaryDAO.cs" />
-    <Compile Include="DB\Chingy_SYS.Designer.cs">
-      <DependentUpon>Chingy_SYS.edmx</DependentUpon>
+    <Compile Include="DAO\Dictionary_TableDAO.cs" />
+    <Compile Include="DAO\Dictionary_ColumnDAO.cs" />
+    <Compile Include="DAO\IDictionary_Column.cs" />
+    <Compile Include="DAO\TableDAO.cs" />
+    <Compile Include="DB\Addr_OfficialCity.cs">
+      <DependentUpon>Chingy_SYS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Addr_OrganizeCity.cs">
+      <DependentUpon>Chingy_SYS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Chingy_SYS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Chingy_SYS.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAO\TableDAO.cs" />
+    <Compile Include="DB\Chingy_SYS.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Chingy_SYS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Chingy_SYS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Chingy_SYS.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DB\DB_RunLog.cs">
+      <DependentUpon>Chingy_SYS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Dictionary_Column.cs">
+      <DependentUpon>Chingy_SYS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Dictionary_Table.cs">
+      <DependentUpon>Chingy_SYS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Right_Action.cs">
+      <DependentUpon>Chingy_SYS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Right_Assign.cs">
+      <DependentUpon>Chingy_SYS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Right_Controller.cs">
+      <DependentUpon>Chingy_SYS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Right_Module.cs">
+      <DependentUpon>Chingy_SYS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\UD_DetailView.cs">
+      <DependentUpon>Chingy_SYS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\UD_ModelFields.cs">
+      <DependentUpon>Chingy_SYS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\UD_Panel.cs">
+      <DependentUpon>Chingy_SYS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\UD_Panel_ModelFields.cs">
+      <DependentUpon>Chingy_SYS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\UD_Panel_Table.cs">
+      <DependentUpon>Chingy_SYS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\UD_Panel_TableRelation.cs">
+      <DependentUpon>Chingy_SYS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\UD_TableList.cs">
+      <DependentUpon>Chingy_SYS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="DB\Chingy_SYS.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Chingy_SYS.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="DB\Chingy_SYS.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Chingy_SYS.edmx</DependentUpon>
+      <LastGenOutput>Chingy_SYS.Context.cs</LastGenOutput>
+    </None>
     <None Include="DB\Chingy_SYS.edmx.diagram">
       <DependentUpon>Chingy_SYS.edmx</DependentUpon>
+    </None>
+    <None Include="DB\Chingy_SYS.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Chingy_SYS.edmx</DependentUpon>
+      <LastGenOutput>Chingy_SYS.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -75,6 +147,9 @@
       <Project>{67931f24-bd5c-41d9-a12f-51211992ade9}</Project>
       <Name>Chingy_SYS.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
