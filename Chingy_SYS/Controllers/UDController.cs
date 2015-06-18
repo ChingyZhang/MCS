@@ -48,6 +48,11 @@ namespace Chingy_SYS.Controllers
             Result<bool, string> _r =TableService.DestroyTable(Guid);
             return Json(_r);
         }
+
+        public ActionResult GetFieldsList(int TableID)
+        {
+            return View(TableID);
+        }
     }
 
 
