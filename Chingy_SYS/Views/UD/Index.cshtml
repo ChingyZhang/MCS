@@ -10,12 +10,13 @@
     <thead>
         <tr>
             <th field="ID" hidden="true">ID</th>
-            <th field="Name" width="50">表名</th>
-            <th field="DisplayName" width="50">显示名称</th>
-            <th field="ExtFlag" width="50">可扩展字段</th>
-            <th field="ModelName" width="50">Model实体名称</th>
-            <th field="TreeFlag" width="50">树形结构标志</th>
-            <th field="InsertTime" width="50" formatter="Common.DateFormatter">新增时间</th>
+            <th field="Name">表名</th>
+            <th field="DisplayName">显示名称</th>
+            <th field="ExtFlag">可扩展字段</th>
+            <th field="ModelName">Model实体名称</th>
+            <th field="TreeFlag">树形结构标志</th>
+            <th field="InsertTime" formatter="Common.DateFormatter">新增时间</th>
+            <th data-options="field:'listprice',width:80,align:'right',formatter:formatLink">表字段信息</th><!--此处如果绑定了ID字段会导致列隐藏，若在绑定时将隐藏的ID列注释则可以正常显示-->
         </tr>
     </thead>
 </table>
@@ -45,29 +46,6 @@
                 <option value="0">否</option>
                 <option value="1" selected>是</option>
             </select>
-            @*<select id="selExt" style="width: 150px"></select>
-            <div id="spExt">
-                <div style="color: #99BBE8; background: #fafafa; padding: 5px;">请选择</div>
-                <div style="padding: 10px">
-                    <input type="radio" name="rExt" value="0"><span>否</span><br />
-                    <input type="radio" name="rExt" value="1"><span>是</span><br />
-                </div>
-            </div>
-            <script type="text/javascript">
-                $(function () {
-                    $('#selExt').combo({
-                        required: true,
-                        editable: false,
-                        panelHeight: 100
-                    });
-                    $('#spExt').appendTo($('#selExt').combo('panel'));
-                    $('#spExt input').click(function () {
-                        var v = $(this).val();
-                        var s = $(this).next('span').text();
-                        $('#selExt').combo('setValue', v).combo('setText', s).combo('hidePanel');
-                    });
-                });
-            </script>*@
         </div>
         <div class="fitem">
             <label>Model名称:</label>
@@ -143,5 +121,10 @@
                 }
             });
         }
+    }
+
+    function formatLink(value, row, index) {
+        var url = "UD/" + row.ID;
+        return "<a href='javascript:void(0) onclick=a(" + url + ")'>表字段列表< /a>";
     }
 </script>
