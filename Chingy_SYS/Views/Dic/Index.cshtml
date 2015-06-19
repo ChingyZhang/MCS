@@ -3,6 +3,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+<script type="text/javascript">
+    function ModifyHtml(record) {
+        console.log(record.ID);
+        var tableCode = $('cc').combobox('getValue');
+        alert(tableCode);
+        $.ajax({
+            type: "Post",
+            data: "TableCode :" + tableCode,
+            url: "/Dic/PartialCol",
+            success: function (data) {
+                alert("success");
+                $("#right").html(data);
+            },
+            error: function (data) {
+                alert("页面更新失败");
+            }
+        });
+    }
+</script>
 @*@model System.String*@
 
 <h2>系统字典</h2>
@@ -12,34 +32,9 @@
     <a href="javascript:void(0)" class="easyui-linkbutton" icolcls="icon-edit" plain="true" onclick="editTbale()">编辑表</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="destroyTable()">删除表</a>
 </div>
-<input id="cc" class="easyui-combobox" name="dept" data-options="valueField:'ID',textField:'Name',url:'Dic/GetDicList',method:'Post',panelHeight:'auto',editable:false" onselect='ModifyHtml()'>
+<input id="cc" class="easyui-combobox" name="dept" data-options="valueField:'ID',textField:'Name',url:'/Dic/GetDicList',method:'Post',panelHeight:'auto',editable:false" onselect='ModifyHtml()'>
 
 <div id="right" style="float: right; width: 730px; background-color: rgba(250, 245, 3, 0.45);"></div>
 
-<script type="text/javascript">
-    function ModifyHtml(newValue, oldValue) {
-        alert(newValue + '-' + oldValue);
-        console.log(newValue + '-' + oldValue);
-        //var tableCode = $('cc').combobox('getValue');
-        //alert(tableCode);
-        //$.ajax({
-        //    type: "Get",
-        //    data: "TableCode :tableCode ",
-        //    url: "/User/" + controllerName,
-        //    success: function (data) {
-        //        $("#right").html(data);
-        //    },
-        //    error: function (data) {
-        //        alert("页面更新失败");
-        //    }
-        //});
-    }
-
-    //$("#cc").combobox({
-    //    url: 'Dic/GetDicColByTableCode' + $('#cc').val(),
-    //    valueField: 'Code',
-    //    textField: 'Name'
-    //});
-</script>
 
 

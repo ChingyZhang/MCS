@@ -49,7 +49,7 @@ namespace Chingy_SYS.Controllers
             return Json(_r);
         }
 
-        public ActionResult GetFieldsList(int TableID)
+        public ActionResult GetFieldsList(string TableID)
         {
             return View(TableID);
         }

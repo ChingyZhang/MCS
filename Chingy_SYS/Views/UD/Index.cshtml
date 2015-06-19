@@ -16,7 +16,8 @@
             <th field="ModelName">Model实体名称</th>
             <th field="TreeFlag">树形结构标志</th>
             <th field="InsertTime" formatter="Common.DateFormatter">新增时间</th>
-            <th data-options="field:'listprice',width:80,align:'right',formatter:formatLink">表字段信息</th><!--此处如果绑定了ID字段会导致列隐藏，若在绑定时将隐藏的ID列注释则可以正常显示-->
+            <th data-options="field:'listprice',width:80,align:'right',formatter:formatLink">表字段信息</th>
+            <!--此处如果绑定了ID字段会导致列隐藏，若在绑定时将隐藏的ID列注释则可以正常显示-->
         </tr>
     </thead>
 </table>
@@ -25,8 +26,6 @@
     <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-edit" plain="true" onclick="editUser()">编辑表</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="destroyTable()">移除表</a>
 </div>
-
-
 
 <div id="dlg" class="easyui-dialog" title="添加新表" style="width: 400px; height: 280px; padding: 10px 20px"
     closed="true" buttons="#dlg-buttons">
@@ -115,16 +114,16 @@
                             $('#dg').datagrid('reload');    // reload the user data 
                         }
                     }, 'json');
-
-
-
                 }
             });
         }
     }
 
     function formatLink(value, row, index) {
-        var url = "UD/" + row.ID;
-        return "<a href='javascript:void(0) onclick=a(" + url + ")'>表字段列表< /a>";
+        var url = "UD/GetFieldsList?TableID=" + row.ID;
+        return "<a href='" + url + "' >表字段列表";
+    }
+    function a(url) {
+
     }
 </script>
