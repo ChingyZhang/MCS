@@ -44,5 +44,9 @@ namespace Chingy_SYS.Controllers
             return Json(_listDic);
         }
 
+        public PartialViewResult PartialCol(string tableCode)
+        {
+            return PartialView(tableCode);
+        }
     }
 }

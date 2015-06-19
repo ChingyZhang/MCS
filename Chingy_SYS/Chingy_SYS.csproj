@@ -893,6 +893,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\UD\Index.cshtml" />
     <Content Include="Views\Dic\Index.cshtml" />
+    <Content Include="Views\Dic\PartialCol.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

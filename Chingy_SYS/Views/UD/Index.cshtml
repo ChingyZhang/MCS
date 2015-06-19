@@ -87,9 +87,7 @@
     <a href="javascript:void(0)" class="easyui-linkbutton c6" iconcls="icon-ok" onclick="saveTable()" style="width: 90px; flex-align: center;">保存</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width: 90px">取消</a>
 </div>
-
 <script type="text/javascript">
-
     var url;
     function newTable() {
 
@@ -129,24 +127,6 @@
         if (row) {
             $.messager.confirm('删除表', '确定要删除此表么?', function (r) {
                 if (r) {
-                    /*
-                    $.ajax({
-                        type: "Post",
-                        url: "UD/DestroyTable",
-                        data: "Guid=" + row.ID,
-                        //datatype: JSON,
-                        success: function (result) {
-
-                            console.log(result);
-
-                            console.log(result.success);
-                            var result = eval("(" + result + ")");
-                            //var result = eval('(' + result + ')');
-                            console.log(result.success);
-                        },
-                        error: function () { alert("error"); },
-                    });*/
-
                     $.post('UD/DestroyTable', { Guid: row.ID }, function (data) {//此处要注意与后台方法的参数名要一致
                         //var result = eval("(" + data + ")");
                         console.log(data.Success);

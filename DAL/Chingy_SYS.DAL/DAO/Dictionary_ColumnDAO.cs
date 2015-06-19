@@ -34,6 +34,7 @@ namespace Chingy_SYS.DAL.DAO
                 DB.Dictionary_Column _col2 = db.Dictionary_Column.FirstOrDefault(m => m.Code == Dictionary_Column.Code);
                 if (_col2 != null) return new Result<bool, string>(false, "编码已存在");
 
+                Dictionary_Column.Flag = 1;
                 Dictionary_Column.InsertTime = DateTime.Now;
                 db.Dictionary_Column.Add(Dictionary_Column);
                 try

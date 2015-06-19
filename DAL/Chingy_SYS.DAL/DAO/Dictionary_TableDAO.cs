@@ -13,7 +13,7 @@ namespace Chingy_SYS.DAL.DAO
     {
         public IList<Dictionary_Table> GetDicList()
         {
-            IList<Dictionary_Table> listDicT=new Chingy_SYSEntities().Dictionary_Table.ToList();
+            IList<Dictionary_Table> listDicT = new Chingy_SYSEntities().Dictionary_Table.ToList();
             return listDicT;
         }
 
@@ -22,6 +22,10 @@ namespace Chingy_SYS.DAL.DAO
             Result<bool, string> _r;
             using (Chingy_SYSEntities db = new Chingy_SYSEntities())
             {
+                DB.Dictionary_Table _tableCode = db.Dictionary_Table.FirstOrDefault(m => m.Code == Dictionary_Table.Code);
+                if (_tableCode != null) return new Result<bool, string>(false, "编码已存在");
+
+                Dictionary_Table.Flag = 1;
                 Dictionary_Table.InsertTime = DateTime.Now;
                 db.Dictionary_Table.Add(Dictionary_Table);
                 try
@@ -34,7 +38,7 @@ namespace Chingy_SYS.DAL.DAO
             }
         }
 
-        
+
 
         public Result<bool, string> DestroyDictionary_Table(int ID)
         {
