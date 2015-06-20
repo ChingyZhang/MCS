@@ -11,23 +11,23 @@ namespace Chingy_SYS.DAL.DAO
 {
     public class Dictionary_TableDAO
     {
-        public IList<Dictionary_Table> GetDicList()
+        public IList<Chingy_SYS.DAL.DB.Dictionary_Table> GetDicList()
         {
-            IList<Dictionary_Table> listDicT = new Chingy_SYSEntities().Dictionary_Table.ToList();
+            IList<DB.Dictionary_Table> listDicT = new Chingy_SYSEntities().Dictionary_Table.ToList();
             return listDicT;
         }
 
-        public Result<bool, string> AddDictionary_Table(Chingy_SYS.DAL.DB.Dictionary_Table Dictionary_Table)
+        public Result<bool, string> AddDictionary_Table(DB.Dictionary_Table model)
         {
             Result<bool, string> _r;
             using (Chingy_SYSEntities db = new Chingy_SYSEntities())
             {
-                DB.Dictionary_Table _tableCode = db.Dictionary_Table.FirstOrDefault(m => m.Code == Dictionary_Table.Code);
+                DB.Dictionary_Table _tableCode = db.Dictionary_Table.FirstOrDefault(m => m.Code == model.Code);
                 if (_tableCode != null) return new Result<bool, string>(false, "编码已存在");
 
-                Dictionary_Table.Flag = 1;
-                Dictionary_Table.InsertTime = DateTime.Now;
-                db.Dictionary_Table.Add(Dictionary_Table);
+                model.Flag = 1;
+                model.InsertTime = DateTime.Now;
+                db.Dictionary_Table.Add(model);
                 try
                 {
                     db.SaveChanges();
@@ -58,21 +58,21 @@ namespace Chingy_SYS.DAL.DAO
             }
         }
 
-        public Result<bool, string> ModifyDictionary_Table(Chingy_SYS.DAL.DB.Dictionary_Table Dictionary_Table)
+        public Result<bool, string> ModifyDictionary_Table(DB.Dictionary_Table model)
         {
             Result<bool, string> _r;
             using (Chingy_SYSEntities db = new Chingy_SYSEntities())
             {
-                DB.Dictionary_Table _table = db.Dictionary_Table.FirstOrDefault(m => m.ID == Dictionary_Table.ID);
-                DB.Dictionary_Table _tableCode = db.Dictionary_Table.FirstOrDefault(m => m.Code == Dictionary_Table.Code);
+                DB.Dictionary_Table _table = db.Dictionary_Table.FirstOrDefault(m => m.ID == model.ID);
+                DB.Dictionary_Table _tableCode = db.Dictionary_Table.FirstOrDefault(m => m.Code == model.Code);
                 if (_tableCode != null) return new Result<bool, string>(false, "编码已存在");
 
                 if (_table == null) return new Result<bool, string>(false, "null");
-                _table.Name = Dictionary_Table.Name;
-                _table.Code = Dictionary_Table.Code;
-                _table.Flag = Dictionary_Table.Flag;
+                _table.Name = model.Name;
+                _table.Code = model.Code;
+                _table.Flag = model.Flag;
                 _table.UpdateTime = DateTime.Now;
-                _table.UpdateUser = Dictionary_Table.UpdateUser;
+                _table.UpdateUser = model.UpdateUser;
                 try
                 {
                     db.SaveChanges();

@@ -11,24 +11,19 @@ namespace Chingy_SYS.DAL.DB
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Dictionary_Table
     {
-        public Dictionary_Table()
-        {
-            this.Dictionary_Column = new HashSet<Dictionary_Column>();
-        }
-    
         public int ID { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
         public int Flag { get; set; }
-        public Nullable<System.DateTime> InsertTime { get; set; }
-        public Nullable<int> InsertUser { get; set; }
-        public Nullable<System.DateTime> UpdateTime { get; set; }
-        public Nullable<int> UpdateUser { get; set; }
+        public DateTime? InsertTime { get; set; }
+        public int? InsertUser { get; set; }
+        public DateTime? UpdateTime { get; set; }
+        public int? UpdateUser { get; set; }
         public string ExtPropertys { get; set; }
-    
+
         public virtual ICollection<Dictionary_Column> Dictionary_Column { get; set; }
     }
 }
