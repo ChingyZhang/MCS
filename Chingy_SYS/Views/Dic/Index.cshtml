@@ -3,8 +3,108 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@model IEnumerable<Chingy_SYS.DAL.DB.Dictionary_Table>
+
+
+<h2>系统字典</h2>
+
+<div style="border-width: thin; border-color: black">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="newTable()">添加新表</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" icolcls="icon-edit" plain="true" onclick="editTbale()">编辑表</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="destroyTable()">删除表</a>
+</div>
+<input id="TableID" class="easyui-combobox" name="dept" data-options="valueField:'ID',textField:'Name',url:'Dic/GetDicList',method:'Post',panelHeight:'auto',editable:false,onChange:DicSelect">
+
+
+<div></div>
+
+@*@using (Html.BeginForm("GetDicColByTableCode", "Movies", FormMethod.Post))
+{
+    @Html.DropDownList("TableID", (SelectList)ViewBag.slDicable, "", new
+{
+    @style = "width:135px",
+    @class = "easyui-combobox",
+    @valueField = "ID",
+    textField = "Name",
+    @url = "/Dic/GetDicList",
+    @method = "Post",
+    @panelHeight = "auto",
+    @editable = "false",
+    @data-options="DicSelect"//@onChange = "DicSelect"
+})
+}*@
+
+<div id="right" style="float: left; width: 730px; background-color: rgba(250, 245, 3, 0.45);"></div>
+
+
+
+
+<div id="dlg" class="easyui-dialog" title="添加新表" style="width: 400px; height: 280px; padding: 10px 20px"
+    closed="true" buttons="#dlg-buttons">
+    <form id="fm" method="post" novalidate>
+        <input type="hidden" name="ID" />
+        <div class="fitem">
+            <label>表名:</label>
+            <input name="Name" class="easyui-textbox" required="true">
+        </div>
+        <div class="fitem">
+            <label>编码:</label>
+            <input name="Code" class="easyui-textbox" required="true">
+        </div>
+    </form>
+</div>
+<div id="dlg-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconcls="icon-ok" onclick="saveTable()" style="width: 90px; flex-align: center;">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width: 90px">取消</a>
+</div>
+
 
 <script type="text/javascript">
+
+    function DicSelect(newValue, oldValue) {
+        console.log(newValue);
+        $.ajax({
+            url: "Dic/GetDicColByTableID",
+            data: { "TableID": newValue },
+            success: function (data) { console.log(data); $("#right").html(data); },
+            type: "Post",
+            error: function () { console.log("error"); }
+        });
+    }
+    function newTable() {
+        $('#dlg').dialog('open').dialog('setTitle', '添加新表');
+        $('#fm').form('clear');
+    }
+    function editUser() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $('#dlg').dialog('open').dialog('setTitle', '修改表');
+            $('#fm').form('load', row);
+        }
+    }
+    function saveTable() {
+        url = 'UD/SaveTable';
+        $('#fm').form('submit', {
+            url: url,
+            onSubmit: function () {
+                return $(this).form('validate');
+            },
+            success: function (result) {
+                var result = eval('(' + result + ')');// change the JSON string to javascript object
+                if (result.errorMsg) {
+                    $.messager.show({
+                        title: 'Error',
+                        msg: result.errorMsg
+                    });
+                } else {
+                    $('#dlg').dialog('close');        // close the dialog
+                    $('#dg').datagrid('reload');    // reload the user data
+                }
+            }
+        });
+    }
+
+
     function ModifyHtml(record) {
         console.log(record.ID);
         var tableCode = $('cc').combobox('getValue');
@@ -23,18 +123,6 @@
         });
     }
 </script>
-@*@model System.String*@
-
-<h2>系统字典</h2>
-
-<div style="border-width: thin; border-color: black">
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="newTable()">添加新表</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" icolcls="icon-edit" plain="true" onclick="editTbale()">编辑表</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="destroyTable()">删除表</a>
-</div>
-<input id="cc" class="easyui-combobox" name="dept" data-options="valueField:'ID',textField:'Name',url:'/Dic/GetDicList',method:'Post',panelHeight:'auto',editable:false" onselect='ModifyHtml()'>
-
-<div id="right" style="float: right; width: 730px; background-color: rgba(250, 245, 3, 0.45);"></div>
 
 
 

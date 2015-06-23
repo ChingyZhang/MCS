@@ -25,6 +25,9 @@ namespace Chingy_SYS.Controllers
 
         public ActionResult Index()
         {
+            IList<Dictionary_Table> listDic = Dictionary_TableService.GetDicList();
+            SelectList slDicable = new SelectList(listDic);
+            ViewBag.slDicable = slDicable;
             return View();
         }
 
@@ -44,9 +47,9 @@ namespace Chingy_SYS.Controllers
             return Json(_listDic);
         }
 
-        public PartialViewResult PartialCol(int tableCode)
+        public PartialViewResult GetDicColByTableID(int TableID)
         {
-            return PartialView(tableCode);
+            return PartialView(TableID);
         }
     }
 }
