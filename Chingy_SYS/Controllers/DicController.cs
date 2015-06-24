@@ -47,9 +47,19 @@ namespace Chingy_SYS.Controllers
             return Json(_listDic);
         }
 
-        public PartialViewResult GetDicColByTableID(int TableID)
+        public PartialViewResult Detail(int id)//如果前台传来的是url如Dic/Detail/1这种样式的话此处参数名必须为id，否则url路由不到该方法
         {
-            return PartialView(TableID);
+            //if (TableID == null) return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            return PartialView(id);
+        }
+
+        public JsonResult GetColList(int? id)
+        {
+            if (id == null) return null;
+            Dictionary_Table dic = Dictionary_TableService.GetDicList().FirstOrDefault(m => m.ID == id);
+            if (dic == null) return null;
+            IList<Dictionary_Column> listDic = Dictionary_ColumnService.GetDicColByTableCode(dic.Code).ErrorMsg;
+            return Json(listDic);
         }
     }
 }

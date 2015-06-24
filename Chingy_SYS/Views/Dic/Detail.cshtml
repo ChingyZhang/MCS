@@ -1,8 +1,11 @@
 ﻿@model System.Int32
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
+@*@Html.Hidden("TableID", @Model)*@
 
-
-<table id="dg" title="字典参数" class="easyui-datagrid" style="width: 100%; height: 205px" rownumbers="true" fitcolumns="true" url="Dic/GetDicColByTableCode" toolbar="#toolbar">
+<table id="dg" title="字典参数" class="easyui-datagrid" style="width: 100%; height: 205px" rownumbers="true" fitcolumns="true" url="Dic/GetDicColByTableCode/@Model" toolbar="#toolbar">
     <thead>
         <tr>
             <th field="ID" hidden="true">ID</th>

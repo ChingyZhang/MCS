@@ -13,26 +13,10 @@
     <a href="javascript:void(0)" class="easyui-linkbutton" icolcls="icon-edit" plain="true" onclick="editTbale()">编辑表</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="destroyTable()">删除表</a>
 </div>
-<input id="TableID" class="easyui-combobox" name="dept" data-options="valueField:'ID',textField:'Name',url:'Dic/GetDicList',method:'Post',panelHeight:'auto',editable:false,onChange:DicSelect">
+<input id="TableID" class="easyui-combobox" name="dept" data-options="valueField:'ID',textField:'Name',url:'@Url.Action("GetDicList")',method:'Post',panelHeight:'auto',editable:false,onChange:DicSelect">
 
-
-<div></div>
-
-@*@using (Html.BeginForm("GetDicColByTableCode", "Movies", FormMethod.Post))
-{
-    @Html.DropDownList("TableID", (SelectList)ViewBag.slDicable, "", new
-{
-    @style = "width:135px",
-    @class = "easyui-combobox",
-    @valueField = "ID",
-    textField = "Name",
-    @url = "/Dic/GetDicList",
-    @method = "Post",
-    @panelHeight = "auto",
-    @editable = "false",
-    @data-options="DicSelect"//@onChange = "DicSelect"
-})
-}*@
+<div>
+</div>
 
 <div id="right" style="float: left; width: 730px; background-color: rgba(250, 245, 3, 0.45);"></div>
 
@@ -64,8 +48,8 @@
     function DicSelect(newValue, oldValue) {
         console.log(newValue);
         $.ajax({
-            url: "Dic/GetDicColByTableID",
-            data: { "TableID": newValue },
+            url: "Dic/Detail",
+            data: { "id": newValue },
             success: function (data) { console.log(data); $("#right").html(data); },
             type: "Post",
             error: function () { console.log("error"); }
