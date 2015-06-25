@@ -53,6 +53,7 @@ namespace Chingy_SYS.Controllers
             return PartialView(id);
         }
 
+        [HttpPost]
         public JsonResult GetColList(int? id)
         {
             if (id == null) return null;
@@ -60,6 +61,27 @@ namespace Chingy_SYS.Controllers
             if (dic == null) return null;
             IList<Dictionary_Column> listDic = Dictionary_ColumnService.GetDicColByTableCode(dic.Code).ErrorMsg;
             return Json(listDic);
+        }
+
+        [HttpPost]
+        public JsonResult CreateColumn(Dictionary_Column dictionary_column)
+        {
+            var result = Dictionary_ColumnService.AddDictionary_Column(dictionary_column);
+            return Json(result.Success);
+        }
+
+        public JsonResult EditColumn(Dictionary_Column dictionary_column)
+        {
+            var result = Dictionary_ColumnService.ModifyDictionary_Column(dictionary_column);
+            return Json(result);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteColumn(int id)
+        {
+            if (id == null) return Json(true);
+            var result = Dictionary_ColumnService.DestroyDictionary_Column(id);
+            return Json(result);
         }
     }
 }

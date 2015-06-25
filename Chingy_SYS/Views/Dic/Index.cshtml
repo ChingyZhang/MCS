@@ -10,7 +10,7 @@
 
 <div style="border-width: thin; border-color: black">
     <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="newTable()">添加新表</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" icolcls="icon-edit" plain="true" onclick="editTbale()">编辑表</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-edit" plain="true" onclick="editTbale()">编辑表</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="destroyTable()">删除表</a>
 </div>
 <input id="TableID" class="easyui-combobox" name="dept" data-options="valueField:'ID',textField:'Name',url:'@Url.Action("GetDicList")',method:'Post',panelHeight:'auto',editable:false,onChange:DicSelect">
@@ -48,7 +48,7 @@
     function DicSelect(newValue, oldValue) {
         console.log(newValue);
         $.ajax({
-            url: "Dic/Detail",
+            url: "/Dic/Detail",
             data: { "id": newValue },
             success: function (data) { console.log(data); $("#right").html(data); },
             type: "Post",
@@ -106,6 +106,27 @@
             }
         });
     }
+
+    function destroyTable() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $.messager.confirm('删除表', '确定要删除此表么?', function (r) {
+                if (r) {
+                    $.post('UD/DestroyTable', { Guid: row.ID }, function (data) {//此处要注意与后台方法的参数名要一致
+                        //var result = eval("(" + data + ")");
+                        console.log(data.Success);
+                        if (data.ErrorMsg) {
+                            $.messager.show({ title: 'Error', msg: data.errorMsg });// show error message
+                        } else {
+                            $('#dlg').dialog('close');
+                            $('#dg').datagrid('reload');    // reload the user data 
+                        }
+                    }, 'json');
+                }
+            });
+        }
+    }
+
 </script>
 
 

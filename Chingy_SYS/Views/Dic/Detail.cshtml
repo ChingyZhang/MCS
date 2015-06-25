@@ -1,11 +1,12 @@
 ﻿@model System.Int32
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
-@*@Html.Hidden("TableID", @Model)*@
+@Html.Hidden("TableID", @Model)
+<input type="button" onclick="a()" />
 
-<table id="dg" title="字典参数" class="easyui-datagrid" style="width: 100%; height: 205px" rownumbers="true" fitcolumns="true" url="Dic/GetDicColByTableCode/@Model" toolbar="#toolbar">
+<table id="dg" title="字典参数" class="easyui-datagrid" style="width: 100%; height: 205px" rownumbers="true" fitcolumns="true" url="Dic/GetColList/@Model" toolbar="#toolbar">
     <thead>
         <tr>
             <th field="ID" hidden="true">ID</th>
@@ -16,19 +17,18 @@
     </thead>
 </table>
 
-<div id="#toolbar">
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="newCol()">添加新字段</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-edit" plain="true" onclick="editCol()">编辑字段</a>
-    <a href="javascript:void(0)" class="easyui-remove" iconcls="icon-remove" plain="true" onclick="destroyCol()">移除字段</a>
+<div id="toolbar">
+    <a id="CreateColumn" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="CreateColumn()">添加字典</a>
+    <a id="EditColumn" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-edit" plain="true" onclick="EditColumn()">编辑字典</a>
+    <a id="DeleteColumn" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="DeleteColumn()">移除字典</a>
 </div>
 
 
 <div id="dlg" class="easyui-dialog" title="编辑字段" style="width: 400px; height: 280px; padding: 10px 20px" closed="true" buttons="#dlg-buttons">
-    <form id="fm" method="post"
-        novalidate>
+    <form id="fm" method="post" novalidate>
 
         <input type="hidden" name="ID" />
-        <input type="hidden" name="Table" value="@Model"/>
+        <input type="hidden" name="Table" />
         <div class="fitem">
             <label>字段名</label>
             <input name="Name" class="easyui-textbox" required="true" />
@@ -43,3 +43,44 @@
     <a href="javascript:void(0)" class="easyui-linkbutton c6" iconcls="icon-ok" onclick="saveCode()" style="width: 90px; flex-align: center;">保存</a>
     <a href="javascript:void(0)" calss="easui-linkbutton c6" iconcls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width: 90px"></a>
 </div>
+
+<script type="text/javascript">
+
+
+    function CreateColumn() {
+        $("#dlg").dialog("open").dialog('setTitle', '添加字典');
+        $('#fm').form('clear');
+    }
+
+    function EditColumn() {
+        var row = $("#dg").datagrid('getSelected');
+        $("#dlg").dialog("open").dialog('setTitle', "修改字典");
+        $("#fm").form("load", row);
+    }
+
+    function DeleteColumn() {
+        var row = $("#dg").datagrid('getSelected');
+        if (row) {
+            $.messager.confirm('确定', '删除选中字典项?', function (r) {
+                if (r) {
+                    $.post("@Url.Action("DeleteColumn")", { id: row.id }, function (data) {
+                        if (data.ErrorMsg) {
+                            $.messager.show({ title: '错误', msg: data.ErrorMsg });
+                        } else {
+                            $("#dlg").dialog('closed');
+                            $("#dg").datagrod('reload');
+                        }
+                    });
+                }
+            }, 'Json');
+        }
+    }
+
+    $(function () {
+        $("#dg").datagrid();
+        $("#dlg").dialog();
+        $("#CreateColumn").linkbutton();
+        $("#EditColumn").linkbutton();
+        $("#DeleteColumn").linkbutton();
+    });
+</script>
