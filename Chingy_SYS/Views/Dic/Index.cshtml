@@ -14,7 +14,7 @@
     <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="destroyTable()">删除表</a>
 </div>
 <input id="TableID" class="easyui-combobox" name="dept" data-options="valueField:'ID',textField:'Name',url:'@Url.Action("GetDicList")',method:'Post',panelHeight:'auto',editable:false,onChange:DicSelect">
-
+@Html.DropDownList("TableID", (SelectList)ViewBag.slDicable, htmlAttributes: new {@class="easyui-combobox" ,data_options = "valueField:'ID',textField:'Name',method:'Post',panelHeight:'auto',editable:false,onChange:DicSelect" })
 <div>
 </div>
 
