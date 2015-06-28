@@ -4,31 +4,29 @@
 }
 
 @Html.Hidden("TableID", @Model)
-<input type="button" onclick="a()" />
 
-<table id="dg" title="字典参数" class="easyui-datagrid" style="width: 100%; height: 205px" rownumbers="true" fitcolumns="true" url="Dic/GetColList/@Model" toolbar="#toolbar">
+<table id="dgDetail" title="字典参数" class="easyui-datagrid" style="width: 100%; height: 205px" rownumbers="true" fitcolumns="true" url="/Dic/GetColList/1" toolbar="#toolbarDetail">
     <thead>
         <tr>
-            <th field="ID" hidden="true">ID</th>
-            <th field="Table" hidden="true">Table</th>
-            <th field="Name" width="200">名称</th>
-            <th field="Code" width="200">编码</th>
+            <th field="ID" width="20">ID</th>
+            <th field="Table" width="20">Table</th>
+            <th field="Name" width="20">名称</th>
+            <th field="Code" width="20">编码</th>
         </tr>
     </thead>
 </table>
 
-<div id="toolbar">
-    <a id="CreateColumn" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="CreateColumn()">添加字典</a>
-    <a id="EditColumn" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-edit" plain="true" onclick="EditColumn()">编辑字典</a>
-    <a id="DeleteColumn" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="DeleteColumn()">移除字典</a>
+<div id="toolbarDetail">
+    <a id="ShowDlgDetailCreate" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="ShowDlgDetailCreate()">添加字典</a>
+    <a id="ShowDlgDetailEdit" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-edit" plain="true" onclick="ShowDlgDetailEdit()">编辑字典</a>
+    <a id="DeleteColumnDetail" href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="DeleteColumnDetail()">移除字典</a>
 </div>
 
 
-<div id="dlg" class="easyui-dialog" title="编辑字段" style="width: 400px; height: 280px; padding: 10px 20px" closed="true" buttons="#dlg-buttons">
-    <form id="fm" method="post" novalidate>
-
+<div id="dlgDetail" class="easyui-dialog" title="编辑字典" style="width: 400px; height: 280px; padding: 10px 20px" closed="true" buttons="#dlgDetail-buttons">
+    <form id="fmDetail" method="post" novalidate>
         <input type="hidden" name="ID" />
-        <input type="hidden" name="Table" />
+        <input type="hidden" id="DetailTableID" name="Table" value="@Model"  />
         <div class="fitem">
             <label>字段名</label>
             <input name="Name" class="easyui-textbox" required="true" />
@@ -39,27 +37,30 @@
         </div>
     </form>
 </div>
-<div id="dlg-buttons">
-    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconcls="icon-ok" onclick="saveCode()" style="width: 90px; flex-align: center;">保存</a>
-    <a href="javascript:void(0)" calss="easui-linkbutton c6" iconcls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width: 90px"></a>
+<div id="dlgDetail-buttons">
+    <a id="dlgbtnSave" href="javascript:void(0)" class="easyui-linkbutton c6" iconcls="icon-ok" onclick="SaveColumn()" style="width: 90px; flex-align: center;">保存</a>
+    <a id="dlgbtnCancel" href="javascript:void(0)" calss="easui-linkbutton c6" iconcls="icon-cancel" onclick="javascript:$('#dlgDetail').dialog('close')" style="width: 90px">取消</a>
 </div>
 
 <script type="text/javascript">
 
 
-    function CreateColumn() {
-        $("#dlg").dialog("open").dialog('setTitle', '添加字典');
+    function ShowDlgDetailCreate() {
+        $("#dlgDetail").dialog("open").dialog('setTitle', '添加字典');
         $('#fm').form('clear');
+        var tableid = $('#TableID').val();
+        console.log(tableid);
+        $('#DetailTableID').val(tableid);
     }
 
-    function EditColumn() {
-        var row = $("#dg").datagrid('getSelected');
-        $("#dlg").dialog("open").dialog('setTitle', "修改字典");
+    function ShowDlgDetailEdit() {
+        var row = $("#dgDetail").datagrid('getSelected');
+        $("#dlgDetail").dialog("open").dialog('setTitle', "修改字典");
         $("#fm").form("load", row);
     }
 
-    function DeleteColumn() {
-        var row = $("#dg").datagrid('getSelected');
+    function DeleteColumnDetail() {
+        var row = $("#dgDetail").datagrid('getSelected');
         if (row) {
             $.messager.confirm('确定', '删除选中字典项?', function (r) {
                 if (r) {
@@ -67,7 +68,7 @@
                         if (data.ErrorMsg) {
                             $.messager.show({ title: '错误', msg: data.ErrorMsg });
                         } else {
-                            $("#dlg").dialog('closed');
+                            $("#dlgDetail").dialog('closed');
                             $("#dg").datagrod('reload');
                         }
                     });
@@ -76,11 +77,38 @@
         }
     }
 
+    function SaveColumn() {
+        $("#fmDetail").form('submit', {
+            url: '/Dic/SaveColumn',
+            onSubmit: function (param) {
+                console.log($(this).form().data('Table'));
+                return $(this).form('validate');
+            },
+            success: function (result) {
+                var result = eval('(' + result + ')');// change the JSON string to javascript object
+                console.log("ErrorMsg is " + result.ErrorMsg);
+                if (result.ErrorMsg) {
+                    $.messager.show({
+                        title: 'Error',
+                        msg: result.ErrorMsg
+                    });
+                } else {
+                    $('#dlgDetail').dialog('close');        // close the dialog
+                    $('#dgDetail').datagrid('reload');    // reload the user data
+                }
+            }
+        });
+    }
+
+
     $(function () {
-        $("#dg").datagrid();
-        $("#dlg").dialog();
-        $("#CreateColumn").linkbutton();
-        $("#EditColumn").linkbutton();
-        $("#DeleteColumn").linkbutton();
+        $("#dgDetail").datagrid();
+        $("#dlgDetail").dialog();
+        $("#ShowDlgDetailCreate").linkbutton();
+        $("#ShowDlgDetailEdit").linkbutton();
+        $("#DeleteColumnDetail").linkbutton();
+        $("#dlgbtnSave").linkbutton();
+        $("#dlgbtnCancel").linkbutton();
     });
+
 </script>

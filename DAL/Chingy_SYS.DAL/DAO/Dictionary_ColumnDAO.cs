@@ -22,8 +22,9 @@ namespace Chingy_SYS.DAL.DAO
             {
                 Dictionary_Table _dicT = db.Dictionary_Table.FirstOrDefault(m => m.Code == TableCode);
                 if (_dicT == null) return new Result<bool, IList<Dictionary_Column>>(false, null);
-                IList<Dictionary_Column> _listCol = _dicT.Dictionary_Column.ToList();
-                return new Result<bool, IList<Dictionary_Column>>(true, _listCol);
+                var _listCol = db.Dictionary_Column.Where(m => m.Table == _dicT.ID);//_dicT.Dictionary_Column.ToList();
+                if (_listCol == null) return new Result<bool, IList<Dictionary_Column>>(true, null);
+                else return new Result<bool, IList<Dictionary_Column>>(true, _listCol.ToList<Dictionary_Column>());
             }
         }
         public Result<bool, string> AddDictionary_Column(Chingy_SYS.DAL.DB.Dictionary_Column Dictionary_Column)
@@ -31,7 +32,7 @@ namespace Chingy_SYS.DAL.DAO
             Result<bool, string> _r;
             using (Chingy_SYSEntities db = new Chingy_SYSEntities())
             {
-                DB.Dictionary_Column _col2 = db.Dictionary_Column.FirstOrDefault(m => m.Code == Dictionary_Column.Code);
+                DB.Dictionary_Column _col2 = db.Dictionary_Column.FirstOrDefault(m => m.Code == Dictionary_Column.Code && m.Table == Dictionary_Column.Table);
                 if (_col2 != null) return new Result<bool, string>(false, "编码已存在");
 
                 Dictionary_Column.Flag = 1;

@@ -34,8 +34,11 @@ namespace Chingy_SYS.Controllers
         [HttpPost]
         public JsonResult GetDicList()
         {
-            IList<Dictionary_Table> listDic = Dictionary_TableService.GetDicList();
-            return Json(listDic);
+            var listDic = Dictionary_TableService.GetDicList();
+            var r = from dic in listDic
+                    orderby dic.ID
+                    select new { ID = dic.ID, Name = dic.Name, Code = dic.Code, InsertTime = dic.InsertTime };
+            return Json(r.ToList());
         }
 
         [HttpPost]
@@ -49,37 +52,48 @@ namespace Chingy_SYS.Controllers
 
         public PartialViewResult Detail(int id)//如果前台传来的是url如Dic/Detail/1这种样式的话此处参数名必须为id，否则url路由不到该方法
         {
-            //if (TableID == null) return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             return PartialView(id);
         }
 
         [HttpPost]
-        public JsonResult GetColList(int? id)
+        public JsonResult GetColList(int id)
         {
-            if (id == null) return null;
+            if (id == 0) return null;
             Dictionary_Table dic = Dictionary_TableService.GetDicList().FirstOrDefault(m => m.ID == id);
             if (dic == null) return null;
-            IList<Dictionary_Column> listDic = Dictionary_ColumnService.GetDicColByTableCode(dic.Code).ErrorMsg;
-            return Json(listDic);
+            var listDic = Dictionary_ColumnService.GetDicColByTableCode(dic.Code).ErrorMsg;
+            var r = from _dic in listDic
+                    orderby _dic.ID
+                    select new { ID = _dic.ID, Table = _dic.Table, Code = _dic.Code, Name = _dic.Name };
+            return Json(r.ToList());
         }
 
         [HttpPost]
-        public JsonResult CreateColumn(Dictionary_Column dictionary_column)
+        public JsonResult SaveColumn(Dictionary_Column dictionary_column)
         {
-            var result = Dictionary_ColumnService.AddDictionary_Column(dictionary_column);
-            return Json(result.Success);
-        }
-
-        public JsonResult EditColumn(Dictionary_Column dictionary_column)
-        {
-            var result = Dictionary_ColumnService.ModifyDictionary_Column(dictionary_column);
+            Result<bool, string> result;
+            if (dictionary_column.ID == 0) result = Dictionary_ColumnService.AddDictionary_Column(dictionary_column);
+            else result = Dictionary_ColumnService.ModifyDictionary_Column(dictionary_column);
             return Json(result);
         }
+
+
+        //public JsonResult CreateColumn(Dictionary_Column dictionary_column)
+        //{
+        //    var result = Dictionary_ColumnService.AddDictionary_Column(dictionary_column);
+        //    return Json(result.Success);
+        //}
+
+        //public JsonResult EditColumn(Dictionary_Column dictionary_column)
+        //{
+        //    var result = Dictionary_ColumnService.ModifyDictionary_Column(dictionary_column);
+        //    return Json(result);
+        //}
 
         [HttpPost]
         public JsonResult DeleteColumn(int id)
         {
-            if (id == null) return Json(true);
+            if (id == 0) return Json(true);
             var result = Dictionary_ColumnService.DestroyDictionary_Column(id);
             return Json(result);
         }

@@ -14,7 +14,8 @@
     <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="destroyTable()">删除表</a>
 </div>
 <input id="TableID" class="easyui-combobox" name="dept" data-options="valueField:'ID',textField:'Name',url:'@Url.Action("GetDicList")',method:'Post',panelHeight:'auto',editable:false,onChange:DicSelect">
-@Html.DropDownList("TableID", (SelectList)ViewBag.slDicable, htmlAttributes: new {@class="easyui-combobox" ,data_options = "valueField:'ID',textField:'Name',method:'Post',panelHeight:'auto',editable:false,onChange:DicSelect" })
+
+@Html.DropDownList("TableID", (SelectList)ViewBag.slDicable, htmlAttributes: new { @class = "easyui-combobox", data_options = "valueField:'ID',textField:'Name',method:'Post',panelHeight:'auto',editable:false,onChange:DicSelect" })
 <div>
 </div>
 
@@ -39,7 +40,7 @@
 </div>
 <div id="dlg-buttons">
     <a href="javascript:void(0)" class="easyui-linkbutton c6" iconcls="icon-ok" onclick="saveTable()" style="width: 90px; flex-align: center;">保存</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width: 90px">取消</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconcls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width: 90px">取消</a>
 </div>
 
 
@@ -126,6 +127,9 @@
             });
         }
     }
+
+
+
 
 </script>
 
