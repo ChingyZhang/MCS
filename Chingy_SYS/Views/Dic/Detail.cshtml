@@ -25,8 +25,8 @@
 
 <div id="dlgDetail" class="easyui-dialog" title="编辑字典" style="width: 400px; height: 150px; padding: 10px 20px" closed="true" buttons="#dlgDetail-buttons">
     <form id="fmDetail" method="post" novalidate>
-        <input type="hidden" name="ID" />
-        <input type="hidden" name="Table" value="@Model"  />
+        @*<input type="hidden" name="ID" />
+        <input type="hidden" name="Table" value="@Model"  />*@
         <div class="fitem">
             <label>字段名</label>
             <input name="Name" class="easyui-textbox" required="true" />
@@ -46,25 +46,20 @@
 
 
     function ShowDlgDetailCreate() {
-        //$("#dgDetail").datagrid('clearSelections');
-        //var row = $("#dgDetail").datagrid('getSelected');
-        //if (row) {
-        //    console.log(row)
-        //} else console.log("row is null");
         $("#dlgDetail").dialog("open").dialog('setTitle', '添加字典');
-        $('#fm').form('clear');
+        $('#fmDetail').form('clear');
     }
 
     function ShowDlgDetailEdit() {
+
         var row = $("#dgDetail").datagrid('getSelected');
         if (!row) {
             $.messager.show({ title: "注意", msg: "请先选择需要修改的行" });
             return;
         }
-        console.log(row);
         $("#dlgDetail").dialog("open").dialog('setTitle', "修改字典");
-        $("#fm").form("load", { Name: row.Name, Code: row.Code });
-        //$("#fm").form("load", { ID: row.ID, Name: row.Name, Code: row.Code, Table: row.Table });
+        //$("#fmDetail").form("load", { Name: row.Name, Code: row.Code });
+        $("#fmDetail").form("load", row);
     }
 
     function DeleteColumnDetail() {
@@ -80,7 +75,6 @@
                         if (data.ErrorMsg) {
                             $.messager.show({ title: '错误', msg: data.ErrorMsg });
                         }
-                        $("#dlgDetail").dialog('closed');
                         $("#dgDetail").datagrid('reload');
                         $("#dgDetail").datagrid('clearSelections');
                     });
@@ -91,6 +85,7 @@
 
     function SaveColumn() {
         var row = $("#dgDetail").datagrid('getSelected');
+        console.log($("#fmDetail").Name);
         $("#fmDetail").form('submit', {
             url: '/Dic/SaveColumn',
             onSubmit: function (param) {

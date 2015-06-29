@@ -9,13 +9,13 @@
 <h2>系统字典</h2>
 
 <div style="border-width: thin; border-color: black">
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="newTable()">添加新表</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-edit" plain="true" onclick="editTbale()">编辑表</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="destroyTable()">删除表</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="newTable()">添加字典表</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-edit" plain="true" onclick="editTbale()">编辑字典表</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="destroyTable()">删除字典表</a>
 </div>
 <input id="TableID" class="easyui-combobox" name="dept" data-options="valueField:'ID',textField:'Name',url:'@Url.Action("GetDicList")',method:'Post',panelHeight:'auto',editable:false,onChange:DicSelect">
 
-@Html.DropDownList("TableID", (SelectList)ViewBag.slDicable, htmlAttributes: new { @class = "easyui-combobox", data_options = "valueField:'ID',textField:'Name',method:'Post',panelHeight:'auto',editable:false,onChange:DicSelect" })
+@*@Html.DropDownList("TableID", (SelectList)ViewBag.slDicable, htmlAttributes: new { @class = "easyui-combobox", data_options = "valueField:'ID',textField:'Name',method:'Post',panelHeight:'auto',editable:false,onChange:DicSelect" })*@
 <div>
 </div>
 
@@ -51,24 +51,32 @@
         $.ajax({
             url: "/Dic/Detail",
             data: { "id": newValue },
-            success: function (data) { console.log(data); $("#right").html(data); },
+            success: function (data) { $("#right").html(data); },
             type: "Post",
             error: function () { console.log("error"); }
         });
     }
+
     function newTable() {
         $('#dlg').dialog('open').dialog('setTitle', '添加新表');
         $('#fm').form('clear');
     }
-    function editUser() {
-        var row = $('#dg').datagrid('getSelected');
-        if (row) {
-            $('#dlg').dialog('open').dialog('setTitle', '修改表');
-            $('#fm').form('load', row);
-        }
+
+    function editTbale() {
+        //var row = $('#dg').datagrid('getSelected');
+        //if (row) {
+        //    
+        //    $('#fm').form('load', row);
+        //}
+        var tableid = $("#TableID").combobox('getValue');
+        console.log(tableid);
+        $("#fm").form('load', '/Dic/GetDicList/' + tableid);
+
+        $('#dlg').dialog('open').dialog('setTitle', '修改表');
     }
+
     function saveTable() {
-        url = 'UD/SaveTable';
+        url = '/Dic/SaveTable';
         $('#fm').form('submit', {
             url: url,
             onSubmit: function () {
@@ -82,8 +90,9 @@
                         msg: result.errorMsg
                     });
                 } else {
+                    $("#TableID").combobox('reload');
                     $('#dlg').dialog('close');        // close the dialog
-                    $('#dg').datagrid('reload');    // reload the user data
+                    //$('#dg').datagrid('reload');    // reload the user data
                 }
             }
         });
@@ -109,7 +118,9 @@
     }
 
     function destroyTable() {
-        var row = $('#dg').datagrid('getSelected');
+        var tableid = $("#TableID").val();
+        console.log(tableid);
+        /*
         if (row) {
             $.messager.confirm('删除表', '确定要删除此表么?', function (r) {
                 if (r) {
@@ -125,7 +136,7 @@
                     }, 'json');
                 }
             });
-        }
+        }*/
     }
 
 

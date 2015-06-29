@@ -32,13 +32,31 @@ namespace Chingy_SYS.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetDicList()
+        public JsonResult GetDicList(int? id)
         {
             var listDic = Dictionary_TableService.GetDicList();
+            if (id != null) listDic = listDic.Where(m => m.ID == id).ToList();
             var r = from dic in listDic
                     orderby dic.ID
                     select new { ID = dic.ID, Name = dic.Name, Code = dic.Code, InsertTime = dic.InsertTime };
             return Json(r.ToList());
+        }
+
+        [HttpPost]
+        public JsonResult SaveTable(Dictionary_Table table)
+        {
+            Result<bool, string> result;
+            if (table.ID == 0) result = Dictionary_TableService.AddDictionary_Table(table);
+            else result = Dictionary_TableService.ModifyDictionary_Table(table);
+            return Json(result);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteTable(int id)
+        {
+            if (id == 0) return Json(false);
+            var result = Dictionary_TableService.DestroyDictionary_Table(id);
+            return Json(result);
         }
 
         [HttpPost]
@@ -77,23 +95,10 @@ namespace Chingy_SYS.Controllers
             return Json(result);
         }
 
-
-        //public JsonResult CreateColumn(Dictionary_Column dictionary_column)
-        //{
-        //    var result = Dictionary_ColumnService.AddDictionary_Column(dictionary_column);
-        //    return Json(result.Success);
-        //}
-
-        //public JsonResult EditColumn(Dictionary_Column dictionary_column)
-        //{
-        //    var result = Dictionary_ColumnService.ModifyDictionary_Column(dictionary_column);
-        //    return Json(result);
-        //}
-
         [HttpPost]
         public JsonResult DeleteColumn(int id)
         {
-            if (id == 0) return Json(true);
+            if (id == 0) return Json(false);
             var result = Dictionary_ColumnService.DestroyDictionary_Column(id);
             return Json(result);
         }
