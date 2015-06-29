@@ -73,7 +73,7 @@ namespace Chingy_SYS.DAL.DAO
             {
                 DB.Dictionary_Column _col = db.Dictionary_Column.FirstOrDefault(m => m.ID == Dictionary_Column.ID);
                 if (_col == null) return new Result<bool, string>(false, "null");
-                DB.Dictionary_Column _col2 = db.Dictionary_Column.FirstOrDefault(m => m.Code == Dictionary_Column.Code);
+                DB.Dictionary_Column _col2 = db.Dictionary_Column.FirstOrDefault(m => m.Code == Dictionary_Column.Code && m.ID != Dictionary_Column.ID);
                 if (_col2 != null) return new Result<bool, string>(false, "编码已存在");
 
                 _col.Name = Dictionary_Column.Name;
