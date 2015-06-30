@@ -19,7 +19,7 @@
 <div>
 </div>
 
-<div id="right" style="float: left; width: 730px; background-color: rgba(250, 245, 3, 0.45);"></div>
+<div id="divDetail" style="float: left; width: 730px; background-color: rgba(250, 245, 3, 0.45);"></div>
 
 
 
@@ -27,7 +27,7 @@
 <div id="dlg" class="easyui-dialog" title="添加新表" style="width: 400px; height: 280px; padding: 10px 20px"
     closed="true" buttons="#dlg-buttons">
     <form id="fm" method="post" novalidate>
-        <input type="hidden" name="ID" />
+        @*<input type="hidden" name="ID" />*@
         <div class="fitem">
             <label>表名:</label>
             <input name="Name" class="easyui-textbox" required="true">
@@ -51,7 +51,7 @@
         $.ajax({
             url: "/Dic/Detail",
             data: { "id": newValue },
-            success: function (data) { $("#right").html(data); },
+            success: function (data) { $("#divDetail").html(data); },
             type: "Post",
             error: function () { console.log("error"); }
         });
@@ -63,16 +63,21 @@
     }
 
     function editTbale() {
-        //var row = $('#dg').datagrid('getSelected');
-        //if (row) {
-        //    
-        //    $('#fm').form('load', row);
-        //}
         var tableid = $("#TableID").combobox('getValue');
         console.log(tableid);
-        $("#fm").form('load', '/Dic/GetDicList/' + tableid);
-
-        $('#dlg').dialog('open').dialog('setTitle', '修改表');
+        $.ajax({
+            type: 'Post',
+            url: "/Dic/GetDicList",
+            data: { id: tableid },
+            success: function (data) {
+                console.log(data);
+                $("#fm").form('clear');
+                $("#fm").form('load', data);
+                //$("#fm").form('load', { ID: data.ID, name: data.Name, Code: data.Code });
+                $('#dlg').dialog('open').dialog('setTitle', '修改表');
+            },
+            error: function (data) { console.log(data); $.messager.show({ title: "错误", msg: "数据加载出错：" + data }); }
+        });
     }
 
     function saveTable() {
@@ -84,15 +89,16 @@
             },
             success: function (result) {
                 var result = eval('(' + result + ')');// change the JSON string to javascript object
-                if (result.errorMsg) {
+                if (result.ErrorMsg) {
                     $.messager.show({
                         title: 'Error',
                         msg: result.errorMsg
                     });
                 } else {
+                    $("#divDetail").html('');
                     $("#TableID").combobox('reload');
                     $('#dlg').dialog('close');        // close the dialog
-                    //$('#dg').datagrid('reload');    // reload the user data
+
                 }
             }
         });
@@ -118,25 +124,25 @@
     }
 
     function destroyTable() {
-        var tableid = $("#TableID").val();
+        var tableid = $("#TableID").combo('getValue');
         console.log(tableid);
-        /*
-        if (row) {
-            $.messager.confirm('删除表', '确定要删除此表么?', function (r) {
-                if (r) {
-                    $.post('UD/DestroyTable', { Guid: row.ID }, function (data) {//此处要注意与后台方法的参数名要一致
-                        //var result = eval("(" + data + ")");
-                        console.log(data.Success);
-                        if (data.ErrorMsg) {
-                            $.messager.show({ title: 'Error', msg: data.errorMsg });// show error message
-                        } else {
-                            $('#dlg').dialog('close');
-                            $('#dg').datagrid('reload');    // reload the user data 
-                        }
-                    }, 'json');
-                }
-            });
-        }*/
+
+        $.messager.confirm('删除表', '确定要删除此表么?', function (r) {
+            if (r) {
+                $.post('/Dic/DeleteTable', { id: tableid }, function (data) {//此处要注意与后台方法的参数名要一致
+                    //var result = eval("(" + data + ")");
+                    console.log(data.Success);
+                    if (data.ErrorMsg) {
+                        $.messager.show({ title: 'Error', msg: data.errorMsg });// show error message
+                    } else {
+                        $("#divDetail").html('');
+                        $("#TableID").combobox('clear');
+                        $("#TableID").combobox('reload');
+
+                    }
+                }, 'json');
+            }
+        });
     }
 
 

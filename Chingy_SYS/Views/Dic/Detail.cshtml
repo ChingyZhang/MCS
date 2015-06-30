@@ -5,7 +5,7 @@
 
 @Html.Hidden("TableIDHidden", @Model)
 
-<table id="dgDetail" title="字典参数" class="easyui-datagrid" style="width: 100%; height: 205px" rownumbers="true" fitcolumns="true" url="/Dic/GetColList/1" singleselect="true" toolbar="#toolbarDetail">
+<table id="dgDetail" title="字典参数" class="easyui-datagrid" style="width: 100%; height: 205px" rownumbers="true" fitcolumns="true" url="/Dic/GetColList/@Model" singleselect="true" toolbar="#toolbarDetail">
     <thead>
         <tr>
             <th field="ID" width="20">ID</th>

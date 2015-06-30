@@ -52,10 +52,10 @@ namespace Chingy_SYS.Controllers
         }
 
         [HttpPost]
-        public JsonResult DeleteTable(int id)
+        public JsonResult DeleteTable(int? id)
         {
-            if (id == 0) return Json(false);
-            var result = Dictionary_TableService.DestroyDictionary_Table(id);
+            if (id == null || id == 0) return Json(false);
+            var result = Dictionary_TableService.DestroyDictionary_Table((int)id);
             return Json(result);
         }
 

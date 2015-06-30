@@ -13,7 +13,7 @@ namespace Chingy_SYS.DAL.DAO
     {
         public IList<Chingy_SYS.DAL.DB.Dictionary_Table> GetDicList()
         {
-            var listDicT = new Chingy_SYSEntities().Dictionary_Table.ToList<DB.Dictionary_Table>();
+            var listDicT = new Chingy_SYSEntities().Dictionary_Table.Where(m => m.Flag == 1).ToList<DB.Dictionary_Table>();
             return listDicT;
         }
 
@@ -22,7 +22,7 @@ namespace Chingy_SYS.DAL.DAO
             Result<bool, string> _r;
             using (Chingy_SYSEntities db = new Chingy_SYSEntities())
             {
-                DB.Dictionary_Table _tableCode = db.Dictionary_Table.FirstOrDefault(m => m.Code == model.Code);
+                DB.Dictionary_Table _tableCode = db.Dictionary_Table.FirstOrDefault(m => m.Code == model.Code && m.Flag == 1);
                 if (_tableCode != null) return new Result<bool, string>(false, "编码已存在");
 
                 model.Flag = 1;
@@ -47,7 +47,7 @@ namespace Chingy_SYS.DAL.DAO
             {
                 DB.Dictionary_Table _table = db.Dictionary_Table.FirstOrDefault(m => m.ID == ID);
                 if (_table == null) return new Result<bool, string>(false, "null");
-                else _table.Flag = 1;
+                else _table.Flag = 2;
                 try
                 {
                     db.SaveChanges();
