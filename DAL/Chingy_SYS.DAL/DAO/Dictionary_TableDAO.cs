@@ -64,13 +64,12 @@ namespace Chingy_SYS.DAL.DAO
             using (Chingy_SYSEntities db = new Chingy_SYSEntities())
             {
                 DB.Dictionary_Table _table = db.Dictionary_Table.FirstOrDefault(m => m.ID == model.ID);
-                DB.Dictionary_Table _tableCode = db.Dictionary_Table.FirstOrDefault(m => m.Code == model.Code);
+                DB.Dictionary_Table _tableCode = db.Dictionary_Table.FirstOrDefault(m => m.Code == model.Code && m.ID != model.ID);
                 if (_tableCode != null) return new Result<bool, string>(false, "编码已存在");
 
                 if (_table == null) return new Result<bool, string>(false, "null");
                 _table.Name = model.Name;
                 _table.Code = model.Code;
-                _table.Flag = model.Flag;
                 _table.UpdateTime = DateTime.Now;
                 _table.UpdateUser = model.UpdateUser;
                 try
