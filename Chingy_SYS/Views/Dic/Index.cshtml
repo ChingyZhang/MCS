@@ -26,7 +26,7 @@
 
 <div id="dlg" class="easyui-dialog" title="添加新表" style="width: 400px; height: 280px; padding: 10px 20px"
     closed="true" buttons="#dlg-buttons">
-    <form id="fm" method="post" novalidate>
+    <form id="fmDic" method="post" novalidate>
         @*<input type="hidden" name="ID" />*@
         <div class="fitem">
             <label>表名:</label>
@@ -51,7 +51,9 @@
         $.ajax({
             url: "/Dic/Detail",
             data: { "id": newValue },
-            success: function (data) { $("#divDetail").html(data); },
+            success: function (data) {
+                $("#divDetail").html(data);
+            },
             type: "Post",
             error: function () { console.log("error"); }
         });
@@ -59,7 +61,7 @@
 
     function newTable() {
         $('#dlg').dialog('open').dialog('setTitle', '添加新表');
-        $('#fm').form('clear');
+        $('#fmDic').form('clear');
     }
 
     function editTbale() {
@@ -69,11 +71,11 @@
             type: 'Post',
             url: "/Dic/GetDicList",
             data: { id: tableid },
-            success: function (data) {
-                console.log(data);
-                $("#fm").form('clear');
-                $("#fm").form('load', data);
-                //$("#fm").form('load', { ID: data.ID, name: data.Name, Code: data.Code });
+            success: function (data) {//form表单加载的数据只能是一个对象，不可以是对象数组。直接Load返回的json数组会导致无法加载数据
+                console.log(data[0]);
+                $("#fmDic").form('clear');
+                $("#fmDic").form('load', data[0]);
+                //$("#fmDic").form('load', { ID: data.ID, name: data.Name, Code: data.Code });
                 $('#dlg').dialog('open').dialog('setTitle', '修改表');
             },
             error: function (data) { console.log(data); $.messager.show({ title: "错误", msg: "数据加载出错：" + data }); }
@@ -82,7 +84,7 @@
 
     function saveTable() {
         url = '/Dic/SaveTable';
-        $('#fm').form('submit', {
+        $('#fmDic').form('submit', {
             url: url,
             onSubmit: function () {
                 return $(this).form('validate');
