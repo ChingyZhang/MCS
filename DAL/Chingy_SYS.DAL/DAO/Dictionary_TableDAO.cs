@@ -38,15 +38,13 @@ namespace Chingy_SYS.DAL.DAO
             }
         }
 
-
-
         public Result<bool, string> DestroyDictionary_Table(int ID)
         {
             Result<bool, string> _r;
             using (Chingy_SYSEntities db = new Chingy_SYSEntities())
             {
-                DB.Dictionary_Table _table = db.Dictionary_Table.FirstOrDefault(m => m.ID == ID);
-                if (_table == null) return new Result<bool, string>(false, "null");
+                DB.Dictionary_Table _table = db.Dictionary_Table.Find(ID);
+                if (_table == null) return new Result<bool, string>(true, "null");
                 else _table.Flag = 2;
                 try
                 {
@@ -63,11 +61,11 @@ namespace Chingy_SYS.DAL.DAO
             Result<bool, string> _r;
             using (Chingy_SYSEntities db = new Chingy_SYSEntities())
             {
-                DB.Dictionary_Table _table = db.Dictionary_Table.FirstOrDefault(m => m.ID == model.ID);
                 DB.Dictionary_Table _tableCode = db.Dictionary_Table.FirstOrDefault(m => m.Code == model.Code && m.ID != model.ID);
-                if (_tableCode != null) return new Result<bool, string>(false, "编码已存在");
-
-                if (_table == null) return new Result<bool, string>(false, "null");
+                if (_tableCode != null) return new Result<bool, string>(false, "字典表编码重复");
+                DB.Dictionary_Table _table = db.Dictionary_Table.Find(model.ID);
+                if (_table == null) return new Result<bool, string>(false, "字典表不存在");
+                
                 _table.Name = model.Name;
                 _table.Code = model.Code;
                 _table.UpdateTime = DateTime.Now;

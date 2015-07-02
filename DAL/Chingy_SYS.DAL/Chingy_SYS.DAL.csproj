@@ -51,7 +51,6 @@
   <ItemGroup>
     <Compile Include="DAO\Dictionary_TableDAO.cs" />
     <Compile Include="DAO\Dictionary_ColumnDAO.cs" />
-    <Compile Include="DAO\IDictionary_Column.cs" />
     <Compile Include="DAO\TableDAO.cs" />
     <Compile Include="DB\Addr_OfficialCity.cs">
       <DependentUpon>Chingy_SYS.tt</DependentUpon>

@@ -899,8 +899,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\UD\Index.cshtml" />
     <Content Include="Views\Dic\Index.cshtml" />
-    <Content Include="Views\UD\GetFieldsList.cshtml" />
     <Content Include="Views\Dic\Detail.cshtml" />
+    <Content Include="Views\UD\GetTableDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
