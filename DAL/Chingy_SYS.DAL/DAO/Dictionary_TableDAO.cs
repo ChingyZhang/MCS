@@ -11,9 +11,9 @@ namespace Chingy_SYS.DAL.DAO
 {
     public class Dictionary_TableDAO
     {
-        public IList<Chingy_SYS.DAL.DB.Dictionary_Table> GetDicList()
+        public IQueryable<Chingy_SYS.DAL.DB.Dictionary_Table> GetDicList()
         {
-            var listDicT = new Chingy_SYSEntities().Dictionary_Table.Where(m => m.Flag == 1).ToList<DB.Dictionary_Table>();
+            var listDicT = new Chingy_SYSEntities().Dictionary_Table.Where(m => m.Flag == 1);
             return listDicT;
         }
 

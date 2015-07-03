@@ -25,8 +25,8 @@ namespace Chingy_SYS.Controllers
 
         public ActionResult Index()
         {
-            IList<Dictionary_Table> listDic = Dictionary_TableService.GetDicList();
-            SelectList slDicable = new SelectList(listDic);
+            var listDic = Dictionary_TableService.GetDicList();
+            SelectList slDicable = new SelectList(listDic.ToList<Dictionary_Table>());
             ViewBag.slDicable = slDicable;
             return View();
         }
@@ -35,7 +35,7 @@ namespace Chingy_SYS.Controllers
         public JsonResult GetDicList(int? id)
         {
             var listDic = Dictionary_TableService.GetDicList();
-            if (id != null) listDic = listDic.Where(m => m.ID == id).ToList();
+            if (id != null) listDic = listDic.Where(m => m.ID == id);
             var r = from dic in listDic
                     orderby dic.ID
                     select new { ID = dic.ID, Name = dic.Name, Code = dic.Code, InsertTime = dic.InsertTime };

@@ -10,9 +10,9 @@ namespace Chingy_SYS.DAL.DAO
 {
     public class Dictionary_ColumnDAO
     {
-        public IList<Dictionary_Column> GetDicList()
+        public IQueryable<Dictionary_Column> GetDicList()
         {
-            IList<Dictionary_Column> list = new Chingy_SYSEntities().Dictionary_Column.ToList();
+            var list = new Chingy_SYSEntities().Dictionary_Column;
             return list;
         }
 

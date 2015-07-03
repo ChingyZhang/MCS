@@ -11,7 +11,7 @@ namespace Chingy_SYS.BLL.Service
     {
         Chingy_SYS.DAL.DAO.Dictionary_TableDAO Dictionary_TableDAO = new DAL.DAO.Dictionary_TableDAO();
 
-        public IList<DAL.DB.Dictionary_Table> GetDicList()
+        public IQueryable<DAL.DB.Dictionary_Table> GetDicList()
         {
             return Dictionary_TableDAO.GetDicList();
         }

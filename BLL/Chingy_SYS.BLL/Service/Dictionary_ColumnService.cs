@@ -26,7 +26,7 @@ namespace Chingy_SYS.BLL.Service
             return Dictionary_ColumnDAO.GetDicColByTableCode(TableCode);
         }
 
-        public IList<DAL.DB.Dictionary_Column> GetDicList()
+        public IQueryable<DAL.DB.Dictionary_Column> GetDicList()
         {
             return Dictionary_ColumnDAO.GetDicList();
         }
