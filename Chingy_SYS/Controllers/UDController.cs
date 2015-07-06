@@ -13,7 +13,7 @@ namespace Chingy_SYS.Controllers
         //
         // GET: /UD/
 
-        public Chingy_SYS.BLL.Infrastructure.IUD_Table TableService;
+        public Chingy_SYS.BLL.Infrastructure.IUD_TableService TableService;
 
         protected override void Initialize(System.Web.Routing.RequestContext requestContext)
         {
@@ -27,10 +27,11 @@ namespace Chingy_SYS.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetTableList()
+        public JsonResult GetTableList(Guid? id)
         {
-            IList<UD_TableList> listTableModel = TableService.GetTableList();
-            return Json(listTableModel);
+            var r = TableService.GetTableList(id);
+
+            return Json(r);
         }
 
         [HttpPost]
@@ -45,18 +46,13 @@ namespace Chingy_SYS.Controllers
         [HttpPost]
         public JsonResult DestroyTable(Guid Guid)
         {
-            Result<bool, string> _r =TableService.DestroyTable(Guid);
+            Result<bool, string> _r = TableService.DestroyTable(Guid);
             return Json(_r);
         }
 
-        public ActionResult GetTableDetail(int id)
+        public ActionResult GetFieldsList(Guid id)
         {
             return View(id);
-        }
-
-        public ActionResult GetFieldsList(string TableID)
-        {
-            return View(TableID);
         }
     }
 

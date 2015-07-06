@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Infrastructure\IDictionary_Table.cs" />
     <Compile Include="Infrastructure\IDictionary_Column.cs" />
-    <Compile Include="Infrastructure\IUD_Table.cs" />
+    <Compile Include="Infrastructure\IUD_TableService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Dictionary_TableService.cs" />
     <Compile Include="Service\Dictionary_ColumnService.cs" />

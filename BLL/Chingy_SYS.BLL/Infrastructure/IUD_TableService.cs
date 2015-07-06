@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Chingy_SYS.BLL.Infrastructure
 {
-    public interface IUD_Table
+    public interface IUD_TableService
     {
-        IList<Chingy_SYS.DAL.DB.UD_TableList> GetTableList();
+        IQueryable GetTableList(Guid? id);
         Result<bool, string> AddTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableModel);
 
         Result<bool, string> DestroyTable(Guid Guid);

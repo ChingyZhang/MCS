@@ -59,13 +59,19 @@ namespace Chingy_SYS.Controllers
             return Json(result);
         }
 
+        /// <summary>
+        /// 获取字典表信息
+        /// </summary>
+        /// <param name="id">字典表编码</param>
+        /// <returns></returns>
         [HttpPost]
-        public JsonResult GetDicColByTableCode(string TableCode)
+        public JsonResult GetDicColByTableCode(string id)
         {
-            Result<bool, IList<Dictionary_Column>> r = Dictionary_ColumnService.GetDicColByTableCode(TableCode);
-            if (!r.Success) return null;
-            IList<Dictionary_Column> _listDic = r.ErrorMsg;
-            return Json(_listDic);
+            Result<bool, IList<Dictionary_Column>> listDic = Dictionary_ColumnService.GetDicColByTableCode(id);
+            var r = (from _dic in listDic.ErrorMsg
+                    orderby _dic.ID
+                    select new { ID = _dic.ID, Table = _dic.Table, Code = _dic.Code, Name = _dic.Name }).ToList();
+            return Json(r);
         }
 
         public PartialViewResult Detail(int id)//如果前台传来的是url如Dic/Detail/1这种样式的话此处参数名必须为id，否则url路由不到该方法
@@ -79,11 +85,12 @@ namespace Chingy_SYS.Controllers
             if (id == 0) return null;
             Dictionary_Table dic = Dictionary_TableService.GetDicList().FirstOrDefault(m => m.ID == id);
             if (dic == null) return null;
-            var listDic = Dictionary_ColumnService.GetDicColByTableCode(dic.Code).ErrorMsg;
-            var r = from _dic in listDic
-                    orderby _dic.ID
-                    select new { ID = _dic.ID, Table = _dic.Table, Code = _dic.Code, Name = _dic.Name };
-            return Json(r.ToList());
+            return GetDicColByTableCode(dic.Code);
+            //var listDic = Dictionary_ColumnService.GetDicColByTableCode(dic.Code).ErrorMsg;
+            //var r = from _dic in listDic
+            //        orderby _dic.ID
+            //        select new { ID = _dic.ID, Table = _dic.Table, Code = _dic.Code, Name = _dic.Name };
+            //return Json(r.ToList());
         }
 
         [HttpPost]

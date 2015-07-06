@@ -21,7 +21,7 @@ namespace Chingy_SYS.BLL.Service
             return Dictionary_ColumnDAO.DestroyDictionary_Column(ID);
         }
 
-        public Common.Result.Result<bool, IList<DAL.DB.Dictionary_Column>> GetDicColByTableCode(string TableCode)
+        public Common.Result.Result<bool, IList<Chingy_SYS.DAL.DB.Dictionary_Column>> GetDicColByTableCode(string TableCode)
         {
             return Dictionary_ColumnDAO.GetDicColByTableCode(TableCode);
         }

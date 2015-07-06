@@ -28,7 +28,7 @@
         <input type="hidden" name="Table" value="@Model"  />*@
         <div class="fitem">
             <label>字段名</label>
-            <input name="Name" id="ColName" class="easyui-textbox" required="true"/>
+            <input name="Name" id="ColName" class="easyui-textbox" required="true" />
         </div>
         <div class="fitem">
             <label>字段编码</label>
@@ -58,7 +58,7 @@
         }
         $("#dlgDetail").dialog("open").dialog('setTitle', "修改字典");
         //$("#fmDetail").form("load", { Name: row.Name, Code: row.Code });
-        $("#fmDetail").form("load", row);
+        $("#fmDetail").form("load", '@Url("GetTableList")');
     }
 
     function DeleteColumnDetail() {
@@ -71,55 +71,55 @@
             $.messager.confirm('确定', '删除选中字典项?', function (r) {
                 if (r) {
                     $.post("@Url.Action("DeleteColumn")", { id: row.ID }, function (data) {
-                                if (data.ErrorMsg) {
-                                    $.messager.show({ title: '错误', msg: data.ErrorMsg });
-                                }
-                                $("#dgDetail").datagrid('reload');
-                                $("#dgDetail").datagrid('clearSelections');
-                            });
+                        if (data.ErrorMsg) {
+                            $.messager.show({ title: '错误', msg: data.ErrorMsg });
                         }
-                    }, 'Json');
-                }
-            }
-
-            function SaveColumn() {
-                var row = $("#dgDetail").datagrid('getSelected');
-                console.log($("#fmDetail").Name);
-                $("#fmDetail").form('submit', {
-                    url: '/Dic/SaveColumn',
-                    onSubmit: function (param) {
-                        param.Table = $('#TableIDHidden').val();
-                        if (row) param.ID = row.ID;
-                        console.log(param);
-                        return $(this).form('validate');
-                    },
-                    success: function (result) {
-                        var result = eval('(' + result + ')');// change the JSON string to javascript object
-                        console.log("ErrorMsg is " + result.ErrorMsg);
-                        if (result.ErrorMsg) {
-                            $.messager.show({
-                                title: 'Error',
-                                msg: result.ErrorMsg
-                            });
-                        }
-                        $('#dlgDetail').dialog('close');        // close the dialog
-                        $('#dgDetail').datagrid('reload');    // reload the user data
+                        $("#dgDetail").datagrid('reload');
                         $("#dgDetail").datagrid('clearSelections');
-                    }
-                });
+                    });
+                }
+            }, 'Json');
+        }
+    }
+
+    function SaveColumn() {
+        var row = $("#dgDetail").datagrid('getSelected');
+        console.log($("#fmDetail").Name);
+        $("#fmDetail").form('submit', {
+            url: '/Dic/SaveColumn',
+            onSubmit: function (param) {
+                param.Table = $('#TableIDHidden').val();
+                if (row) param.ID = row.ID;
+                console.log(param);
+                return $(this).form('validate');
+            },
+            success: function (result) {
+                var result = eval('(' + result + ')');// change the JSON string to javascript object
+                console.log("ErrorMsg is " + result.ErrorMsg);
+                if (result.ErrorMsg) {
+                    $.messager.show({
+                        title: 'Error',
+                        msg: result.ErrorMsg
+                    });
+                }
+                $('#dlgDetail').dialog('close');        // close the dialog
+                $('#dgDetail').datagrid('reload');    // reload the user data
+                $("#dgDetail").datagrid('clearSelections');
             }
+        });
+    }
 
 
-            $(function () {
-                $("#dgDetail").datagrid();
-                $("#dlgDetail").dialog();
-                $("#ShowDlgDetailCreate").linkbutton();
-                $("#ShowDlgDetailEdit").linkbutton();
-                $("#DeleteColumnDetail").linkbutton();
-                $("#dlgbtnSave").linkbutton();
-                $("#dlgbtnCancel").linkbutton();
-                $("#ColName").textbox();
-                $("#ColCode").textbox();
-            });
+    $(function () {
+        $("#dgDetail").datagrid();
+        $("#dlgDetail").dialog();
+        $("#ShowDlgDetailCreate").linkbutton();
+        $("#ShowDlgDetailEdit").linkbutton();
+        $("#DeleteColumnDetail").linkbutton();
+        $("#dlgbtnSave").linkbutton();
+        $("#dlgbtnCancel").linkbutton();
+        $("#ColName").textbox();
+        $("#ColCode").textbox();
+    });
 
 </script>

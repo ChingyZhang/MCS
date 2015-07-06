@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Chingy_SYS.BLL.Service
 {
-    public class UD_TableListService : IUD_Table
+    public class UD_TableListService : IUD_TableService
     {
-        Chingy_SYS.DAL.DAO.TableDAO TableDAO = new DAL.DAO.TableDAO();
+        Chingy_SYS.DAL.DAO.UD_TableDAO TableDAO = new DAL.DAO.UD_TableDAO();
 
-        public IList<Chingy_SYS.DAL.DB.UD_TableList> GetTableList()
+        public IQueryable GetTableList(Guid? id)
         {
-            return TableDAO.GetTableList();
+            return TableDAO.GetTableList(id);
         }
 
 

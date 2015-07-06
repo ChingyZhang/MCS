@@ -8,11 +8,18 @@ using Common.Result;
 
 namespace Chingy_SYS.DAL.DAO
 {
-    public class TableDAO
+    public class UD_TableDAO
     {
-        public IList<UD_TableList> GetTableList()
+        public IQueryable GetTableList(Guid? id)
         {
-            return new Chingy_SYSEntities().UD_TableList.ToList();
+            var r = new Chingy_SYSEntities().UD_TableList.AsQueryable();
+            if (id != null)
+            {
+                r = from m in r
+                    where m.ID == id
+                    select m;
+            }
+            return r;
         }
 
         public Result<bool, string> AddTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableModel)

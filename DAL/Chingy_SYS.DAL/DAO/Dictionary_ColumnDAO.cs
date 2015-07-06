@@ -20,9 +20,12 @@ namespace Chingy_SYS.DAL.DAO
         {
             using (Chingy_SYSEntities db = new Chingy_SYSEntities())
             {
-                Dictionary_Table _dicT = db.Dictionary_Table.FirstOrDefault(m => m.Code == TableCode);
+                Dictionary_Table _dicT = db.Dictionary_Table.FirstOrDefault(m => m.Code == TableCode && m.Flag == 1);
                 if (_dicT == null) return new Result<bool, IList<Dictionary_Column>>(false, null);
-                else return new Result<bool, IList<Dictionary_Column>>(true, _dicT.Dictionary_Column.ToList());
+                var r = (from m in db.Dictionary_Column
+                         where m.Table == _dicT.ID
+                         select m).ToList<Dictionary_Column>();//.AsQueryable<Dictionary_Column>();
+                return new Result<bool, IList<Dictionary_Column>>(true, r);
             }
         }
         public Result<bool, string> AddDictionary_Column(Chingy_SYS.DAL.DB.Dictionary_Column Model)
