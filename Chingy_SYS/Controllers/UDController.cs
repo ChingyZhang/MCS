@@ -54,6 +54,13 @@ namespace Chingy_SYS.Controllers
         {
             return View(id);
         }
+
+        public ActionResult GetField(Guid? TableID, string ID)
+        {
+            ViewBag.TableID = TableID;
+            ViewBag.ID = ID;
+            return View();
+        }
     }
 
 

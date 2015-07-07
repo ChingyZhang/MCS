@@ -10,9 +10,9 @@
             <th field="ID" hidden="true">ID</th>
             <th field="Name">表名</th>
             <th field="DisplayName">显示名称</th>
-            <th field="ExtFlag">可扩展字段</th>
+            <th field="ExtFlag" data-options="formatter:formatYN">可扩展字段</th>
             <th field="ModelName">Model实体名称</th>
-            <th field="TreeFlag">树形结构标志</th>
+            <th field="TreeFlag" data-options="formatter:formatYN">树形结构标志</th>
             <th field="InsertTime" formatter="Common.DateFormatter">新增时间</th>
             <th data-options="field:'listprice',width:80,align:'right',formatter:formatLink">表字段信息</th>
             <!--此处如果绑定了ID字段会导致列隐藏，若在绑定时将隐藏的ID列注释则可以正常显示-->
@@ -121,7 +121,9 @@
         var url = "UD/GetFieldsList?id=" + row.ID;
         return "<a href='" + url + "' >表字段列表";
     }
-    function a(url) {
 
+    function formatYN(value, row, index) {
+        if (value == "0") return "否";
+        else return "是";
     }
 </script>

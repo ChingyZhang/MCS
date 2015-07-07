@@ -10,37 +10,37 @@
 <div style="margin: 20px 0 10px 0;"></div>
 <div class="easyui-tabs" style="width: 700px; height: 250px">
     <div title="数据表信息" style="padding: 10px">
+        <div>
+            <form id="fmTable" method="post" novalidate>
+                <input type="hidden" name="ID" />
+                <div class="fitem">
+                    <label>表名:</label>
+                    <input name="Name" class="easyui-textbox" required="true">
+                </div>
+                <div class="fitem">
+                    <label>显示名称:</label>
+                    <input name="DisplayName" class="easyui-textbox" required="true">
+                </div>
+                <div class="fitem">
+                    <label>是否含扩展字段:</label>
+                    <input class="easyui-combobox" id="cmbExtFlag" name="DataType" data-options="editable:false,required:true,panelHeight:'auto'" style="width: 155px" />
 
-        <form id="fmTable" method="post" novalidate>
-            <input type="hidden" name="ID" />
-            <div class="fitem">
-                <label>表名:</label>
-                <input name="Name" class="easyui-textbox" required="true">
-            </div>
-            <div class="fitem">
-                <label>显示名称:</label>
-                <input name="DisplayName" class="easyui-textbox" required="true">
-            </div>
-            <div class="fitem">
-                <label>是否含扩展字段:</label>
-                <select class="easyui-combobox" id="cmbExtFlag" name="ExtFlag" data-options="editable:false,required:true,panelHeight:'auto'" style="width: 150px">
-                    <option value="0">否</option>
-                    <option value="1" selected>是</option>
-                </select>
-            </div>
-            <div class="fitem">
-                <label>Model名称:</label>
-                <input name="ModelName" class="easyui-textbox" required="true">
-            </div>
-            <div class="fitem">
-                <label>是否为树形结构:</label>
-                <select class="easyui-combobox" id="cmbTreeFlag" name="TreeFlag" data-options="editable:false,required:true,panelheight:'auto'" style="width: 150px;">
-                    <option value="0" selected>否</option>
-                    <option value="1">是</option>
-                </select>
-            </div>
-        </form>
+                </div>
+                <div class="fitem">
+                    <label>Model名称:</label>
+                    <input name="ModelName" class="easyui-textbox" required="true">
+                </div>
+                <div class="fitem">
+                    <label>是否为树形结构:</label>
+                    <select class="easyui-combobox" id="cmbTreeFlag" name="TreeFlag" data-options="editable:false,required:true,panelHeight:'auto'" style="width: 155px;">
+                        <option value="0" selected>否</option>
+                        <option value="1">是</option>
+                    </select>
+                </div>
 
+            </form>
+            <a id="SaveTable" class="easyui-linkbutton" iconcls="icon-save" href="javascript:void(0)" style="width: 90px; flex-align: center;" onclick="SaveTable()">保存</a>
+        </div>
     </div>
     <div title="表包含字段" style="padding: 10px">
         @*<ul class="easyui-tree" data-options="url:'tree_data1.json',method:'get',animate:true"></ul>*@
@@ -52,22 +52,50 @@
 
 
 <script type="text/javascript">
-    $("#cmbExtFlag").combobox({
-        url: '/Dic/GetDicColByTableCode/PUB_YesOrNo',
-        valueField: 'Code',
-        textField: 'Name'
-    });
-    $("#cmbTreeFlag").combobox({
-        url: '/Dic/GetDicColByTableCode/PUB_YesOrNo',
-        valueField: 'Code',
-        textField: 'Name'
-    });
-    $.post("@Url.Action("GetTableList")", { id: '@Model' }, function (data) {
-        if (data.ErrorMsg) {
-            $.messager.show({ title: '错误', msg: data.ErrorMsg });
-        } else {
-            $("#fmTable").form('load', data[0]);
-        }
-    })
 
+    $(function () {
+        FormLoad();
+    });
+
+    function FormLoad() {
+        $("#cmbExtFlag").combobox({
+            //url: '/Dic/GetDicColByTableCode/PUB_YesOrNo',
+            valueField: 'Code',
+            textField: 'Name',
+            data: [{ Name: '是', Code: '1' }, { Name: '否', Code: '0' }]
+        });
+        $("#cmbTreeFlag").combobox({
+            //url: '/Dic/GetDicColByTableCode/PUB_YesOrNo',
+            valueField: 'Code',
+            textField: 'Name',
+            data: [{ Name: '是', Code: '1' }, { Name: '否', Code: '0' }]
+        });
+
+        $.post("@Url.Action("GetTableList")", { id: '@Model' }, function (data) {
+            if (data.ErrorMsg) {
+                $.messager.show({ title: '错误', msg: data.ErrorMsg });
+            } else {
+                $("#fmTable").form('load', data[0]);
+            }
+        });
+    }
+    function SaveTable() {
+        $("#fmTable").form('submit', {
+            url: "/UD/SaveTable",
+            onSubmit: function () {
+                return $(this).form('validate');
+            },
+            success: function (result) {
+                var result = eval('(' + result + ')');// change the JSON string to javascript object
+                if (result.ErrorMsg) {
+                    $.messager.show({
+                        title: 'Error',
+                        msg: result.errorMsg
+                    });
+                } else {
+                    FormLoad();
+                }
+            }
+        });
+    }
 </script>

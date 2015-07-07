@@ -58,7 +58,7 @@
         }
         $("#dlgDetail").dialog("open").dialog('setTitle', "修改字典");
         //$("#fmDetail").form("load", { Name: row.Name, Code: row.Code });
-        $("#fmDetail").form("load", '@Url("GetTableList")');
+        $("#fmDetail").form("load", '@Url.Action("GetTableList")');
     }
 
     function DeleteColumnDetail() {
