@@ -5,41 +5,81 @@
 
 <h2>GetField</h2>
 
-<div id="p" class="easyui-panel" title="数据表字段详细信息" style="width: 700px; height: 200px; padding: 10px;">
+<div id="p" class="easyui-panel" title="数据表字段详细信息" style="width: 600px; height: 300px; padding: 10px;">
 
     <form id="fmField" method="post" novalidate>
         <div class="fitem">
             <label>字段名称:</label>
-            <input name="FieldName" class="easyui-textbox" required="true">
+            <input id="txtFieldName" name="FieldName" class="easyui-textbox" required="true">
         </div>
         <div class="fitem">
             <label>显示名称:</label>
-            <input name="FieldDisplayName" class="easyui-textbox" required="true">
+            <input id="txtFieldDisplayName" name="FieldDisplayName" class="easyui-textbox" required="true">
         </div>
         <div class="fitem">
             <label>数据类型:</label>
-            <input id="cmbExtFlag" name="ExtFlag" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:'auto'url:'/Dic/GetDicColByTableCode/DataType'" style="width: 155px" />
-        </div>
-        <div class="fitem">
-            <label>数据长度:</label>
-            <input name="DataLength" class="easyui-textbox">
+            <input id="cmbExtFlag" name="ExtFlag" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:'auto'" style="width: 155px" />
+            <label>精度:</label>
+            <input id="txtDataLength" name="DataLength" class="easyui-textbox">
         </div>
         <div class="fitem">
             <label>默认值:</label>
-            <input name="DefaultValue" class="easyui-textbox">
+            <input id="txtDefaultValue" name="DefaultValue" class="easyui-textbox">
         </div>
         <div class="fitem">
             <label>最后更新时间:</label>
-            <input name="UpdateTime" class="easyui-textbox" required="true">
+            <label name="UpdateTime"></label>
         </div>
         <div class="fitem">
             <label>描述:</label>
-            <input name="Description" class="easyui-textbox" required="true">
+            <input id="txtDescription" name="Description" class="easyui-textbox">
         </div>
         <div class="fitem">
             <label>关联类型:</label>
-            <input id="cmbRelationTableName" name="RelationTableName" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:'auto'url:'/Dic/GetDicColByTableCode/DataType'" style="width: 155px" />
+            <input id="cmbRelationType" name="RelationType" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:'auto'" style="width: 155px" />
         </div>
+
+        <div id="divRelation">
+        </div>
+        @*<div class="fitem">
+            <label>关联字典:</label>
+            <input id=’cmbRelationTableName’ name=’RelationTableName’ class=’easyui-combobox’ data-options=’editable:false,required:true,panelHeight:'auto'’ style=’width: 155px’ />
+        </div>*@
     </form>
 
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        FormLoad();
+    });
+    function FormLoad() {
+        $("#txtFieldName").textbox();
+        $("#txtFieldDisplayName").textbox();
+        $("#cmbExtFlag").combobox({
+            url: '/Dic/GetDicColByTableCode/UD_DataType',
+            valueField: 'Code',
+            textField: 'Name'
+        });
+        $("#txtDataLength").textbox();
+        $("#txtDefaultValue").textbox();
+        $("#txtDescription").textbox();
+        $("#cmbRelationType").combobox({
+            url: '/Dic/GetDicColByTableCode/UD_RelationType',
+            valueField: 'Code',
+            textField: 'Name',
+            value: '3',
+            onChange: function (newValue, oldValue) {
+                GetRelationHtm(newValue);
+            }
+        });
+    }
+
+    function GetRelationHtm(RelationType) {
+        if (RelationType == 1) {
+            var htm = "<div class='fitem'><label>关联字典:</label><input id=cmbRelationTableName name=RelationTableName class=easyui-combobox data-options=editable:false,required:true,panelHeight:'150',valueField:'Code',textField:'Name',url:'/Dic/GetDicList' style=width:155px /></div>"
+            $("#divRelation").html(htm);
+            $("#cmbRelationTableName").combobox();
+        }
+    }
+</script>
