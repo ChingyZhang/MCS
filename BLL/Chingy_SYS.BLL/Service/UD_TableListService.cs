@@ -1,4 +1,5 @@
 ﻿using Chingy_SYS.BLL.Infrastructure;
+using Chingy_SYS.DAL.DB;
 using Common.Result;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Chingy_SYS.BLL.Service
     {
         Chingy_SYS.DAL.DAO.UD_TableDAO TableDAO = new DAL.DAO.UD_TableDAO();
 
-        public IQueryable GetTableList(Guid? id)
+        public IList<UD_TableList> GetTableList(Guid? id)
         {
             return TableDAO.GetTableList(id);
         }

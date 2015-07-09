@@ -10,14 +10,14 @@ namespace Chingy_SYS.DAL.DAO
 {
     public class UD_TableDAO
     {
-        public IQueryable GetTableList(Guid? id)
+        public IList<UD_TableList> GetTableList(Guid? id)
         {
-            var r = new Chingy_SYSEntities().UD_TableList.AsQueryable();
+            var r = new Chingy_SYSEntities().UD_TableList.ToList();
             if (id != null)
             {
-                r = from m in r
-                    where m.ID == id
-                    select m;
+                r = (from m in r
+                     where m.ID == id
+                     select m).ToList();
             }
             return r;
         }

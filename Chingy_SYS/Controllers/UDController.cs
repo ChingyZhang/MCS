@@ -29,8 +29,10 @@ namespace Chingy_SYS.Controllers
         [HttpPost]
         public JsonResult GetTableList(Guid? id)
         {
-            var r = TableService.GetTableList(id);
+            IList<UD_TableList> listT = TableService.GetTableList(id);
 
+            var r = from m in listT
+                    select new { ID = m.ID, Name = m.Name, DisplayName = m.DisplayName, ExtFlag = m.ExtFlag, ModelName = m.ModelName, TreeFlag = m.TreeFlag, InsertTime = m.InsertTime };
             return Json(r);
         }
 
