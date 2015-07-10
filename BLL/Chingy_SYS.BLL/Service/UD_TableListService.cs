@@ -13,9 +13,9 @@ namespace Chingy_SYS.BLL.Service
     {
         Chingy_SYS.DAL.DAO.UD_TableDAO TableDAO = new DAL.DAO.UD_TableDAO();
 
-        public IList<UD_TableList> GetTableList(Guid? id)
+        public IList<UD_TableList> GetTableList(Guid? id, int? rows, int? page)
         {
-            return TableDAO.GetTableList(id);
+            return TableDAO.GetTableList(id, rows, page);
         }
 
 

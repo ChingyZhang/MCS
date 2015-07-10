@@ -10,15 +10,19 @@ namespace Chingy_SYS.DAL.DAO
 {
     public class UD_TableDAO
     {
-        public IList<UD_TableList> GetTableList(Guid? id)
+        public IList<UD_TableList> GetTableList(Guid? id, int? rows, int? page)
         {
-            var r = new Chingy_SYSEntities().UD_TableList.ToList();
-            if (id != null)
+            IList<UD_TableList> r = null; //= new Chingy_SYSEntities().UD_TableList;
+
+            int iSkip = 0;
+            if (rows.HasValue && page.HasValue)
             {
-                r = (from m in r
-                     where m.ID == id
-                     select m).ToList();
+                iSkip = rows.Value * (page.Value - 1 > 0 ? page.Value - 1 : 0);
+                r = new Chingy_SYSEntities().UD_TableList.OrderBy(m => m.InsertTime).Skip(iSkip).Take(rows.Value).ToList();
             }
+            else { r = new Chingy_SYSEntities().UD_TableList.ToList(); }
+
+            if (id != null) r = new Chingy_SYSEntities().UD_TableList.Where(m => m.ID == id).ToList();
             return r;
         }
 

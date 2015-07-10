@@ -9,7 +9,7 @@ namespace Chingy_SYS.BLL.Infrastructure
 {
     public interface IUD_TableService
     {
-        IList<Chingy_SYS.DAL.DB.UD_TableList> GetTableList(Guid? id);
+        IList<Chingy_SYS.DAL.DB.UD_TableList> GetTableList(Guid? id, int? rows, int? page);
         Result<bool, string> AddTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableModel);
 
         Result<bool, string> DestroyTable(Guid Guid);

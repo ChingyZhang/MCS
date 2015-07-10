@@ -4,7 +4,7 @@
 }
 
 
-<table id="dg" title="系统表" class="easyui-datagrid" style="width: 100%; height: 250px" url="UD/GetTableList" toolbar="#toolbar" pagination="true" rownumbers="true" fitcolumns="true" singleselect="true">
+<table id="dg" title="系统表" class="easyui-datagrid" data-options="pageList:[10,20,30]" style="width: 100%; height: 380px" url="UD/GetTableList" toolbar="#toolbar" pagination="true" rownumbers="true" fitcolumns="true" singleselect="true">
     <thead>
         <tr>
             <th field="ID" hidden="true">ID</th>
@@ -126,4 +126,12 @@
         if (value == "0") return "否";
         else return "是";
     }
+
+    $(function () {
+        $("#dg").datagrid('getPager').data("pagination").options;
+        var curr = options.pageNumber;
+        var total = options.total;
+        var max = Math.ceil(total / options.pageSize);
+
+    });
 </script>
