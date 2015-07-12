@@ -18,7 +18,7 @@ namespace Chingy_SYS.DAL.DAO
             if (rows.HasValue && page.HasValue)
             {
                 iSkip = rows.Value * (page.Value - 1 > 0 ? page.Value - 1 : 0);
-                r = new Chingy_SYSEntities().UD_TableList.OrderBy(m => m.InsertTime).Skip(iSkip).Take(rows.Value).ToList();
+                r = new Chingy_SYSEntities().UD_TableList.OrderBy(m => m.InsertTime).Skip(iSkip).ToList();//Take(rows.Value).ToList();
             }
             else { r = new Chingy_SYSEntities().UD_TableList.ToList(); }
 
