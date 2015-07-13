@@ -200,15 +200,35 @@
 
         $('#dg').datagrid('load', 'UD/GetTableList');
 
-
         $('#dg').datagrid({
-            pageSize:15,
-            pageNumber:2
-    });
-    //$('#dg').datagrid('getPager').pagination({
-    //    pageNumber: 3,
-    //    pageSize: 33
-    //});
+            onLoadSuccess: function (data) {
+                console.log('success');
+                if (data) {
+                    var pageNumber = data[0].pageNumber;
+                    var pageCount = data[0].pageCount;
+                    $(this).pageSize
+                }
+            }
+        });
+
+
+        //$('#dg').datagrid({
+        //    pageSize: 8,
+        //    pageNumber: 1
+        //});
+
+
+        $('#dg').datagrid('getPager').pagination({
+            //onSelectPage: function (pageNum, pageSize) {
+            //    opts.pageNumber = pageNum;
+            //    opts.pageSize = pageSize;
+            //    $(this).pagination('refresh', {
+            //        pageNumber: pageNum,
+            //        pageSize: pageSize
+            //    });
+            //    //dg.datagrid('loadData', $('#dg').datagrid('getData'));
+            //}
+        });
 
     });
 </script>
