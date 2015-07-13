@@ -5,25 +5,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Result;
+using System.Collections;
 
 namespace Chingy_SYS.DAL.DAO
 {
     public class UD_TableDAO
     {
-        public IList<UD_TableList> GetTableList(Guid? id, int? rows, int? page)
+        public Result<IDictionary<string, int>, IList<UD_TableList>> GetTableList(Guid? id, int? rows, int? page)
         {
-            IList<UD_TableList> r = null; //= new Chingy_SYSEntities().UD_TableList;
+            IDictionary<string, int> _dic = new Dictionary<string, int>();
+            _dic.Add("total", new Chingy_SYSEntities().UD_TableList.Count());
+            _dic.Add("pageNumber", page.Value);
 
+
+            IList<UD_TableList> _listT = null; //= new Chingy_SYSEntities().UD_TableList;
+            IQueryable r;
             int iSkip = 0;
             if (rows.HasValue && page.HasValue)
             {
                 iSkip = rows.Value * (page.Value - 1 > 0 ? page.Value - 1 : 0);
-                r = new Chingy_SYSEntities().UD_TableList.OrderBy(m => m.InsertTime).Skip(iSkip).ToList();//Take(rows.Value).ToList();
+                r = new Chingy_SYSEntities().UD_TableList.OrderBy(m => m.InsertTime).Skip(iSkip).Take(rows.Value);
+                //_listT=r.ToList<UD_TableList>();
             }
-            else { r = new Chingy_SYSEntities().UD_TableList.ToList(); }
+            else { r = new Chingy_SYSEntities().UD_TableList; }
 
-            if (id != null) r = new Chingy_SYSEntities().UD_TableList.Where(m => m.ID == id).ToList();
-            return r;
+            _listT = r.Cast<UD_TableList>().ToList();
+            if (id != null) _listT = _listT.Where(m => m.ID == id).ToList<UD_TableList>();//new Chingy_SYSEntities().UD_TableList.Where(m => m.ID == id).ToList();
+
+            return new Result<IDictionary<string, int>, IList<UD_TableList>>(_dic, _listT);
         }
 
         public Result<bool, string> AddTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableModel)

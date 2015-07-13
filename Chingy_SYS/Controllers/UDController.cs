@@ -29,21 +29,34 @@ namespace Chingy_SYS.Controllers
         [HttpPost]
         public JsonResult GetTableList(Guid? id, int? rows, int? page)
         {
-            IList<UD_TableList> listT = TableService.GetTableList(id, null, null);
-            //,rows,page
-            int pageCount = 1;
-            int start = 0;
-            int end = 0;
-            if (rows.HasValue && page.HasValue)
-            {
-                pageCount = listT.Count / rows.Value + 1;
-                start = rows.Value * (page.Value - 1);
-                end = start + rows.Value;
-            }
+            //IList<UD_TableList> listT = TableService.GetTableList(id, null, null);
+            Result<IDictionary<string, int>, IList<UD_TableList>> Result = TableService.GetTableList(id, rows, page);
 
+            IList<UD_TableList> listT = Result.ErrorMsg;
+            //int start = 0;
+            //if (rows.HasValue && page.HasValue)
+            //{
+            //    start = rows.Value * (page.Value - 1);
+
+            //    var r = from m in listT
+            //            select new { ID = m.ID, Name = m.Name, DisplayName = m.DisplayName, ExtFlag = m.ExtFlag, ModelName = m.ModelName, TreeFlag = m.TreeFlag, InsertTime = m.InsertTime, pageNumber = page, pageTotal = listT.Count };
+            //    r = r.Skip(start).Take(rows.Value);
+            //    return Json(r);
+            //}
+            //else
+            //{
+
+            //    var r = from m in listT
+            //            select new { ID = m.ID, Name = m.Name, DisplayName = m.DisplayName, ExtFlag = m.ExtFlag, ModelName = m.ModelName, TreeFlag = m.TreeFlag, InsertTime = m.InsertTime, };
+            //    return Json(r);
+            //}
+            int iPageNumber = Result.Success["pageNumber"];
+            int iTotal = Result.Success["total"];
             var r = from m in listT
-                    select new { ID = m.ID, Name = m.Name, DisplayName = m.DisplayName, ExtFlag = m.ExtFlag, ModelName = m.ModelName, TreeFlag = m.TreeFlag, InsertTime = m.InsertTime, pageNumber = page, pageCount = pageCount };
-            return Json(r.Skip(start).Take(end));
+                    select new { ID = m.ID, Name = m.Name, DisplayName = m.DisplayName, ExtFlag = m.ExtFlag, ModelName = m.ModelName, TreeFlag = m.TreeFlag, InsertTime = m.InsertTime, pageNumber = iPageNumber, pageTotal = iTotal };
+            //r = r.Skip(start).Take(rows.Value);
+            return Json(r);
+
         }
 
         [HttpPost]

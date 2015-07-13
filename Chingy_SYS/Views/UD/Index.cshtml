@@ -4,7 +4,7 @@
 }
 
 
-<table id="dg" title="系统表" class="easyui-datagrid" data-options="pageList:[10,20,30]" style="width: 100%; height: 380px" @*url="UD/GetTableList"*@ toolbar="#toolbar" pagination="true" rownumbers="true" fitcolumns="true" singleselect="true">
+<table id="dg" title="系统表" @*class="easyui-datagrid" *@data-options="pageList:[10,20,30]" style="width: 100%; height: 380px" url="UD/GetTableList" toolbar="#toolbar" pagination="true" rownumbers="true" fitcolumns="true" singleselect="true">
     <thead>
         <tr>
             <th field="ID" hidden="true">ID</th>
@@ -195,40 +195,28 @@
     })(jQuery);
 
     $(function () {
+        //$('#dg').datagrid('load', 'UD/GetTableList');
         //$('#dg').datagrid('clientPaging');
         //var opts = $(this).data('datagrid').options;
 
-        $('#dg').datagrid('load', 'UD/GetTableList');
+
 
         $('#dg').datagrid({
+            url: 'UD/GetTableList',
             onLoadSuccess: function (data) {
-                console.log('success');
-                if (data) {
-                    var pageNumber = data[0].pageNumber;
-                    var pageCount = data[0].pageCount;
-                    $(this).pageSize
+                if (data.total > 0) {
+                    var pageNumber = data.rows[0].pageNumber;
+                    console.log(pageNumber);
+                    var pageTotal = data.rows[0].pageTotal;
+                    console.log(pageTotal);
+                    $(this).datagrid('getPager').pagination({
+                        total: pageTotal,
+                        pageNumber: pageNumber
+                    });
                 }
             }
         });
 
-
-        //$('#dg').datagrid({
-        //    pageSize: 8,
-        //    pageNumber: 1
-        //});
-
-
-        $('#dg').datagrid('getPager').pagination({
-            //onSelectPage: function (pageNum, pageSize) {
-            //    opts.pageNumber = pageNum;
-            //    opts.pageSize = pageSize;
-            //    $(this).pagination('refresh', {
-            //        pageNumber: pageNum,
-            //        pageSize: pageSize
-            //    });
-            //    //dg.datagrid('loadData', $('#dg').datagrid('getData'));
-            //}
-        });
-
+        /**/
     });
 </script>
