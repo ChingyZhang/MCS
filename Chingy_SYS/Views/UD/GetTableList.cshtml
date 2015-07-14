@@ -118,7 +118,7 @@
     }
 
     function formatLink(value, row, index) {
-        var url = "UD/GetFieldsList?id=" + row.ID;
+        var url = "UD/GetTableDetail?id=" + row.ID;
         return "<a href='" + url + "' >表字段列表";
     }
 
@@ -207,8 +207,8 @@
         })
     })(jQuery);
 
-    $(function () {
+    //$(function () {
         //$('#dg').datagrid('load', 'UD/GetTableList');
         //$('#dg').datagrid('clientPaging');
-    });
+    //});
 </script>

@@ -21,42 +21,28 @@ namespace Chingy_SYS.Controllers
             TableService = new Chingy_SYS.BLL.Service.UD_TableListService();
         }
 
-        public ActionResult Index()
+        public ActionResult GetTableList()
         {
             return View();
+        }
+
+        public ActionResult GetTableDetail(Guid id)
+        {
+            return View(id);
         }
 
         [HttpPost]
         public JsonResult GetTableList(Guid? id, int? rows, int? page)
         {
-            //IList<UD_TableList> listT = TableService.GetTableList(id, null, null);
             Result<IDictionary<string, int>, IList<UD_TableList>> Result = TableService.GetTableList(id, rows, page);
-
             IList<UD_TableList> listT = Result.ErrorMsg;
-            //int start = 0;
-            //if (rows.HasValue && page.HasValue)
-            //{
-            //    start = rows.Value * (page.Value - 1);
 
-            //    var r = from m in listT
-            //            select new { ID = m.ID, Name = m.Name, DisplayName = m.DisplayName, ExtFlag = m.ExtFlag, ModelName = m.ModelName, TreeFlag = m.TreeFlag, InsertTime = m.InsertTime, pageNumber = page, pageTotal = listT.Count };
-            //    r = r.Skip(start).Take(rows.Value);
-            //    return Json(r);
-            //}
-            //else
-            //{
-
-            //    var r = from m in listT
-            //            select new { ID = m.ID, Name = m.Name, DisplayName = m.DisplayName, ExtFlag = m.ExtFlag, ModelName = m.ModelName, TreeFlag = m.TreeFlag, InsertTime = m.InsertTime, };
-            //    return Json(r);
-            //}
             int iPageNumber = Result.Success["pageNumber"];
             int iTotal = Result.Success["total"];
             var r = from m in listT
                     select new { ID = m.ID, Name = m.Name, DisplayName = m.DisplayName, ExtFlag = m.ExtFlag, ModelName = m.ModelName, TreeFlag = m.TreeFlag, InsertTime = m.InsertTime, pageNumber = iPageNumber, pageTotal = iTotal };
             //r = r.Skip(start).Take(rows.Value);
             return Json(r);
-
         }
 
         [HttpPost]
@@ -75,17 +61,24 @@ namespace Chingy_SYS.Controllers
             return Json(_r);
         }
 
-        public ActionResult GetFieldsList(Guid id)
+        public PartialViewResult GetFieldList(Guid id)
         {
-            return View(id);
+            return PartialView(id);
         }
 
-        public ActionResult GetField(Guid? TableID, string ID)
+        public ActionResult GetFieldDetail(Guid? TableID, string ID)
         {
             ViewBag.TableID = TableID;
             ViewBag.ID = ID;
             return View();
         }
+
+        [HttpPost]
+        public JsonResult GetFieldList(Guid TableID,string)
+        {
+
+        }
+
     }
 
 

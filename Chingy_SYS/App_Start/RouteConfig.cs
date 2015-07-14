@@ -16,7 +16,7 @@ namespace Chingy_SYS
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "UD", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "UD", action = "GetTableList", id = UrlParameter.Optional }
             );
         }
     }

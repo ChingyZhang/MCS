@@ -14,8 +14,9 @@ namespace Chingy_SYS.DAL.DAO
         public Result<IDictionary<string, int>, IList<UD_TableList>> GetTableList(Guid? id, int? rows, int? page)
         {
             IDictionary<string, int> _dic = new Dictionary<string, int>();
-            _dic.Add("total", new Chingy_SYSEntities().UD_TableList.Count());
-            _dic.Add("pageNumber", page.Value);
+            int iTotal = new Chingy_SYSEntities().UD_TableList.Count();
+            _dic.Add("total", iTotal);
+            _dic.Add("pageNumber", page.HasValue ? page.Value : 1);
 
 
             IList<UD_TableList> _listT = null; //= new Chingy_SYSEntities().UD_TableList;

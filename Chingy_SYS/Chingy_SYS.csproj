@@ -897,11 +897,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\UD\Index.cshtml" />
+    <Content Include="Views\UD\GetTableList.cshtml" />
     <Content Include="Views\Dic\Index.cshtml" />
     <Content Include="Views\Dic\Detail.cshtml" />
-    <Content Include="Views\UD\GetFieldsList.cshtml" />
-    <Content Include="Views\UD\GetField.cshtml" />
+    <Content Include="Views\UD\GetTableDetail.cshtml" />
+    <Content Include="Views\UD\GetFieldDetail.cshtml" />
+    <Content Include="Views\UD\GetFieldList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
