@@ -61,10 +61,10 @@ namespace Chingy_SYS.Controllers
             return Json(_r);
         }
 
-        public PartialViewResult GetFieldList(Guid id)
-        {
-            return PartialView(id);
-        }
+        //public PartialViewResult GetFieldList(Guid id)
+        //{
+        //    return PartialView(id);
+        //}
 
         public ActionResult GetFieldDetail(Guid? TableID, string ID)
         {
@@ -74,9 +74,13 @@ namespace Chingy_SYS.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetFieldList(Guid TableID,string)
+        public JsonResult GetFieldList(Guid id)
         {
-
+            IList<UD_ModelFields> listField = TableService.GetTableList(id, null, null).ErrorMsg.FirstOrDefault().UD_ModelFields.ToList();
+            var r = from m in listField
+                    orderby m.ColumnSortID.HasValue ? m.ColumnSortID : 99999, m.Position
+                    select new { m.ID, m.TableID, m.FieldName, m.FieldDisplayName, m.ColumnSortID, m.FlagEntity, m.DataType, m.DataLength, m.Precision, m.DefaultValue, m.Description, m.RelationType, m.RelationTableName, m.RelationFieldValue, m.RelationFieldText, m.Position };
+            return Json(r);
         }
 
     }

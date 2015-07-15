@@ -101,6 +101,11 @@
             var value1 = new Date(parseInt(value2.replace("/Date(", "").replace(")/", ""), 10));
             return value1.format("yyyy-MM-dd");
         }
+
+        function formatYN(value, row, index) {
+            if (value == "N") return "否";
+            else return "是";
+        }
     </script>
 
     @Styles.Render("~/Content/css")

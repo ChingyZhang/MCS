@@ -25,10 +25,10 @@ namespace Chingy_SYS.DAL.DAO
             if (rows.HasValue && page.HasValue)
             {
                 iSkip = rows.Value * (page.Value - 1 > 0 ? page.Value - 1 : 0);
-                r = new Chingy_SYSEntities().UD_TableList.OrderBy(m => m.InsertTime).Skip(iSkip).Take(rows.Value);
+                r = new Chingy_SYSEntities().UD_TableList.Include("UD_ModelFields").OrderBy(m => m.InsertTime).Skip(iSkip).Take(rows.Value);
                 //_listT=r.ToList<UD_TableList>();
             }
-            else { r = new Chingy_SYSEntities().UD_TableList; }
+            else { r = new Chingy_SYSEntities().UD_TableList.Include("UD_ModelFields"); }
 
             _listT = r.Cast<UD_TableList>().ToList();
             if (id != null) _listT = _listT.Where(m => m.ID == id).ToList<UD_TableList>();//new Chingy_SYSEntities().UD_TableList.Where(m => m.ID == id).ToList();
