@@ -8,7 +8,7 @@
 
 
 <div style="margin: 20px 0 10px 0;"></div>
-<div class="easyui-tabs" data-options="" style="width: 80%; height: 800px">
+<div class="easyui-tabs" data-options="selected:1" style="width: 80%; height: 900px">
     <div title="数据表信息" style="padding: 10px">
         <div>
             <form id="fmTable" method="post" novalidate>
@@ -44,7 +44,7 @@
     </div>
     <div title="表包含字段" style="padding: 10px">
         <div>
-            <table id="dgFieldList" class="easyui-datagrid" data-options="url:'/UD/GetFieldList/@Model',singleSelect:true,doSize:true" style="width: 100%; height: 800px">
+            <table id="dgFieldList" class="easyui-datagrid" data-options="url:'/UD/GetFieldList/@Model',singleSelect:true,doSize:true,rownumbers:true" style="width: 100%; height: 800px">
                 <thead>
                     <tr>
                         <th field="ID" hidden="true">ID</th>
@@ -55,9 +55,9 @@
                         <th field="ColumnSortID">字段列位置</th>
                         <th field="FlagEntity" data-options="formatter:formatYN">实体字段标记</th>
                         <th field="Position">扩展字段位置</th>
-                        <th field="RelationType">关联方式</th>
+                        <th field="RelationType" data-options="formatter:formatRelationType">关联方式</th>
                         <th field="RelationTableName">关联项目名</th>
-                        <th field="" data-options="formatter:formatLink">阿三</th>
+                        <th field="Extra" data-options="formatter:formatLink">字段详细信息</th>
                     </tr>
                 </thead>
             </table>
@@ -134,23 +134,35 @@
             type: "POST",
             url: "/Dic/GetDicColByTableCode/UD_DataType",
             async: false, //异步请求
-            cache: false,  // 设置为false将不会从浏览器缓存中加载请求信息。
+            //cache: false,  // 设置为false将不会从浏览器缓存中加载请求信息。
             dataType: "json",
             success: function (data) { result = data; }
         });
-
-        var data = result;
-        //debugger
-
-        var length = data.length;
-        console.log("length =" + length);
-
+        var length = result.length;
         var r = "";
         for (var i = 0; i < length; i++) {
-            //console.log("是数组");
-            var dic = data[i];
+            var dic = result[i];
             if (value == dic.Code) {
-                console.log(dic.Name + "  |  " + dic.Code + "  |  " + "  ;  " + value + "  |  ");
+                r = dic.Name;
+            }
+        }
+        return r;
+    }
+
+    function formatRelationType(value, row, index) {
+        var result = "";
+        $.ajax({
+            url: '/Dic/GetDicColByTableCode/UD_RelationType',
+            type: 'POST',
+            async: false,
+            datatype: 'json',
+            suucess: function (data) { result = data; }
+        });
+        var length = result.length;
+        var r = "";
+        for (var i = 0; i < length; i++) {
+            var dic = result[i];
+            if (value == dic.Code) {
                 r = dic.Name;
             }
         }
