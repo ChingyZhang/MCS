@@ -68,6 +68,7 @@ namespace Chingy_SYS.Controllers
         public JsonResult GetDicColByTableCode(string id)
         {
             Result<bool, IList<Dictionary_Column>> listDic = Dictionary_ColumnService.GetDicColByTableCode(id);
+            if (listDic.ErrorMsg == null) return null;
             var r = (from _dic in listDic.ErrorMsg
                     orderby _dic.ID
                     select new { ID = _dic.ID, Table = _dic.Table, Code = _dic.Code, Name = _dic.Name }).ToList();

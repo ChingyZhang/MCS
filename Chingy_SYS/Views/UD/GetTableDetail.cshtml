@@ -57,7 +57,7 @@
                         <th field="Position">扩展字段位置</th>
                         <th field="RelationType">关联方式</th>
                         <th field="RelationTableName">关联项目名</th>
-                        @*<th data-options="field:'ID',width:80,align:'right',formatter:formatLink"></th>*@
+                        <th field="" data-options="formatter:formatLink">阿三</th>
                     </tr>
                 </thead>
             </table>
@@ -118,28 +118,43 @@
     }
 
     function formatLink(value, row, index) {
-        var url = "UD/GetTableDetail?id=" + row.ID;
-        return "<a href='" + url + "' >表字段列表";
+        var url = "/UD/GetFieldDetail?id=" + row.ID + "&TableID=" + row.TableID;
+        return "<a href='" + url + "' >表字段列表" + "</a>";
     }
 
     function formatDataType(value, row, index) {
-        $.post('/Dic/GetDicColByTableCode/UD_DataType', function (data/*, textStatus, jqXHR*/) {
-            if ($.isArray(data)) {
-                var length = data.length;
-                console.log("数组长度为" + length);
-                for (var i = 0; i < length; i++) {
-                    var dic = data[i];
+        var result = "";
+        /*var result = $.ajax({
+            url: "/Dic/GetDicColByTableCode/UD_DataType",
+            type: "POST",
+            dataType: "json",
+            asynv: false
+        })//.responseJSON;*/
+        $.ajax({
+            type: "POST",
+            url: "/Dic/GetDicColByTableCode/UD_DataType",
+            async: false, //异步请求
+            cache: false,  // 设置为false将不会从浏览器缓存中加载请求信息。
+            dataType: "json",
+            success: function (data) { result = data; }
+        });
 
-                    if (value == dic.Code) {
-                        console.log(dic.Name + "  |  " + dic.Code + "  |  " + "  ;  " + value + "  |  ");//+ valueOf(dic.Code == value)
-                        return dic.Name;
-                    }
-                }
+        var data = result;
+        //debugger
+
+        var length = data.length;
+        console.log("length =" + length);
+
+        var r = "";
+        for (var i = 0; i < length; i++) {
+            //console.log("是数组");
+            var dic = data[i];
+            if (value == dic.Code) {
+                console.log(dic.Name + "  |  " + dic.Code + "  |  " + "  ;  " + value + "  |  ");
+                r = dic.Name;
             }
-            consol.log("不是数组");
-            return "不是数组";
-
-        }, "json");
+        }
+        return r;
     }
 
 </script>

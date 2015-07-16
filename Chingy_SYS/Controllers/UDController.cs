@@ -77,6 +77,7 @@ namespace Chingy_SYS.Controllers
         public JsonResult GetFieldList(Guid id)
         {
             IList<UD_ModelFields> listField = TableService.GetTableList(id, null, null).ErrorMsg.FirstOrDefault().UD_ModelFields.ToList();
+            if (listField == null) return null;
             var r = from m in listField
                     orderby m.ColumnSortID.HasValue ? m.ColumnSortID : 99999, m.Position
                     select new { m.ID, m.TableID, m.FieldName, m.FieldDisplayName, m.ColumnSortID, m.FlagEntity, m.DataType, m.DataLength, m.Precision, m.DefaultValue, m.Description, m.RelationType, m.RelationTableName, m.RelationFieldValue, m.RelationFieldText, m.Position };
