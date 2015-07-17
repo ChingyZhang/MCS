@@ -45,6 +45,17 @@
 
         <div id="divRelation">
         </div>
+
+        @* <div class="fitem">
+            <label>关联字典:</label><input id="cmbRelationTableName" name="RelationTableName" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:150,valueField:'Name',textField:'DisplayName',url:'/UD/GetTableList'" style="width: 155px" />
+        </div>
+        <div class="fitem">
+            <label>关联表值字段:</label><input id="cmbRelationFieldValue" name="RelationTableName" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:150,valueField:'FieldName',textField:'FieldDisplayName',url:'/UD/GetTableList'" style="width: 155px" />
+        </div>
+        <div class="fitem">
+            <label>关联表文本字段:</label><input id="cmbRelationFieldText" name="RelationTableName" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:150,valueField:'FieldName',textField:'FieldDisplayName',url:'/UD/GetTableList'" style="width: 155px" />
+        </div>
+</div>*@
         @*<div class="fitem">
             <label>关联字典:</label>
             <input id=’cmbRelationTableName’ name=’RelationTableName’ class=’easyui-combobox’ data-options=’editable:false,required:true,panelHeight:'auto'’ style=’width: 155px’ />
@@ -80,10 +91,48 @@
     }
 
     function GetRelationHtm(RelationType) {
+        var htm = "<div class='fitem'><label>关联字典:</label><input id=cmbRelationTableName name=RelationTableName class=easyui-combobox data-options=editable:false,required:true,panelHeight:'150' style=width:155px /></div>"
+
         if (RelationType == 1) {
-            var htm = "<div class='fitem'><label>关联字典:</label><input id=cmbRelationTableName name=RelationTableName class=easyui-combobox data-options=editable:false,required:true,panelHeight:'150',valueField:'Code',textField:'Name',url:'/Dic/GetDicList' style=width:155px /></div>"
             $("#divRelation").html(htm);
-            $("#cmbRelationTableName").combobox();
+            $("#cmbRelationTableName").combobox({
+                url: '/Dic/GetDicList',
+                valueField: 'Code',
+                textField: 'Name'
+            });
+        } else if (RelationType == 2) {
+            htm += '<div class="fitem"><label>关联表值字段:</label><input id="cmbRelationFieldValue" name="RelationFieldValue" class="easyui-combobox"  data-options="editable:false,required:true,panelHeight:150,valueField:\'FieldName\',textField:\'FieldDisplayName\',url:\'/UD/GetFieldList\'" style="width: 155px" /></div>';
+            htm += '<div class="fitem"><label>关联表文本字段:</label><input id="cmbRelationFieldText" name="RelationFieldText" class="easyui-combobox"  data-options="editable:false,required:true,panelHeight:150,valueField:\'FieldName\',textField:\'FieldDisplayName\',url:\'/UD/GetFieldList\'" style="width: 155px" /></div>';
+            $("#divRelation").html(htm);
+            console.log(htm);
+            $("#cmbRelationTableName").combobox({
+                url: '/UD/GetTableList',
+                valueField: 'Name',
+                textField: 'DisplayName',
+                onChange: function (newValue, oldValue) {
+                    var result = '';
+                    $.ajax({
+                        url: '/UD/GetFieldList' + newValue,
+                        type: 'POST',
+                        async: 'false',
+                        dataType: "json",
+                        success: function (data) { result = data; }
+                    })
+
+                    $("#cmbRelationFieldValue").combobox({
+                        //url: '/UD/GetFieldList' + newValue,
+                        data: result,
+                        valueField: 'FieldName',
+                        textField: 'FieldDisplayName'
+                    });
+                    $("#cmbRelationFieldText").combobox({
+                        //url: '/UD/GetFieldList' + newValue,
+                        data: result,
+                        valueField: 'FieldName',
+                        textField: 'FieldDisplayName'
+                    });
+                }
+            });
         }
     }
 </script>
