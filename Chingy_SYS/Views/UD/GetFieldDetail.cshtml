@@ -8,6 +8,8 @@
 <div id="p" class="easyui-panel" title="数据表字段详细信息" style="width: 600px; height: 300px; padding: 10px;">
 
     <form id="fmField" method="post" novalidate>
+        <input type="hidden" name="ID" />
+        <input type="hidden" name="TableID" />
         <div class="fitem">
             <label>字段名称:</label>
             <input id="txtFieldName" name="FieldName" class="easyui-textbox" required="true">
@@ -88,6 +90,17 @@
                 GetRelationHtm(newValue);
             }
         });
+
+        var resp = "";
+        $.ajax({
+            url: '/UD/GetFieldList/',
+            type: 'post',
+            data: { TableID: '@ViewBag.TableID', FieldID: "@ViewBag.ID" },
+            async:false,
+            success: function (data) { resp = data[0];}
+        })
+        console.log(resp);
+        $("#fmField").form('load', resp);
     }
 
     function GetRelationHtm(RelationType) {

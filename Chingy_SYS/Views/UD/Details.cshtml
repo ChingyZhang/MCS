@@ -44,7 +44,7 @@
     </div>
     <div title="表包含字段" style="padding: 10px">
         <div>
-            <table id="dgFieldList" class="easyui-datagrid" data-options="url:'/UD/GetFieldList/@Model',singleSelect:true,doSize:true,rownumbers:true" style="width: 100%; height: 800px">
+            <table id="dgFieldList" class="easyui-datagrid" data-options="url:'/UD/GetFieldList/?TableID=@Model',singleSelect:true,doSize:true,rownumbers:true" style="width: 100%; height: 800px">
                 <thead>
                     <tr>
                         <th field="ID" hidden="true">ID</th>
@@ -118,7 +118,7 @@
     }
 
     function formatLink(value, row, index) {
-        var url = "/UD/GetFieldDetail?id=" + row.ID + "&TableID=" + row.TableID;
+        var url = "/UD/GetFieldDetail?FieldID=" + row.ID + "&TableID=" + row.TableID;
         return "<a href='" + url + "' >表字段列表" + "</a>";
     }
 

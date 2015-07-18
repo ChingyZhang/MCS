@@ -4,7 +4,7 @@
 }
 
 
-<table id="dg" title="系统表" class="easyui-datagrid" data-options="url:'UD/GetTableList',toolbar:'#toolbar',fitcolumns:false,singleSelect:true,pagination:true,pageList:[10,20,30],rownumbers:false,onLoadSuccess:LoadSuccess" style="width: 100%; height: 380px">
+<table id="dg" title="系统表" class="easyui-datagrid" data-options="url:'UD/GetTableList',method:'post',toolbar:'#toolbar',fitcolumns:false,singleSelect:true,pagination:true,pageList:[10,20,30],rownumbers:false,onLoadSuccess:LoadSuccess" style="width: 100%; height: 380px">
     <thead>
         <tr>
             <th field="ID" hidden="true">ID</th>
@@ -118,7 +118,7 @@
     }
 
     function formatLink(value, row, index) {
-        var url = "UD/GetTableDetail?id=" + row.ID;
+        var url = "UD/Details?TableID=" + row.ID;
         return "<a href='" + url + "' >表字段列表";
     }
 

@@ -21,14 +21,14 @@ namespace Chingy_SYS.Controllers
             TableService = new Chingy_SYS.BLL.Service.UD_TableListService();
         }
 
-        public ActionResult GetTableList()
+        public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult GetTableDetail(Guid id)
+        public ActionResult Details(Guid TableID)
         {
-            return View(id);
+            return View(TableID);
         }
 
         [HttpPost]
@@ -66,23 +66,36 @@ namespace Chingy_SYS.Controllers
         //    return PartialView(id);
         //}
 
-        public ActionResult GetFieldDetail(Guid? TableID, string ID)
+        public ActionResult GetFieldDetail(Guid TableID, Guid FieldID)
         {
             ViewBag.TableID = TableID;
-            ViewBag.ID = ID;
+            ViewBag.ID = FieldID;
             return View();
         }
 
         [HttpPost]
-        public JsonResult GetFieldList(Guid id)
+        public JsonResult GetFieldList(Guid TableID, Guid? FieldID)
         {
-            IList<UD_ModelFields> listField = TableService.GetTableList(id, null, null).ErrorMsg.FirstOrDefault().UD_ModelFields.ToList();
+            IList<UD_ModelFields> listField = null;
+            var res = TableService.GetTableList(TableID, null, null).ErrorMsg.FirstOrDefault().UD_ModelFields;
+            if (FieldID.HasValue) listField = res.Where(m => m.ID == (FieldID.HasValue ? FieldID.Value : m.ID)).ToList();
+            else listField = res.ToList<UD_ModelFields>();
             if (listField == null) return null;
             var r = from m in listField
                     orderby m.ColumnSortID.HasValue ? m.ColumnSortID : 99999, m.Position
                     select new { m.ID, m.TableID, m.FieldName, m.FieldDisplayName, m.ColumnSortID, m.FlagEntity, m.DataType, m.DataLength, m.Precision, m.DefaultValue, m.Description, m.RelationType, m.RelationTableName, m.RelationFieldValue, m.RelationFieldText, m.Position };
             return Json(r);
         }
+
+        //public JsonResult GetFieldDetail(Guid id)
+        //{
+        //    IList<UD_ModelFields> listField = TableService.GetTableList(id, null, null).ErrorMsg.FirstOrDefault().UD_ModelFields.Where(m => m.ID == id).ToList();
+        //    if (listField == null) return null;
+        //    var r = from m in listField
+        //            orderby m.ColumnSortID.HasValue ? m.ColumnSortID : 99999, m.Position
+        //            select new { m.ID, m.TableID, m.FieldName, m.FieldDisplayName, m.ColumnSortID, m.FlagEntity, m.DataType, m.DataLength, m.Precision, m.DefaultValue, m.Description, m.RelationType, m.RelationTableName, m.RelationFieldValue, m.RelationFieldText, m.Position };
+        //    return Json(r);
+        //}
 
     }
 
