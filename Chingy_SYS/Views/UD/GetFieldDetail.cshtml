@@ -5,7 +5,7 @@
 
 <h2>GetField</h2>
 
-<div id="p" class="easyui-panel" title="数据表字段详细信息" style="width: 600px; height: 300px; padding: 10px;">
+<div id="p" class="easyui-panel" title="数据表字段详细信息" style="width: 600px; height: 500px; padding: 10px;">
 
     <form id="fmField" method="post" novalidate>
         <input type="hidden" name="ID" />
@@ -20,7 +20,7 @@
         </div>
         <div class="fitem">
             <label>数据类型:</label>
-            <input id="cmbExtFlag" name="ExtFlag" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:'auto'" style="width: 155px" />
+            <input id="cmbExtFlag" name="DataType" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:'auto'" style="width: 155px" />
         </div>
         <div class="fitem">
             <label>长度:</label>
@@ -44,12 +44,16 @@
             <label>关联类型:</label>
             <input id="cmbRelationType" name="RelationType" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:'auto'" style="width: 155px" />
         </div>
+        <div class="fitem">
+            <label>关联表名:</label>
+            <input id="cmbRelationTableName" name="RelationTableName" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:150" style="width: 155px" />
+        </div>
 
         <div id="divRelation">
         </div>
 
         @* <div class="fitem">
-            <label>关联字典:</label><input id="cmbRelationTableName" name="RelationTableName" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:150,valueField:'Name',textField:'DisplayName',url:'/UD/GetTableList'" style="width: 155px" />
+            <label>关联表名:</label><input id="cmbRelationTableName" name="RelationTableName" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:150,valueField:'Name',textField:'DisplayName',url:'/UD/GetTableList'" style="width: 155px" />
         </div>
         <div class="fitem">
             <label>关联表值字段:</label><input id="cmbRelationFieldValue" name="RelationTableName" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:150,valueField:'FieldName',textField:'FieldDisplayName',url:'/UD/GetTableList'" style="width: 155px" />
@@ -91,61 +95,64 @@
             }
         });
 
+        $("#cmbRelationTableName").combobox({
+            onChange: function (newValue, oldValue) {
+
+                console.log('newValue=' + newValue + ' | , oldValue=' + oldValue);
+                var loaddata = $("#cmbRelationTableName").data;//.combobox('getData');
+                console.log(loaddata);
+
+                var len = loaddata.length;
+                var tableid = '';
+                for (var i = 0; i < len; i++) {
+                    var temp = loaddata[i];
+                    if (temp.Name == newValue) {
+                        tableid = temp.ID;
+                    }
+                }
+                console.log(tableid);
+
+                $("#cmbRelationFieldValue").combobox({
+                    url: '/UD/GetFieldList/',
+                    queryParams: { 'TableID': tableid }
+                });
+                $("#cmbRelationFieldText").combobox({
+                    url: '/UD/GetFieldList/',
+                    queryParams: { 'TableID': tableid }
+                });
+            }
+        });
+
         var resp = "";
         $.ajax({
             url: '/UD/GetFieldList/',
             type: 'post',
             data: { TableID: '@ViewBag.TableID', FieldID: "@ViewBag.ID" },
-            async:false,
-            success: function (data) { resp = data[0];}
-        })
-        console.log(resp);
+            async: false,
+            success: function (data) { resp = data[0]; }
+        });
         $("#fmField").form('load', resp);
     }
 
     function GetRelationHtm(RelationType) {
-        var htm = "<div class='fitem'><label>关联字典:</label><input id=cmbRelationTableName name=RelationTableName class=easyui-combobox data-options=editable:false,required:true,panelHeight:'150' style=width:155px /></div>"
-
         if (RelationType == 1) {
-            $("#divRelation").html(htm);
             $("#cmbRelationTableName").combobox({
                 url: '/Dic/GetDicList',
                 valueField: 'Code',
                 textField: 'Name'
             });
         } else if (RelationType == 2) {
-            htm += '<div class="fitem"><label>关联表值字段:</label><input id="cmbRelationFieldValue" name="RelationFieldValue" class="easyui-combobox"  data-options="editable:false,required:true,panelHeight:150,valueField:\'FieldName\',textField:\'FieldDisplayName\',url:\'/UD/GetFieldList\'" style="width: 155px" /></div>';
-            htm += '<div class="fitem"><label>关联表文本字段:</label><input id="cmbRelationFieldText" name="RelationFieldText" class="easyui-combobox"  data-options="editable:false,required:true,panelHeight:150,valueField:\'FieldName\',textField:\'FieldDisplayName\',url:\'/UD/GetFieldList\'" style="width: 155px" /></div>';
+            var htm = '<div class="fitem"><label>关联表值字段:</label><input id="cmbRelationFieldValue" name="RelationFieldValue" class="easyui-combobox"  data-options="editable:false,required:true,valueField:\'FieldName\',textField:\'FieldDisplayName\',panelHeight:150" style="width: 155px" /></div>';
+            htm += '<div class="fitem"><label>关联表文本字段:</label><input id="cmbRelationFieldText" name="RelationFieldText" class="easyui-combobox"  data-options="editable:false,required:true,valueField:\'FieldName\',textField:\'FieldDisplayName\',panelHeight:150" style="width: 155px" /></div>';
             $("#divRelation").html(htm);
-            console.log(htm);
             $("#cmbRelationTableName").combobox({
                 url: '/UD/GetTableList',
                 valueField: 'Name',
                 textField: 'DisplayName',
-                onChange: function (newValue, oldValue) {
-                    var result = '';
-                    $.ajax({
-                        url: '/UD/GetFieldList' + newValue,
-                        type: 'POST',
-                        async: 'false',
-                        dataType: "json",
-                        success: function (data) { result = data; }
-                    })
-
-                    $("#cmbRelationFieldValue").combobox({
-                        //url: '/UD/GetFieldList' + newValue,
-                        data: result,
-                        valueField: 'FieldName',
-                        textField: 'FieldDisplayName'
-                    });
-                    $("#cmbRelationFieldText").combobox({
-                        //url: '/UD/GetFieldList' + newValue,
-                        data: result,
-                        valueField: 'FieldName',
-                        textField: 'FieldDisplayName'
-                    });
-                }
             });
         }
+    }
+    function a(tableid) {
+
     }
 </script>
