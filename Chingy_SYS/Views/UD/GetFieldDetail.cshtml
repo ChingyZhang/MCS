@@ -44,10 +44,10 @@
             <label>关联类型:</label>
             <input id="cmbRelationType" name="RelationType" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:'auto'" style="width: 155px" />
         </div>
-        <div class="fitem">
+        @*<div class="fitem">
             <label>关联表名:</label>
             <input id="cmbRelationTableName" name="RelationTableName" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:150" style="width: 155px" />
-        </div>
+        </div>*@
 
         <div id="divRelation">
         </div>
@@ -95,61 +95,75 @@
             }
         });
 
-        $("#cmbRelationTableName").combobox({
-            onChange: function (newValue, oldValue) {
-
-                console.log('newValue=' + newValue + ' | , oldValue=' + oldValue);
-                var loaddata = $("#cmbRelationTableName").data;//.combobox('getData');
-                console.log(loaddata);
-
-                var len = loaddata.length;
-                var tableid = '';
-                for (var i = 0; i < len; i++) {
-                    var temp = loaddata[i];
-                    if (temp.Name == newValue) {
-                        tableid = temp.ID;
-                    }
-                }
-                console.log(tableid);
-
-                $("#cmbRelationFieldValue").combobox({
-                    url: '/UD/GetFieldList/',
-                    queryParams: { 'TableID': tableid }
-                });
-                $("#cmbRelationFieldText").combobox({
-                    url: '/UD/GetFieldList/',
-                    queryParams: { 'TableID': tableid }
-                });
-            }
-        });
-
         var resp = "";
         $.ajax({
             url: '/UD/GetFieldList/',
             type: 'post',
             data: { TableID: '@ViewBag.TableID', FieldID: "@ViewBag.ID" },
             async: false,
-            success: function (data) { resp = data[0]; }
+            success: function (data) {
+                resp = data[0];
+                $("#fmField").form('load', resp);
+            }
         });
-        $("#fmField").form('load', resp);
+    }
+
+    function RelationChange(newValue, oldValue) {
+        var loaddata = $("#cmbRelationTableName").combobox('getData');
+
+        if (loaddata == undefined || !$.isArray(loaddata) || loaddata.length == 0) {
+            $.ajax({
+                url: '/UD/GetTableList/',
+                type: 'post',
+                async: false,
+                success: function (data) { loaddata = data; }
+            });
+        }
+
+        var len = loaddata.length;
+        var tableid = '';
+        for (var i = 0; i < len; i++) {
+            var temp = loaddata[i];
+            if (temp.Name == newValue) {
+                tableid = temp.ID;
+            }
+        }
+        if (tableid != "") {
+            $("#cmbRelationFieldValue").combobox({
+                url: '/UD/GetFieldList/',
+                queryParams: { 'TableID': tableid }
+            });
+            $("#cmbRelationFieldText").combobox({
+                url: '/UD/GetFieldList/',
+                queryParams: { 'TableID': tableid }
+            });
+        } else { console.log('tableid is null'); }
     }
 
     function GetRelationHtm(RelationType) {
+        var htm = '<div class="fitem"><label>关联表名:</label><input id="cmbRelationTableName" name="RelationTableName" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:150" style="width: 155px" /></div>';
         if (RelationType == 1) {
+            $("#divRelation").html(htm);
             $("#cmbRelationTableName").combobox({
                 url: '/Dic/GetDicList',
                 valueField: 'Code',
                 textField: 'Name'
             });
         } else if (RelationType == 2) {
-            var htm = '<div class="fitem"><label>关联表值字段:</label><input id="cmbRelationFieldValue" name="RelationFieldValue" class="easyui-combobox"  data-options="editable:false,required:true,valueField:\'FieldName\',textField:\'FieldDisplayName\',panelHeight:150" style="width: 155px" /></div>';
+            htm += '<div class="fitem"><label>关联表值字段:</label><input id="cmbRelationFieldValue" name="RelationFieldValue" class="easyui-combobox"  data-options="editable:false,required:true,valueField:\'FieldName\',textField:\'FieldDisplayName\',panelHeight:150" style="width: 155px" /></div>';
             htm += '<div class="fitem"><label>关联表文本字段:</label><input id="cmbRelationFieldText" name="RelationFieldText" class="easyui-combobox"  data-options="editable:false,required:true,valueField:\'FieldName\',textField:\'FieldDisplayName\',panelHeight:150" style="width: 155px" /></div>';
             $("#divRelation").html(htm);
             $("#cmbRelationTableName").combobox({
                 url: '/UD/GetTableList',
                 valueField: 'Name',
                 textField: 'DisplayName',
+                onChange: RelationChange
             });
+            $("#cmbRelationFieldValue").combobox();
+            $("#cmbRelationFieldText").combobox();
+        } else {
+            htm = "";
+            $("#divRelation").html(htm);
         }
     }
     function a(tableid) {
