@@ -39,5 +39,21 @@ namespace Chingy_SYS.BLL.Service
         {
             return TableDAO.ModifyTable(UD_TableList);
         }
+
+
+        public Result<bool, string> RemoveField(Guid Guid)
+        {
+            return TableDAO.RemoveField(Guid);
+        }
+
+        public Result<bool, string> EditField(UD_ModelFields UD_ModelFields)
+        {
+            return TableDAO.EditField(UD_ModelFields);
+        }
+
+        public Result<Guid, string> CreateField(UD_ModelFields UD_ModelFields)
+        {
+            return TableDAO.CreateField(UD_ModelFields);
+        }
     }
 }

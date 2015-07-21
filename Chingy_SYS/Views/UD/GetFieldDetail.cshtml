@@ -44,30 +44,12 @@
             <label>关联类型:</label>
             <input id="cmbRelationType" name="RelationType" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:'auto'" style="width: 155px" />
         </div>
-        @*<div class="fitem">
-            <label>关联表名:</label>
-            <input id="cmbRelationTableName" name="RelationTableName" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:150" style="width: 155px" />
-        </div>*@
-
         <div id="divRelation">
         </div>
-
-        @* <div class="fitem">
-            <label>关联表名:</label><input id="cmbRelationTableName" name="RelationTableName" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:150,valueField:'Name',textField:'DisplayName',url:'/UD/GetTableList'" style="width: 155px" />
-        </div>
-        <div class="fitem">
-            <label>关联表值字段:</label><input id="cmbRelationFieldValue" name="RelationTableName" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:150,valueField:'FieldName',textField:'FieldDisplayName',url:'/UD/GetTableList'" style="width: 155px" />
-        </div>
-        <div class="fitem">
-            <label>关联表文本字段:</label><input id="cmbRelationFieldText" name="RelationTableName" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:150,valueField:'FieldName',textField:'FieldDisplayName',url:'/UD/GetTableList'" style="width: 155px" />
-        </div>
-</div>*@
-        @*<div class="fitem">
-            <label>关联字典:</label>
-            <input id=’cmbRelationTableName’ name=’RelationTableName’ class=’easyui-combobox’ data-options=’editable:false,required:true,panelHeight:'auto'’ style=’width: 155px’ />
-        </div>*@
     </form>
-
+    <div>
+        <a href="javascript:void(0)" id="btnSave" class="easyui-linkbutton" iconcls="icon-save" plain="true" onclick="btnSave()">保存</a>
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -166,7 +148,21 @@
             $("#divRelation").html(htm);
         }
     }
-    function a(tableid) {
 
+    function btnSave() {
+        $('#fmField').form('submit', {
+            url: '/UD/SaveField',
+            onSubmit: function () {
+                var isValid = $(this).form('validate');
+                if (!isValid) {
+                    $.messager.progress('close');	// hide progress bar while the form is invalid
+                }
+                return isValid;	// return false will stop the form submission
+            },
+            success: function () {
+                //$.messager.progress('close');	// hide progress bar while submit successfully
+                FormLoad();
+            }
+        });
     }
 </script>

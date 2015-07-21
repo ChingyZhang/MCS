@@ -111,5 +111,80 @@ namespace Chingy_SYS.DAL.DAO
                 return _r;
             }
         }
+
+        public Result<Guid, string> CreateField(UD_ModelFields UD_ModelFields)
+        {
+            Result<Guid, string> _r;
+            using (Chingy_SYSEntities db = new Chingy_SYSEntities())
+            {
+                if (UD_ModelFields.ID == Guid.Empty) UD_ModelFields.ID = Guid.NewGuid();
+                UD_ModelFields.InsertTime = DateTime.Now;
+                db.UD_ModelFields.Add(UD_ModelFields);
+                try
+                {
+                    db.SaveChanges();
+                    _r = new Result<Guid, string>(UD_ModelFields.ID);
+                }
+                catch (Exception ex) { _r = new Result<Guid, string>(Guid.Empty, ex.Message); }
+                return _r;
+            }
+        }
+
+        public Result<bool, string> EditField(UD_ModelFields UD_ModelFields)
+        {
+            Result<bool, string> _r;
+            using (Chingy_SYSEntities db = new Chingy_SYSEntities())
+            {
+                DB.UD_ModelFields _field = db.UD_ModelFields.Single(m => m.ID == UD_ModelFields.ID);
+                if (_field == null) return new Result<bool, string>(false, "null");
+
+                System.Reflection.PropertyInfo[] properties = UD_ModelFields.GetType().GetProperties();
+                foreach (var property in properties)
+                {
+                    var oa = property.GetValue(_field, null);//db.Entry(_field).Property(property.Name).CurrentValue;
+                    var ob = property.GetValue(UD_ModelFields, null);
+                    if (oa.ToString() != ob.ToString())
+                    {
+                        property.SetValue(_field, ob);
+                        //db.Entry(_field).Property(property.Name).CurrentValue = rb;
+                    }
+                }
+                /*
+                 foreach (System.Reflection.PropertyInfo p in array)
+            {
+                object o = p.GetValue(a, null);
+                p.SetValue(b, o, null);
+            }
+                 */
+                db.UD_ModelFields.Attach(UD_ModelFields);
+                db.Entry(UD_ModelFields).State = System.Data.Entity.EntityState.Modified;
+                try
+                {
+                    db.SaveChanges();
+                    _r = new Result<bool, string>(true);
+                }
+                catch (Exception ex) { _r = new Result<bool, string>(false, ex.Message); }
+                return _r;
+            }
+
+        }
+
+        public Result<bool, string> RemoveField(Guid Guid)
+        {
+            Result<bool, string> _r;
+            using (Chingy_SYSEntities db = new Chingy_SYSEntities())
+            {
+                DB.UD_ModelFields _table = db.UD_ModelFields.Single(m => m.ID == Guid);
+                if (_table == null) return new Result<bool, string>(false, "null");
+                else db.UD_ModelFields.Remove(_table);
+                try
+                {
+                    db.SaveChanges();
+                    _r = new Result<bool, string>(true);
+                }
+                catch (Exception ex) { _r = new Result<bool, string>(false, ex.Message); }
+                return _r;
+            }
+        }
     }
 }

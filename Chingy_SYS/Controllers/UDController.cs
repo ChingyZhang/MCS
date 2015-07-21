@@ -41,7 +41,6 @@ namespace Chingy_SYS.Controllers
             int iTotal = Result.Success["total"];
             var r = from m in listT
                     select new { ID = m.ID, Name = m.Name, DisplayName = m.DisplayName, ExtFlag = m.ExtFlag, ModelName = m.ModelName, TreeFlag = m.TreeFlag, InsertTime = m.InsertTime, pageNumber = iPageNumber, pageTotal = iTotal };
-            //r = r.Skip(start).Take(rows.Value);
             return Json(r);
         }
 
@@ -60,11 +59,6 @@ namespace Chingy_SYS.Controllers
             Result<bool, string> _r = TableService.DestroyTable(Guid);
             return Json(_r);
         }
-
-        //public PartialViewResult GetFieldList(Guid id)
-        //{
-        //    return PartialView(id);
-        //}
 
         public ActionResult GetFieldDetail(Guid TableID, Guid FieldID)
         {
@@ -87,15 +81,48 @@ namespace Chingy_SYS.Controllers
             return Json(r);
         }
 
-        //public JsonResult GetFieldDetail(Guid id)
+
+        [HttpPost]
+        public JsonResult SaveField(UD_ModelFields UD_ModelFields)
+        {
+            if (UD_ModelFields.ID == Guid.Empty)
+            {
+                if (UD_ModelFields.TableID == Guid.Empty) return Json(new Result<bool, string>(false, "创建失败"));
+                Result<Guid, string> _r = TableService.CreateField(UD_ModelFields);
+                if (_r.Success == Guid.Empty) return Json(new Result<bool, string>(false, _r.ErrorMsg));
+                return Json(_r);
+            }
+            else { 
+                Result<bool, string> _r;
+                if (UD_ModelFields.ID == Guid.Empty) return Json(new Result<bool, string>(false, "更新失败"));
+                _r = TableService.EditField(UD_ModelFields);
+                return Json(_r);
+            }
+        }
+        //[HttpPost]
+        //public JsonResult CreateField(UD_ModelFields UD_ModelFields)
         //{
-        //    IList<UD_ModelFields> listField = TableService.GetTableList(id, null, null).ErrorMsg.FirstOrDefault().UD_ModelFields.Where(m => m.ID == id).ToList();
-        //    if (listField == null) return null;
-        //    var r = from m in listField
-        //            orderby m.ColumnSortID.HasValue ? m.ColumnSortID : 99999, m.Position
-        //            select new { m.ID, m.TableID, m.FieldName, m.FieldDisplayName, m.ColumnSortID, m.FlagEntity, m.DataType, m.DataLength, m.Precision, m.DefaultValue, m.Description, m.RelationType, m.RelationTableName, m.RelationFieldValue, m.RelationFieldText, m.Position };
-        //    return Json(r);
+        //    if (UD_ModelFields.TableID == Guid.Empty) return Json(new Result<bool, string>(false, "创建失败"));
+        //    Result<Guid, string> _r = TableService.CreateField(UD_ModelFields);
+        //    if (_r.Success == Guid.Empty) return Json(new Result<bool, string>(false, _r.ErrorMsg));
+        //    return Json(_r);
         //}
+
+        //[HttpPost]
+        //public JsonResult EditField(UD_ModelFields UD_ModelFields)
+        //{
+        //    Result<bool, string> _r;
+        //    if (UD_ModelFields.ID == Guid.Empty) return Json(new Result<bool, string>(false, "更新失败"));
+        //    _r = TableService.EditField(UD_ModelFields);
+        //    return Json(_r);
+        //}
+
+        [HttpPost]
+        public JsonResult RemoveField(Guid Guid)
+        {
+            Result<bool, string> _r = TableService.RemoveField(Guid);
+            return Json(_r);
+        }
 
     }
 
