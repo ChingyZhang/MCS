@@ -138,7 +138,7 @@ namespace Chingy_SYS.DAL.DAO
                 DB.UD_ModelFields _field = db.UD_ModelFields.Single(m => m.ID == UD_ModelFields.ID);
                 if (_field == null) return new Result<bool, string>(false, "null");
 
-                System.Reflection.PropertyInfo[] properties = UD_ModelFields.GetType().GetProperties();
+                /* System.Reflection.PropertyInfo[] properties = UD_ModelFields.GetType().GetProperties();
                 foreach (var property in properties)
                 {
                     var oa = property.GetValue(_field, null);//db.Entry(_field).Property(property.Name).CurrentValue;
@@ -149,15 +149,32 @@ namespace Chingy_SYS.DAL.DAO
                         //db.Entry(_field).Property(property.Name).CurrentValue = rb;
                     }
                 }
-                /*
+               
                  foreach (System.Reflection.PropertyInfo p in array)
             {
                 object o = p.GetValue(a, null);
                 p.SetValue(b, o, null);
             }
-                 */
+                 
                 db.UD_ModelFields.Attach(UD_ModelFields);
-                db.Entry(UD_ModelFields).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(UD_ModelFields).State = System.Data.Entity.EntityState.Modified;*/
+
+                
+                _field.FieldName = UD_ModelFields.FieldName;
+                _field.FieldDisplayName = UD_ModelFields.FieldDisplayName;
+                _field.ColumnSortID = UD_ModelFields.ColumnSortID;
+                /*_field.FlagEntity = UD_ModelFields.FlagEntity;*/
+                _field.DataType = UD_ModelFields.DataType;
+                _field.DataLength = UD_ModelFields.DataLength;
+                _field.DefaultValue = UD_ModelFields.DefaultValue;
+                _field.Description = UD_ModelFields.Description;
+                _field.RelationType = UD_ModelFields.RelationType;
+                _field.RelationTableName = UD_ModelFields.RelationTableName;
+                _field.RelationFieldValue = UD_ModelFields.RelationFieldValue;
+                _field.RelationFieldText = UD_ModelFields.RelationFieldText;
+                _field.Position = UD_ModelFields.Position;
+                _field.UpdateTime = UD_ModelFields.UpdateTime;
+                _field.UpdateUser = UD_ModelFields.UpdateUser;
                 try
                 {
                     db.SaveChanges();

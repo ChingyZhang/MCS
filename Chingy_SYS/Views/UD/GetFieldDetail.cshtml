@@ -20,7 +20,11 @@
         </div>
         <div class="fitem">
             <label>数据类型:</label>
-            <input id="cmbExtFlag" name="DataType" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:'auto'" style="width: 155px" />
+            <input id="cmbDataType" name="DataType" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:'auto',url: '/Dic/GetDicColByTableCode/UD_DataType',valueField: 'Code',textField: 'Name'" style="width: 155px" />
+        </div>
+        <div class="fitem">
+            <label>是否实体字段:</label>
+            <input id="cmbFlagEntity" name="FlagEntity" class="easyui-combobox" data-options="editable:false,required:true,disabled:true,panelHeight:'auto',valueField:'Code',textField:'Name',data:[{Code:'Y',Name:'是'},{Code:'N',Name:'否'}]" style="width: 155px" />
         </div>
         <div class="fitem">
             <label>长度:</label>
@@ -42,7 +46,7 @@
         </div>
         <div class="fitem">
             <label>关联类型:</label>
-            <input id="cmbRelationType" name="RelationType" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:'auto'" style="width: 155px" />
+            <input id="cmbRelationType" name="RelationType" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:'auto',url: '/Dic/GetDicColByTableCode/UD_RelationType',valueField: 'Code',textField: 'Name',value: '3', onChange:GetRelationHtm" style="width: 155px" />
         </div>
         <div id="divRelation">
         </div>
@@ -59,23 +63,30 @@
     function FormLoad() {
         $("#txtFieldName").textbox();
         $("#txtFieldDisplayName").textbox();
-        $("#cmbExtFlag").combobox({
-            url: '/Dic/GetDicColByTableCode/UD_DataType',
-            valueField: 'Code',
-            textField: 'Name'
-        });
+        //$("#cmbDataType").combobox({
+        //    url: '/Dic/GetDicColByTableCode/UD_DataType',
+        //    valueField: 'Code',
+        //    textField: 'Name'
+        //});
+        //$("#cmbFlagEntity").combobox({
+            //url: '/Dic/GetDicColByTableCode/UD_DataType',
+            //valueField: 'Code',
+            //textField: 'Name',
+        //    data: [{ Code: 'Y', Name: '是' }, { Code: 'N', Name: '否' }]
+        //});
+
         $("#txtDataLength").textbox();
         $("#txtDefaultValue").textbox();
         $("#txtDescription").textbox();
-        $("#cmbRelationType").combobox({
-            url: '/Dic/GetDicColByTableCode/UD_RelationType',
-            valueField: 'Code',
-            textField: 'Name',
-            value: '3',
-            onChange: function (newValue, oldValue) {
-                GetRelationHtm(newValue);
-            }
-        });
+        //$("#cmbRelationType").combobox({
+            //url: '/Dic/GetDicColByTableCode/UD_RelationType',
+            //valueField: 'Code',
+            //textField: 'Name',
+            //value: '3',
+        //    onChange: function (newValue, oldValue) {
+        //        GetRelationHtm(newValue);
+        //    }
+        //});
 
         var resp = "";
         $.ajax({
@@ -90,7 +101,7 @@
         });
     }
 
-    function RelationChange(newValue, oldValue) {
+    function RelationChange(newValue) {
         var loaddata = $("#cmbRelationTableName").combobox('getData');
 
         if (loaddata == undefined || !$.isArray(loaddata) || loaddata.length == 0) {
@@ -98,7 +109,9 @@
                 url: '/UD/GetTableList/',
                 type: 'post',
                 async: false,
-                success: function (data) { loaddata = data; }
+                success: function (data) {
+                    loaddata = data;
+                }
             });
         }
 
@@ -122,7 +135,7 @@
         } else { console.log('tableid is null'); }
     }
 
-    function GetRelationHtm(RelationType) {
+    function GetRelationHtm(RelationType) {//, oldValue
         var htm = '<div class="fitem"><label>关联表名:</label><input id="cmbRelationTableName" name="RelationTableName" class="easyui-combobox" data-options="editable:false,required:true,panelHeight:150" style="width: 155px" /></div>';
         if (RelationType == 1) {
             $("#divRelation").html(htm);
