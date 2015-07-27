@@ -130,6 +130,7 @@
     <Compile Include="Controllers\DicController.cs" />
     <Compile Include="Controllers\JsonNetResult.cs" />
     <Compile Include="Controllers\UDController.cs" />
+    <Compile Include="Controllers\UD_PanelController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -903,6 +904,7 @@
     <Content Include="Views\UD\Details.cshtml" />
     <Content Include="Views\UD\GetFieldDetail.cshtml" />
     <Content Include="Views\UD\GetFieldList.cshtml" />
+    <Content Include="Views\UD_Panel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

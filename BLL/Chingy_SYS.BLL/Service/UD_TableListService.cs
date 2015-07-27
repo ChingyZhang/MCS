@@ -15,18 +15,18 @@ namespace Chingy_SYS.BLL.Service
 
         public Result<IDictionary<string, int>, IList<UD_TableList>> GetTableList(Guid? id, int? rows, int? page)
         {
-            return TableDAO.GetTableList(id, rows, page);
+            return TableDAO.GetList(id, rows, page);
         }
 
 
-        public Result<bool, string> AddTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableModel)
+        public Result<bool, string> Create(Chingy_SYS.DAL.DB.UD_TableList model)
         {
-            return TableDAO.AddTable(UD_TableModel);
+            return TableDAO.Create(model);
         }
 
-        public Result<bool, string> DestroyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList)
+        public Result<bool, string> Delete(Chingy_SYS.DAL.DB.UD_TableList UD_TableList)
         {
-            return TableDAO.DestroyTable(UD_TableList);
+            return TableDAO.Delete(UD_TableList);
         }
 
 
@@ -35,9 +35,9 @@ namespace Chingy_SYS.BLL.Service
             return TableDAO.DestroyTable(Guid);
         }
 
-        public Result<bool, string> ModifyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList)
+        public Result<bool, string> Edit(Chingy_SYS.DAL.DB.UD_TableList model)
         {
-            return TableDAO.ModifyTable(UD_TableList);
+            return TableDAO.Edit(model);
         }
 
 

@@ -11,42 +11,42 @@ namespace Chingy_SYS.DAL.DAO
 {
     public class UD_TableDAO
     {
-        public Result<IDictionary<string, int>, IList<UD_TableList>> GetTableList(Guid? id, int? rows, int? page)
+        public Result<IDictionary<string, int>, IList<UD_TableList>> GetList(Guid? id, int? rows, int? page)
         {
             IDictionary<string, int> _dic = new Dictionary<string, int>();
             int iTotal = new Chingy_SYSEntities().UD_TableList.Count();
             _dic.Add("total", iTotal);
             _dic.Add("pageNumber", page.HasValue ? page.Value : 1);
 
-
-            IList<UD_TableList> _listT = null; //= new Chingy_SYSEntities().UD_TableList;
+            IList<UD_TableList> _listT = null;
             IQueryable r;
             int iSkip = 0;
             if (rows.HasValue && page.HasValue)
             {
                 iSkip = rows.Value * (page.Value - 1 > 0 ? page.Value - 1 : 0);
                 r = new Chingy_SYSEntities().UD_TableList.Include("UD_ModelFields").OrderBy(m => m.InsertTime).Skip(iSkip).Take(rows.Value);
-                //_listT=r.ToList<UD_TableList>();
             }
             else { r = new Chingy_SYSEntities().UD_TableList.Include("UD_ModelFields"); }
 
             _listT = r.Cast<UD_TableList>().ToList();
-            if (id != null) _listT = _listT.Where(m => m.ID == id).ToList<UD_TableList>();//new Chingy_SYSEntities().UD_TableList.Where(m => m.ID == id).ToList();
+            if (id != null) _listT = _listT.Where(m => m.ID == id).ToList<UD_TableList>();
 
             return new Result<IDictionary<string, int>, IList<UD_TableList>>(_dic, _listT);
         }
 
-        public Result<bool, string> AddTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableModel)
+        public Result<bool, string> Create(Chingy_SYS.DAL.DB.UD_TableList model)
         {
             Result<bool, string> _r;
-            using (Chingy_SYSEntities db = new Chingy_SYSEntities())
+            using (Chingy_SYSEntities context = new Chingy_SYSEntities())
             {
-                if (UD_TableModel.ID == Guid.Empty) UD_TableModel.ID = Guid.NewGuid();
-                UD_TableModel.InsertTime = DateTime.Now;
-                db.UD_TableList.Add(UD_TableModel);
+                var _m = context.UD_Panel.Single(m => m.Code == model.Name);
+                if (_m != null) return new Result<bool, string>(false, "property repeat");
+                model.ID = Guid.NewGuid();
+                model.InsertTime = DateTime.Now;
                 try
                 {
-                    db.SaveChanges();
+                    context.UD_TableList.Add(model);
+                    context.SaveChanges();
                     _r = new Result<bool, string>(true);
                 }
                 catch (Exception ex) { _r = new Result<bool, string>(false, ex.Message); }
@@ -72,14 +72,14 @@ namespace Chingy_SYS.DAL.DAO
             }
         }
 
-        public Result<bool, string> DestroyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList)
+        public Result<bool, string> Delete(Chingy_SYS.DAL.DB.UD_TableList model)
         {
             Result<bool, string> _r;
             using (Chingy_SYSEntities db = new Chingy_SYSEntities())
             {
-                db.UD_TableList.Remove(UD_TableList);
                 try
                 {
+                    db.UD_TableList.Remove(model);
                     db.SaveChanges();
                     _r = new Result<bool, string>(true);
                 }
@@ -88,23 +88,23 @@ namespace Chingy_SYS.DAL.DAO
             }
         }
 
-        public Result<bool, string> ModifyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList)
+        public Result<bool, string> Edit(Chingy_SYS.DAL.DB.UD_TableList model)
         {
             Result<bool, string> _r;
-            using (Chingy_SYSEntities db = new Chingy_SYSEntities())
+            using (Chingy_SYSEntities context = new Chingy_SYSEntities())
             {
-                DB.UD_TableList _table = db.UD_TableList.FirstOrDefault(m => m.ID == UD_TableList.ID);
-                if (_table == null) return new Result<bool, string>(false, "null");
-                _table.Name = UD_TableList.Name;
-                _table.DisplayName = UD_TableList.DisplayName;
-                _table.ExtFlag = UD_TableList.ExtFlag;
-                _table.ModelName = UD_TableList.ModelName;
-                _table.TreeFlag = UD_TableList.TreeFlag;
-                _table.UpdateTime = DateTime.Now;
-                _table.UpdateUser = UD_TableList.UpdateUser;
+                var _m = context.UD_TableList.FirstOrDefault(m => m.ID == model.ID);
+                if (_m != null) return new Result<bool, string>(false, "property repeat");
+
+                _m.Name = model.Name;
+                _m.DisplayName = model.DisplayName;
+                _m.ExtFlag = model.ExtFlag;
+                _m.ModelName = model.ModelName;
+                _m.TreeFlag = model.TreeFlag;
+                _m.UpdateTime = DateTime.Now;
                 try
                 {
-                    db.SaveChanges();
+                    context.SaveChanges();
                     _r = new Result<bool, string>(true);
                 }
                 catch (Exception ex) { _r = new Result<bool, string>(false, ex.Message); }
@@ -112,18 +112,18 @@ namespace Chingy_SYS.DAL.DAO
             }
         }
 
-        public Result<Guid, string> CreateField(UD_ModelFields UD_ModelFields)
+        public Result<Guid, string> CreateField(UD_ModelFields model)
         {
             Result<Guid, string> _r;
             using (Chingy_SYSEntities db = new Chingy_SYSEntities())
             {
-                if (UD_ModelFields.ID == Guid.Empty) UD_ModelFields.ID = Guid.NewGuid();
-                UD_ModelFields.InsertTime = DateTime.Now;
-                db.UD_ModelFields.Add(UD_ModelFields);
+                if (model.ID == Guid.Empty) model.ID = Guid.NewGuid();
+                model.InsertTime = DateTime.Now;
+                db.UD_ModelFields.Add(model);
                 try
                 {
                     db.SaveChanges();
-                    _r = new Result<Guid, string>(UD_ModelFields.ID);
+                    _r = new Result<Guid, string>(model.ID);
                 }
                 catch (Exception ex) { _r = new Result<Guid, string>(Guid.Empty, ex.Message); }
                 return _r;
@@ -159,7 +159,7 @@ namespace Chingy_SYS.DAL.DAO
                 db.UD_ModelFields.Attach(UD_ModelFields);
                 db.Entry(UD_ModelFields).State = System.Data.Entity.EntityState.Modified;*/
 
-                
+
                 _field.FieldName = UD_ModelFields.FieldName;
                 _field.FieldDisplayName = UD_ModelFields.FieldDisplayName;
                 _field.ColumnSortID = UD_ModelFields.ColumnSortID;

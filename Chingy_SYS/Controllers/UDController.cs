@@ -48,8 +48,8 @@ namespace Chingy_SYS.Controllers
         public JsonResult SaveTable(UD_TableList UD_TableList)
         {
             Result<bool, string> _r;
-            if (UD_TableList.ID == Guid.Empty) _r = TableService.AddTable(UD_TableList);
-            else _r = TableService.ModifyTable(UD_TableList);
+            if (UD_TableList.ID == Guid.Empty) _r = TableService.Create(UD_TableList);
+            else _r = TableService.Edit(UD_TableList);
             return Json(_r);
         }
 

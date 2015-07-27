@@ -10,12 +10,12 @@ namespace Chingy_SYS.BLL.Infrastructure
     public interface IUD_TableService
     {
         Result<IDictionary<string, int>, IList<Chingy_SYS.DAL.DB.UD_TableList>> GetTableList(Guid? id, int? rows, int? page);
-        Result<bool, string> AddTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableModel);
+        Result<bool, string> Create(Chingy_SYS.DAL.DB.UD_TableList model);
 
         Result<bool, string> DestroyTable(Guid Guid);
-        Result<bool, string> DestroyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList);
+        Result<bool, string> Delete(Chingy_SYS.DAL.DB.UD_TableList model);
 
-        Result<bool, string> ModifyTable(Chingy_SYS.DAL.DB.UD_TableList UD_TableList);
+        Result<bool, string> Edit(Chingy_SYS.DAL.DB.UD_TableList model);
 
         Result<bool, string> RemoveField(Guid Guid);
         Result<bool, string> EditField(Chingy_SYS.DAL.DB.UD_ModelFields UD_ModelFields);
