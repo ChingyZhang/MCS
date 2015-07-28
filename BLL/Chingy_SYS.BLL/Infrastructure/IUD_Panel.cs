@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Chingy_SYS.DAL.DAO
+namespace Chingy_SYS.BLL.Infrastructure
 {
     public interface IUD_Panel
     {

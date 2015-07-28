@@ -6,18 +6,66 @@
 <h2>板块列表页面</h2>
 
 
-<table id="dgPanel" title="板块列表" class="easyui-datagrid" data-options="url:'UD_Panel/GetPanelList',method:'post',toolbar:'#toolbar',fitcolumns:false,singleSelect:true,pagination:true,pageList:[10,20,30],rownumbers:false,onLoadSuccess:LoadSuccess" style="width: 100%; height: 380px">
-    <thead>
+<table id="dgPanel" title="板块列表" class="easyui-datagrid" data-options="url:'/UD_Panel/GetList',method:'post',toolbar:'#toolbar',fitcolumns:false,singleSelect:true,pagination:true,pageList:[10,20,30],rownumbers:false,onLoadSuccess:LoadSuccess" style="width: 100%; height: 380px">
+    @*<thead>
         <tr>
             <th field="ID" hidden="true">ID</th>
-            <th field="Name">表名</th>
-            <th field="DisplayName">显示名称</th>
-            <th field="ExtFlag" data-options="formatter:formatYN">可扩展字段</th>
+            <th field="Name">板块名称</th>
+            <th field="Code">编码</th>
+            <th field="SortID">排序号</th>
             <th field="ModelName">Model实体名称</th>
-            <th field="TreeFlag" data-options="formatter:formatYN">树形结构标志</th>
-            <th field="InsertTime" formatter="Common.DateFormatter">新增时间</th>
+            <th field="Enabled">可用标识</th>
+            <th field="Description">描述</th>
+            <th field="DisplayType">展示类型</th>
+            <th field="FieldCount">每行列数</th>
+            <th field="AdvanceFind">高级查询</th>
+            <th field="DefaultSortFields">默认排序字段</th>
+            <th field="Description">描述</th>
             <th data-options="field:'Empty',width:80,align:'right',formatter:formatLink">表字段信息</th>
             <!--此处如果绑定了ID字段会导致列隐藏，若在绑定时将隐藏的ID列注释则可以正常显示-->
         </tr>
-    </thead>
+    </thead>*@
 </table>
+<script type="text/javascript">
+    /**/$("#dgPanel").datagrid({
+        columns: [[
+            { field: "ID", title: "ID", hidden: true },
+            { field: "Code", title: "板块编码" },
+            { field: "Name", title: "板块名称" },
+            { field: "DetailView", title: "所属详细视图" },
+            { field: "SortID", title: "显示顺序" },
+            { field: "Enabled", title: "可见标识", formatter: formatYN },
+            { field: "Description", title: "描述" },
+            {
+                field: "DisplayType", title: "显示形式", formatter: function (value, row, index) {
+                    //return value;
+                    var result = "";
+                    $.ajax({
+                        type: "POST",
+                        async: false,
+                        url: "/Dic/GetDicColByTableCode/UD_PanelDisplayType",
+                        dataType: "json",
+                        success: function (data) {
+                            result = data;
+                        }
+                    });
+
+                    console.log(value);
+                    var length = result.length;
+                    var r = "";
+                    for (var i = 0; i < length; i++) {
+                        var dic = result[i];
+                        if (value == dic.Code) {
+                            //r = dic.Name;
+                            return dic.Name;
+                        }
+                    }
+                }
+            },
+            { field: "FieldCount", title: "每行列数" }
+        ]]
+    });
+
+    function LoadSuccess() { }
+    function formatLink() { }
+</script>

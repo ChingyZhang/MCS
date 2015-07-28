@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chingy_SYS.BLL.Service
 {
-    public class UD_PanelService : Chingy_SYS.DAL.DAO.IUD_Panel
+    public class UD_PanelService : Chingy_SYS.BLL.Infrastructure.IUD_Panel
     {
         Chingy_SYS.DAL.DAO.UD_PanelDAO UD_PanelDAO = new DAL.DAO.UD_PanelDAO();
 

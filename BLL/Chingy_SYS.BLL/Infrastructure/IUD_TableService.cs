@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Chingy_SYS.BLL.Infrastructure
 {
-    public interface IUD_TableService
+    public interface IUD_TableService : IUD_Panel
     {
         Result<IDictionary<string, int>, IList<Chingy_SYS.DAL.DB.UD_TableList>> GetTableList(Guid? id, int? rows, int? page);
         Result<bool, string> Create(Chingy_SYS.DAL.DB.UD_TableList model);

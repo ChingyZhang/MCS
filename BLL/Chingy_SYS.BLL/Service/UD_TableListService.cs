@@ -55,5 +55,25 @@ namespace Chingy_SYS.BLL.Service
         {
             return TableDAO.CreateField(UD_ModelFields);
         }
+
+        public Result<bool, string> Create(UD_Panel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Result<bool, string> Delete(UD_Panel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Result<bool, string> Edit(UD_Panel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Result<IDictionary<string, int>, IList<UD_Panel>> GetList(Guid? id, int? rows, int? page)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
