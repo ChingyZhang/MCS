@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="DAO\Dictionary_TableDAO.cs" />
     <Compile Include="DAO\Dictionary_ColumnDAO.cs" />
+    <Compile Include="DAO\UD_DetailViewDAO.cs" />
     <Compile Include="DAO\UD_PanelDAO.cs" />
     <Compile Include="DAO\UD_TableDAO.cs" />
     <Compile Include="DB\Addr_OfficialCity.cs">

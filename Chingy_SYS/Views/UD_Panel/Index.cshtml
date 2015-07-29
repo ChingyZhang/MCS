@@ -27,19 +27,40 @@
     </thead>*@
 </table>
 <script type="text/javascript">
-    /**/$("#dgPanel").datagrid({
+    $("#dgPanel").datagrid({
         columns: [[
             { field: "ID", title: "ID", hidden: true },
             { field: "Code", title: "板块编码" },
             { field: "Name", title: "板块名称" },
-            { field: "DetailView", title: "所属详细视图" },
-            { field: "SortID", title: "显示顺序" },
+            {
+                field: "DetailView", title: "所属详细视图", formatter: function (value, row, index) {
+                    var result = "";
+                    if (value != undefined) {
+                        $.ajax({
+                            url: "/UD_DetailView/GetList/" + value,
+                            type: "POST",
+                            dataType: "json",
+                            async: false,
+                            success: function (data) { result = data; }
+                        });
+                    }
+                    if (result != undefined && $.isArray(result)) {
+                        return result[0].Name;
+                    }
+                }
+            },
+            {
+                field: "SortID", title: "显示顺序", formatter: function (value, row, index) {
+                    if (value == undefined) return 0;
+                    return value;
+                }
+            },
             { field: "Enabled", title: "可见标识", formatter: formatYN },
             { field: "Description", title: "描述" },
             {
                 field: "DisplayType", title: "显示形式", formatter: function (value, row, index) {
-                    //return value;
-                    var result = "";
+                    var result = memorize("UD_PanelDisplayType");
+                    /*
                     $.ajax({
                         type: "POST",
                         async: false,
@@ -49,14 +70,12 @@
                             result = data;
                         }
                     });
-
-                    console.log(value);
+                    */
                     var length = result.length;
                     var r = "";
                     for (var i = 0; i < length; i++) {
                         var dic = result[i];
                         if (value == dic.Code) {
-                            //r = dic.Name;
                             return dic.Name;
                         }
                     }
