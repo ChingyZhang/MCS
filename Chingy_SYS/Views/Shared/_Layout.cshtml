@@ -11,90 +11,11 @@
     <script src="~/Content/jquery-easyui-1.4.2/jquery.min.js"></script>
     <script src="~/Content/jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
     @*    <script src="~/jquery-easyui-1.4.2/locale/easyui-lang-zh_CN.js"></script>*@
+    <script src="~/Content/TimeFormat.js"></script>
+
     <script type="text/javascript">
 
 
-        /**
-        * 时间对象的格式化
-        */
-        Date.prototype.format = function (format) {
-            /*
-            * format="yyyy-MM-dd hh:mm:ss";
-            */
-            var o = {
-                "M+": this.getMonth() + 1,
-                "d+": this.getDate(),
-                "h+": this.getHours(),
-                "m+": this.getMinutes(),
-                "s+": this.getSeconds(),
-                "q+": Math.floor((this.getMonth() + 3) / 3),
-                "S": this.getMilliseconds()
-            }
-
-            if (/(y+)/.test(format)) {
-                format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4
-                - RegExp.$1.length));
-            }
-
-            for (var k in o) {
-                if (new RegExp("(" + k + ")").test(format)) {
-                    format = format.replace(RegExp.$1, RegExp.$1.length == 1
-                    ? o[k]
-                    : ("00" + o[k]).substr(("" + o[k]).length));
-                }
-            }
-            return format;
-        }
-
-        var Common = {
-
-            //EasyUI用DataGrid用日期格式化
-            TimeFormatter: function (value, row, index) {
-                if (value == undefined) {
-                    return "";
-                }
-                /*json格式时间转js时间格式*/
-                value = value.substr(1, value.length - 2);
-                var obj = eval('(' + "{Date: new " + value + "}" + ')');
-                var dateValue = obj["Date"];
-                if (dateValue.getFullYear() < 1900) {
-                    return "";
-                }
-
-                var val = dateValue.format("yyyy-mm-dd HH:MM");
-                return val.substr(11, 5);
-            },
-            DateTimeFormatter: function (value, row, index) {
-                if (value == undefined) {
-                    return "";
-                }
-                /*json格式时间转js时间格式*/
-                value = value.substr(1, value.length - 2);
-                var obj = eval('(' + "{Date: new " + value + "}" + ')');
-                var dateValue = obj["Date"];
-                if (dateValue.getFullYear() < 1900) {
-                    return "";
-                }
-
-                return dateValue.format("yyyy-mm-dd HH:MM");
-            },
-
-            //EasyUI用DataGrid用日期格式化
-            DateFormatter: function (value, row, index) {
-                if (value == undefined) {
-                    return "";
-                }
-                /*json格式时间转js时间格式*/
-                value = value.substr(1, value.length - 2);
-                var obj = eval('(' + "{Date: new " + value + "}" + ')');
-                var dateValue = obj["Date"];
-                if (dateValue.getFullYear() < 1900) {
-                    return "";
-                }
-
-                return dateValue.format("yyyy-mm-dd");
-            }
-        };
 
         function JsonDateFormat(value2) {
             var value1 = new Date(parseInt(value2.replace("/Date(", "").replace(")/", ""), 10));
@@ -107,62 +28,67 @@
         }
 
 
-        //共用函数，封装内部调用，缓存计算结果
-        function memorize(key) {
+        function setCookie(key, value, expiredays) {
+            var exdate = new Date();
+            exdate.setDate(exdate.getDate() + expiredays);
+            document.cookie = key + "=" + escape(value.toString()) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
+        }
 
-            var cache = {};
-            //return function () {
-                //var key = arguments.length + Array.prototype.join.call(arguments, ",");//参数长度和参数作为属性值
-                if (key in cache) //存在则直接读取缓存数据
-                {
-                    console.log(key + "已存在");
-                    return cache[key];
+        function getCookie(key) {
+            if (document.cookie.length > 0) {
+                c_start = document.cookie.indexOf(key + "=");
+                if (c_start != -1) {
+                    c_start = c_start + key.length + 1;
+                    c_end = document.cookie.indexOf(";", c_start);
+                    if (c_end == -1) c_end = document.cookie.length;
+                    var r = unescape(document.cookie.substring(c_start, c_end));
+                    return eval('(' + r + ')');
                 }
-                else {
-                    console.log(key + "不存在，即将从终端获取");
-
-                    var result = "";
-                    $.ajax({
-                        type: "POST",
-                        async: false,
-                        url: "/Dic/GetDicColByTableCode/" + key,
-                        dataType: "json",
-                        success: function (data) {
-                            if (data != undefined && $.isArray(data)) {
-                                result = data;
-                                cache[key] = data;//f.apply(this, arguments);//不存在，则计算，并缓存计算结果
-                                console.log(key + "已成功从终端获取并缓存");
-                            }
-                        }
-                    });
-                    return result;
-                    //return cache[key] = f.apply(this, arguments);//不存在，则计算，并缓存计算结果
-                }
-            //}
+            }
+            return ""
         }
         /*
-        //模拟需要很长时间的计算的函数
-        function TestFunction(x) {
-            return x * x;
+        function checkCookie() {
+            username = getCookie('username')
+            if (username != null && username != "")
+            { alert('Welcome again ' + username + '!') }
+            else
+            {
+                username = prompt('Please enter your name:', "")
+                if (username != null && username != "") {
+                    setCookie('username', username, 365)
+                }
+            }
         }
+        */
 
-        //测试，调用
-        function test() {
-            var t = memorize(TestFunction);
-            var k = t(6);//  第一次调用需要计算
-            var k2 = t(6);//第二次直接读取换缓存，不在计算
-            alert(k2);
+        //共用函数，封装内部调用，缓存计算结果
+        function memorize(key) {
+            var result = getCookie(key);
+            if (result != null && result != "") {
+                return result;
+            }
+            else {
+                result = "";
+                $.ajax({
+                    type: "POST",
+                    async: false,
+                    url: "/Dic/GetDicColByTableCode/" + key,
+                    dataType: "json",
+                    success: function (data) {
+                        if (data != undefined && $.isArray(data)) {
+                            result = data;
+                            setCookie(key, result, 1);
+                        }
+                    }
+                });
+            }
+            //for (var p  in result) {
+            //    console.log("在循环输出中p=" + p);
+            //}
+            console.log("result=" + result);
+            return result;
         }
-
-        function test2() {
-            var t = memorize(function (x) {//递归函数计算X的阶乘
-                if (x <= 0) { return 1; }
-                else { return x * t(x - 1) }
-            });
-            var k = t(6);//缓存了6至1的阶乘        
-            var k2 = t(7);//只需要调用一次，计算6阶乘时使用了缓存
-            alert(k2);
-        }*/
     </script>
 
     @Styles.Render("~/Content/css")

@@ -59,6 +59,7 @@
             { field: "Description", title: "描述" },
             {
                 field: "DisplayType", title: "显示形式", formatter: function (value, row, index) {
+                    if (value == undefined) return "";
                     var result = memorize("UD_PanelDisplayType");
                     /*
                     $.ajax({
@@ -71,7 +72,11 @@
                         }
                     });
                     */
+                    debugger
+                    console.log(result);
+                    console.log("formatter方法中的result数组=" + result);
                     var length = result.length;
+                    console.log("length = " + length);
                     var r = "";
                     for (var i = 0; i < length; i++) {
                         var dic = result[i];
