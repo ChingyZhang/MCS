@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections;
+using System.Reflection;
+using System.Web.Caching;
 
 namespace Common.Cache
 {
@@ -10,8 +9,8 @@ namespace Common.Cache
     {
         public void a()
         { 
-            //HttpRunTime
-            HttpRuntime.
+            System.Web.Caching.Cache
+            //System.Web.Caching.Cache.
         }
     }
 }
