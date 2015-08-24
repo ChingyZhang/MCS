@@ -16,17 +16,17 @@ namespace Chingy_SYS.BLL.Service
             return Dictionary_TableDAO.GetDicList();
         }
 
-        public Common.Result.Result<bool, string> AddDictionary_Table(DAL.DB.Dictionary_Table Dictionary_Table)
+        public Core.Result.Result<bool, string> AddDictionary_Table(DAL.DB.Dictionary_Table Dictionary_Table)
         {
             return Dictionary_TableDAO.AddDictionary_Table(Dictionary_Table);
         }
 
-        public Common.Result.Result<bool, string> DestroyDictionary_Table(int ID)
+        public Core.Result.Result<bool, string> DestroyDictionary_Table(int ID)
         {
             return Dictionary_TableDAO.DestroyDictionary_Table(ID);
         }
 
-        public Common.Result.Result<bool, string> ModifyDictionary_Table(DAL.DB.Dictionary_Table Dictionary_Table)
+        public Core.Result.Result<bool, string> ModifyDictionary_Table(DAL.DB.Dictionary_Table Dictionary_Table)
         {
             return Dictionary_TableDAO.ModifyDictionary_Table(Dictionary_Table);
         }

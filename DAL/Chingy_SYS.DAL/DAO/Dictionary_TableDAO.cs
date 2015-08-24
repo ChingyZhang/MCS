@@ -1,6 +1,6 @@
 ﻿using Chingy_SYS.DAL.DB;
 using Chingy_SYS.Model;
-using Common.Result;
+using Core.Result;
 using System;
 using System.Collections.Generic;
 using System.Linq;

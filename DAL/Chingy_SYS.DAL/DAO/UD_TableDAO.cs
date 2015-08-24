@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.Result;
+using Core.Result;
 using System.Collections;
 
 namespace Chingy_SYS.DAL.DAO

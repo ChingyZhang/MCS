@@ -7,23 +7,47 @@ using System.Threading.Tasks;
 
 namespace Chingy_SYS.BLL.Service
 {
+    public class Dic
+    {
+        public string Code { get; set; }
+        public IList<Chingy_SYS.DAL.DB.Dictionary_Column> DicCol { get; set; }
+        public Dic(string code, IList<Chingy_SYS.DAL.DB.Dictionary_Column> dicCol)
+        {
+            Code = code;
+            DicCol = dicCol;
+        }
+    }
     public class Dictionary_ColumnService : IDictionary_Column
     {
         Chingy_SYS.DAL.DAO.Dictionary_ColumnDAO Dictionary_ColumnDAO = new DAL.DAO.Dictionary_ColumnDAO();
 
-        public Common.Result.Result<bool, string> AddDictionary_Column(DAL.DB.Dictionary_Column Dictionary_Column)
+        public Core.Result.Result<bool, string> AddDictionary_Column(DAL.DB.Dictionary_Column Dictionary_Column)
         {
             return Dictionary_ColumnDAO.AddDictionary_Column(Dictionary_Column);
         }
 
-        public Common.Result.Result<bool, string> DestroyDictionary_Column(int ID)
+        public Core.Result.Result<bool, string> DestroyDictionary_Column(int ID)
         {
             return Dictionary_ColumnDAO.DestroyDictionary_Column(ID);
         }
 
-        public Common.Result.Result<bool, IList<Chingy_SYS.DAL.DB.Dictionary_Column>> GetDicColByTableCode(string TableCode)
+        public Core.Result.Result<bool, IList<Chingy_SYS.DAL.DB.Dictionary_Column>> GetDicColByTableCode(string TableCode)
         {
-            return Dictionary_ColumnDAO.GetDicColByTableCode(TableCode);
+            Core.Cache.ICache _cache = new Core.Cache.RuntimeCache();
+            Core.Result.Result<bool, IList<Chingy_SYS.DAL.DB.Dictionary_Column>> r;
+            if (_cache.Exists(TableCode))
+            {
+                var _d = _cache.Get<Dic>(TableCode);
+                r = new Core.Result.Result<bool, IList<DAL.DB.Dictionary_Column>>(true, _d.DicCol);
+            }
+            else
+            {
+                r = Dictionary_ColumnDAO.GetDicColByTableCode(TableCode);
+                Dic _dic = new Dic(TableCode, r.ErrorMsg);
+                _cache.Add(TableCode, _dic);
+            }
+
+            return r;
         }
 
         public IQueryable<DAL.DB.Dictionary_Column> GetDicList()
@@ -31,7 +55,7 @@ namespace Chingy_SYS.BLL.Service
             return Dictionary_ColumnDAO.GetDicList();
         }
 
-        public Common.Result.Result<bool, string> ModifyDictionary_Column(DAL.DB.Dictionary_Column Dictionary_Column)
+        public Core.Result.Result<bool, string> ModifyDictionary_Column(DAL.DB.Dictionary_Column Dictionary_Column)
         {
             return Dictionary_ColumnDAO.ModifyDictionary_Column(Dictionary_Column);
         }

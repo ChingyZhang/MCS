@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Result
+namespace Core.Result
 {
     /// <summary>
     /// 贯穿系统的返回参数

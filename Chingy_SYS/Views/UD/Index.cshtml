@@ -63,6 +63,51 @@
     <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width: 90px">取消</a>
 </div>
 <script type="text/javascript">
+    function inherit(p) {//js继承
+        if (p == null) throw TypeError;
+        if (Object.create) {
+            return Object.create(p);
+        }
+        var t = typeof p;
+        if (t != "object" && t != "function") throw TypeError;
+        function f() { };
+        f.prototype = p;
+        return new f();
+    }
+
+    var a = "global";
+    function fb() {
+        b = "inner b";
+    }
+    function fc() {
+        console.log('c赋值前=' + c);
+        var c = "inner c";//上下两次log两次输出结果不一致，但上面的log不报错：javascript会默认把语句块中变量的声明移至顶部(此时变量为undefined)，但只有真正执行到变量声明的语句时才会对变量赋值
+        console.log('c赋值后=' + c);
+        a = a + " handle in c";
+        b = b + " handle in c";
+        console.log('a=' + a);
+        console.log('b=' + b);//在方法中不以var显示声明的变量会默认作为全局变量处理
+
+        var o = { x: 1, y: 2, z: 3 }, arr = [], i = 0;;
+        for (arr[i++] in o) console.log(arr[i - 1]);//for/in语句中可对变量进行赋值
+
+        var o = { x: 1, y: 2, a: 10 };
+        var p = inherit(o);//p继承自0
+        p.z = 3;
+        p.x = 4;//p的x属性在读取时会先检查原始对象，如果不存在x属性则沿着原型链往上查找x属性；但对p.x赋值时如果p原始对象不存在x属性则新增，不会去改变p的原型链上对象的x值（js的对象继承只有在读取属性时才有明确体现）
+        console.log('o.x=' + o.x + ' and p.x = ' + p.x);
+        console.log('resilt=' + p.x + p.y + p.z);
+        console.log('resilt=' + (p.x + p.y + p.z));//两个输出结果不同表明在表达式中同时存在数字和字符串的情况下js优先考虑字符串拼接
+        delete p.a;
+    }
+
+
+
+    $(function () {
+        fb();
+        fc();
+    })
+
     var url;
     function newTable() {
 
@@ -122,7 +167,7 @@
         return "<a href='" + url + "' >表字段列表";
     }
 
-    
+
 
     function LoadSuccess(data) {
         if (data.total > 0) {
@@ -205,7 +250,7 @@
     })(jQuery);
 
     //$(function () {
-        //$('#dg').datagrid('load', 'UD/GetTableList');
-        //$('#dg').datagrid('clientPaging');
+    //$('#dg').datagrid('load', 'UD/GetTableList');
+    //$('#dg').datagrid('clientPaging');
     //});
 </script>

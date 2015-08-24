@@ -11,22 +11,22 @@ namespace Chingy_SYS.BLL.Service
     {
         Chingy_SYS.DAL.DAO.UD_DetailViewDAO UD_DetailViewDAO = new DAL.DAO.UD_DetailViewDAO();
 
-        public Common.Result.Result<bool, string> Create(DAL.DB.UD_DetailView model)
+        public Core.Result.Result<bool, string> Create(DAL.DB.UD_DetailView model)
         {
             return UD_DetailViewDAO.Create(model);
         }
 
-        public Common.Result.Result<bool, string> Delete(DAL.DB.UD_DetailView model)
+        public Core.Result.Result<bool, string> Delete(DAL.DB.UD_DetailView model)
         {
             return UD_DetailViewDAO.Delete(model);
         }
 
-        public Common.Result.Result<bool, string> Edit(DAL.DB.UD_DetailView model)
+        public Core.Result.Result<bool, string> Edit(DAL.DB.UD_DetailView model)
         {
             return UD_DetailViewDAO.Edit(model);
         }
 
-        public Common.Result.Result<IDictionary<string, int>, IList<DAL.DB.UD_DetailView>> GetList(Guid? id, int? rows, int? page)
+        public Core.Result.Result<IDictionary<string, int>, IList<DAL.DB.UD_DetailView>> GetList(Guid? id, int? rows, int? page)
         {
             return UD_DetailViewDAO.GetList(id, rows, page);
         }

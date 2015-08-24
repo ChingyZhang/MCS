@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chingy_SYS", "Chingy_SYS\Chingy_SYS.csproj", "{C96593F7-C1C3-429F-BA26-64E142F874DB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F2373D45-0AFD-48EC-ABD6-3DA6B91FC5C0} = {F2373D45-0AFD-48EC-ABD6-3DA6B91FC5C0}
@@ -22,7 +24,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chingy_SYS.DAL", "DAL\Ching
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chingy_SYS.Model", "Model\Chingy_SYS.Model\Chingy_SYS.Model.csproj", "{67931F24-BD5C-41D9-A12F-51211992ADE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Help\Common\Common.csproj", "{65667F08-77C6-4F90-8E1B-45C539B4BA5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Help\Common\Core.csproj", "{65667F08-77C6-4F90-8E1B-45C539B4BA5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
