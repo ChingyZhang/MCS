@@ -47,46 +47,42 @@
             }
             return ""
         }
-        /*
-        function checkCookie() {
-            username = getCookie('username')
-            if (username != null && username != "")
-            { alert('Welcome again ' + username + '!') }
-            else
-            {
-                username = prompt('Please enter your name:', "")
-                if (username != null && username != "") {
-                    setCookie('username', username, 365)
-                }
+
+        function setStorage(key, value) {
+            //在使用localStorage存储数组时无法直接存储数组对象。可通过转为json文本存储，读取时再json转诚数组对象
+            if (window.localStorage) {
+                localStorage.setItem(key, JSON.stringify(value));
             }
         }
-        */
+
+        function getStorage(key) {
+            if (window.localStorage) {
+                var result = localStorage.getItem(key);
+                //console.log("从缓存读取字典" + key + "=" + result);
+                if (typeof (result) != undefined && result != null) {
+                    return JSON.parse(result);
+                }
+            }
+            return undefined;
+        }
 
         //共用函数，封装内部调用，缓存计算结果
-        function memorize(key) {
-            var result = getCookie(key);
-            if (result != null && result != "") {
-                return result;
-            }
-            else {
-                result = "";
+        function MemorizeDic(key) {
+            var result = getStorage(key);
+            if (typeof result == undefined || result == null || result == "") {
                 $.ajax({
-                    type: "POST",
+                    type: "get",
                     async: false,
                     url: "/Dic/GetDicColByTableCode/" + key,
                     dataType: "json",
                     success: function (data) {
                         if (data != undefined && $.isArray(data)) {
                             result = data;
-                            setCookie(key, result, 1);
+                            setStorage(key, result);
                         }
                     }
                 });
             }
-            //for (var p  in result) {
-            //    console.log("在循环输出中p=" + p);
-            //}
-            console.log("result=" + result);
             return result;
         }
     </script>

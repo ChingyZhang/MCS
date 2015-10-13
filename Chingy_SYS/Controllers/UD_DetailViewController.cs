@@ -23,7 +23,6 @@ namespace Chingy_SYS.Controllers
             return View();
         }
 
-        [HttpPost]
         public JsonResult GetList(Guid? id, int? rows, int? page)
         {
             Result<IDictionary<string, int>, IList<UD_DetailView>> Result = IUD_DetailView.GetList(id, rows, page);
@@ -33,7 +32,7 @@ namespace Chingy_SYS.Controllers
             int iTotal = Result.Success["total"];
             var r = from m in listT
                     select new { ID = m.ID, Name = m.Name, Code = m.Code, pageNumber = iPageNumber, pageTotal = iTotal };
-            return Json(r);
+            return Json(r, JsonRequestBehavior.AllowGet);
         }
 
     }

@@ -64,15 +64,15 @@ namespace Chingy_SYS.Controllers
         /// </summary>
         /// <param name="id">字典表编码</param>
         /// <returns></returns>
-        [HttpPost]
         public JsonResult GetDicColByTableCode(string id)
         {
             Result<bool, IList<Dictionary_Column>> listDic = Dictionary_ColumnService.GetDicColByTableCode(id);
             if (listDic.ErrorMsg == null) return null;
+            var dicTable = Dictionary_TableService.GetDicList().First(m => m.Code == id);
             var r = (from _dic in listDic.ErrorMsg
-                    orderby _dic.ID
-                    select new { ID = _dic.ID, Table = _dic.Table, Code = _dic.Code, Name = _dic.Name }).ToList();
-            return Json(r);
+                     orderby _dic.ID
+                     select new { ID = _dic.ID, Table = _dic.Table, Code = _dic.Code, Name = _dic.Name, Timestamp = dicTable.TIMESTAMP }).ToList();
+            return Json(r, JsonRequestBehavior.AllowGet);
         }
 
         public PartialViewResult Detail(int id)//如果前台传来的是url如Dic/Detail/1这种样式的话此处参数名必须为id，否则url路由不到该方法

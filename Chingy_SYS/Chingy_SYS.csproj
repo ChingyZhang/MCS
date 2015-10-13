@@ -126,9 +126,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DicController.cs" />
-    <Compile Include="Controllers\JsonNetResult.cs" />
     <Compile Include="Controllers\UDController.cs" />
     <Compile Include="Controllers\UD_DetailViewController.cs" />
     <Compile Include="Controllers\UD_PanelController.cs" />

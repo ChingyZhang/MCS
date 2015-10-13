@@ -23,6 +23,7 @@ namespace Chingy_SYS.DAL.DB
         public DateTime? UpdateTime { get; set; }
         public int? UpdateUser { get; set; }
         public string ExtPropertys { get; set; }
+        public string TIMESTAMP { get; set; }
 
         public virtual ICollection<Dictionary_Column> Dictionary_Column { get; set; }
     }

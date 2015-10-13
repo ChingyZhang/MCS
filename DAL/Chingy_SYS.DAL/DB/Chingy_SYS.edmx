@@ -149,14 +149,15 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="Code" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
           <Property Name="Flag" Type="int" Nullable="false" />
           <Property Name="InsertTime" Type="datetime" />
           <Property Name="InsertUser" Type="int" />
           <Property Name="UpdateTime" Type="datetime" />
           <Property Name="UpdateUser" Type="int" />
           <Property Name="ExtPropertys" Type="varchar" />
+          <Property Name="TIMESTAMP" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Right_Action">
           <Key>
@@ -677,8 +678,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Code" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="Flag" Type="Int32" Nullable="false" />
           <Property Name="InsertTime" Type="DateTime" Precision="3" />
           <Property Name="InsertUser" Type="Int32" />
@@ -686,6 +687,7 @@
           <Property Name="UpdateUser" Type="Int32" />
           <Property Name="ExtPropertys" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Dictionary_Column" Relationship="Chingy_SYSModel.FK_DICTIONA_FK_DICTIO_DICTIONA" FromRole="Dictionary_Table" ToRole="Dictionary_Column" />
+          <Property Type="String" Name="TIMESTAMP" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Right_Action">
           <Key>
@@ -1159,6 +1161,7 @@
           <EntitySetMapping Name="Dictionary_Table">
             <EntityTypeMapping TypeName="Chingy_SYSModel.Dictionary_Table">
               <MappingFragment StoreEntitySet="Dictionary_Table">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Code" ColumnName="Code" />

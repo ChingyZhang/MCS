@@ -123,27 +123,32 @@
     }
 
     function formatDataType(value, row, index) {
-        var result = "";
+        var result = MemorizeDic("UD_DataType");
+        console.log(result);
         /*var result = $.ajax({
             url: "/Dic/GetDicColByTableCode/UD_DataType",
             type: "POST",
             dataType: "json",
             asynv: false
         })//.responseJSON;*/
-        $.ajax({
-            type: "POST",
-            url: "/Dic/GetDicColByTableCode/UD_DataType",
-            async: false, //异步请求
-            //cache: false,  // 设置为false将不会从浏览器缓存中加载请求信息。
-            dataType: "json",
-            success: function (data) { result = data; }
-        });
+        /*if (result == "" || result == undefined || result == null) {
+            $.ajax({
+                type: "POST",
+                url: "/Dic/GetDicColByTableCode/UD_DataType",
+                async: false, //异步请求
+                //cache: false,  // 设置为false将不会从浏览器缓存中加载请求信息。
+                dataType: "json",
+                success: function (data) { result = data; }
+            });
+        }*/
         var length = result.length;
         var r = "";
         for (var i = 0; i < length; i++) {
             var dic = result[i];
+            console.log("dic.Code=" + dic.Code);
             if (value == dic.Code) {
                 r = dic.Name;
+                
             }
         }
         return r;

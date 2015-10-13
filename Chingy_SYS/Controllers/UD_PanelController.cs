@@ -23,7 +23,7 @@ namespace Chingy_SYS.Controllers
             return View();
         }
 
-        [HttpPost]
+        //[HttpPost]    
         public JsonResult GetList(Guid? id, int? rows, int? page)
         {
             Result<IDictionary<string, int>, IList<UD_Panel>> Result = IUD_Panel.GetList(id, rows, page);
@@ -33,7 +33,7 @@ namespace Chingy_SYS.Controllers
             int iTotal = Result.Success["total"];
             var r = from m in listT
                     select new { ID = m.ID, Name = m.Name, Code = m.Code, SortID = m.SortID, Enabled = m.Enabled, Description = m.Description, DisplayType = m.DisplayType, FieldCount = m.FieldCount, AdvanceFind = m.AdvanceFind, DefaultSortFields = m.DefaultSortFields, DetailView = m.DetailView, pageNumber = iPageNumber, pageTotal = iTotal };
-            return Json(r);
+            return Json(r, JsonRequestBehavior.AllowGet);
         }
     }
 }

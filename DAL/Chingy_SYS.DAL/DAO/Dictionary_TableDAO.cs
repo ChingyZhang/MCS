@@ -27,7 +27,9 @@ namespace Chingy_SYS.DAL.DAO
 
                 model.Flag = 1;
                 model.InsertTime = DateTime.Now;
+                model.TIMESTAMP = DateTime.Now.ToString("yyyyMMddHHmmss");
                 db.Dictionary_Table.Add(model);
+
                 try
                 {
                     db.SaveChanges();
@@ -65,11 +67,12 @@ namespace Chingy_SYS.DAL.DAO
                 if (_tableCode != null) return new Result<bool, string>(false, "字典表编码重复");
                 DB.Dictionary_Table _table = db.Dictionary_Table.Find(model.ID);
                 if (_table == null) return new Result<bool, string>(false, "字典表不存在");
-                
+
                 _table.Name = model.Name;
                 _table.Code = model.Code;
                 _table.UpdateTime = DateTime.Now;
                 _table.UpdateUser = model.UpdateUser;
+                model.TIMESTAMP = DateTime.Now.ToString("yyyyMMddHHmmss");
                 try
                 {
                     db.SaveChanges();
