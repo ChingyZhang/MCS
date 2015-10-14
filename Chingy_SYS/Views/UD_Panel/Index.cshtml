@@ -38,13 +38,15 @@
         onLoadSuccess: LoadSuccess,
         onDblClickRow: function (index, field, value) {
             if (editIndex != index) {
-                if (endEditing()) {
-                    $('#dgPanel').datagrid('selectRow', index).datagrid('beginEdit', index);
-                    editIndex = index;
-                } else {
-                    $('#dgPanel').datagrid('selectRow', editIndex);
-                }
+                if (!$('#dgPanel').datagrid('validateRow', editIndex)) {
+                    //$('#dgPanel').datagrid('acceptChanges');
+                    //$('#dgPanel').datagrid('rejectChanges');
+                    $('#dgPanel').datagrid('cancelEdit', editIndex);
+                } else $('#dgPanel').datagrid('endEdit', editIndex);
+                $('#dgPanel').datagrid('selectRow', index).datagrid('beginEdit', index);
+                editIndex = index;
             }
+            console.log($('#dgPanel').datagrid('getChanges', 'updated'));
         },
         columns: [[
             { field: "ID", title: "ID", hidden: true },
@@ -88,9 +90,9 @@
                     }
                 }, editor: {
                     type: 'combobox', options: {
-                        valueField: 'Code',
-                        textField: 'Name',
-                        data: MemorizeDic("UD_PanelDisplayType")
+                        valueField: 'Code', textField: 'Name',
+                        method: 'get', data: MemorizeDic("UD_PanelDisplayType"),
+                        panelHeight: 'auto', editable: false
                     }
                 }
             },
